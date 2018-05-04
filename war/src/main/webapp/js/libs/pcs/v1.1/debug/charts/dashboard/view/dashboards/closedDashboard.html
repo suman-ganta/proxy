@@ -1,0 +1,83 @@
+<div class="oj-offcanvas-outer-wrapper bpm-dsb-panel">
+
+	<div data-bind="template: { name: 'bpm-dsb-icon-bar-template', data: $data }"></div>
+
+	<h1 data-bind="text: bundle.closed.title"></h1>
+
+	<div id="period-container" class="closed-period-container">
+		<div id="period" class="closed-period oj-button-half-chrome oj-button-primary"
+			 data-bind="ojComponent: {component: 'ojButtonset', checked: period,
+								  optionChange: handlePeriodChange}"
+			 aria-label="Select a reporting period">
+			<!-- ko foreach: periodButtons -->
+			<label data-bind="attr: {for: id, title: label}"></label>
+			<input type="radio" name="period"
+				   data-bind="value: id, attr: {id: id},
+							  ojComponent: {component: 'ojButton', label: label}"/>
+			<span class="btn-separator"></span>
+			<!-- /ko -->
+		</div>
+	</div>
+	<div  class="oj-sm-12 bpm-dsb-center-align stats-margin">
+		<div class="bpm-dsb-center-align" >
+			<div class="bpm-dsb-billb-box bpm-dsb-dark-grey-bg right-width-zero">
+				<div class="bpm-dsb-billboard-number" data-bind="text: totals()[0]"></div>
+				<div class="bpm-dsb-billboard-title">
+					<span data-bind="text:bundle.closed.billboard.total_closed , attr : { title : bundle.closed.billboard.total_closed }"></span>
+					<!--<br/>-->
+					<!--<span data-bind="text: periodLabels[period()][0]"></span>-->
+				</div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-green-bg right-width-zero">
+				<div class="bpm-dsb-billboard-number bpm-dsb-dark-green-numb" data-bind="text: totals()[1]"></div>
+				<div class="bpm-dsb-billboard-title">
+					<span data-bind="text:bundle.closed.billboard.completed , attr : { title : bundle.closed.billboard.completed }"></span>
+					<!--<br/>-->
+					<!--<span data-bind="text: periodLabels[period()][0]"></span>-->
+				</div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-red-bg right-width-zero">
+				<div class="bpm-dsb-billboard-number bpm-dsb-dark-red-numb" data-bind="text: totals()[2]"></div>
+				<div class="bpm-dsb-billboard-title">
+					<span data-bind="text:bundle.closed.billboard.aborted , attr : { title : bundle.closed.billboard.aborted }"></span>
+					<!--<br/>-->
+					<!--<span data-bind="text: periodLabels[period()][0]"></span>-->
+				</div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-red-bg">
+				<div class="bpm-dsb-billboard-number bpm-dsb-dark-red-numb" data-bind="text: totals()[3]"></div>
+				<div class="bpm-dsb-billboard-title">
+					<span data-bind="text:bundle.closed.billboard.errored , attr : { title : bundle.closed.billboard.errored }"></span>
+					<!--<br/>-->
+					<!--<span data-bind="text: periodLabels[period()][0]"></span>-->
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="bpm-dsb-chart-container oj-flex">
+		<table id="closedProcesses" summary="Closed Processes" aria-label="Closed Processes Table"
+			   data-bind="ojComponent: {component: 'ojTable',
+								 data: datasource,
+								 columns: columns,
+								 columnsDefault: {headerRenderer: renderHeader},
+								 rootAttributes: {'style': 'width: 100%; height: 100%; font-size: 16px'}}">
+		</table>
+		<div id="bpm-dsb-closed-table-overlay"/>
+	</div>
+
+	<!-- This template is used in the Avg cycle Column of the above table -->
+	<script type="text/html" id="bpm_charts_closed_proc_avg_cycle_tmpl">
+		<td>
+			<span data-bind="text: avgThis"></span>
+			<!-- ko if: isCycletimeIncreasing === 1 -->
+			<span class="bpm-dsb-closed-tbl-cycle-inc" data-bind="attr :{title : $parent.bundle.closed.table.increased}"></span>
+			<!-- /ko -->
+			<!-- ko if: isCycletimeIncreasing === -1 -->
+			<span class="bpm-dsb-closed-tbl-cycle-dec" data-bind="attr :{title : $parent.bundle.closed.table.decreased}"></span>
+			<!-- /ko -->
+		</td>
+	</script>
+
+</div>

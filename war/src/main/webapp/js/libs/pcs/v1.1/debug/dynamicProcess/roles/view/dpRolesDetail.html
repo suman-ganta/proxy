@@ -1,0 +1,255 @@
+<div class="demo-flex-display oj-flex-items-pad oj-panel pcs-dp-roles-navdiv">
+	<!-- ko if: selectedRole() -->
+	<div class="oj-flex-items-pad oj-panel pcs-dp-roles-detailpaneldiv">
+		<button id="pcs-dp-roles-detail-back-btn"
+				data-bind="click: goBackButton,
+								   ojComponent: {
+								   component:'ojButton', label: bundle.pcs.dp.roles.back_label, display: 'icons', chroming: 'half',
+								   icons: {start:'demo-icon-font pcs-dp-roles-back-icon'}}">
+		</button>
+
+		<span class="pcs-dp-roles-name-main-label" data-bind="text: displayName"></span>
+
+		<div id="pcs-dp-roles-detail-error-containor" class="pcs-dp-roles-content-error pcs-dp-display-none">
+			<span class="pcs-dp-roles-content-error-icon"></span>
+			<span id="pcs-dp-roles-content-error-text"></span>
+		</div>
+
+		<!-- ko if: !editPermissionEnabled() -->
+		<div class="oj-flex oj-sm-flex-direction-column pcs-dp-roles-detailpaneldiv_1">
+			<label for="pcs-dp-roles-selectedrole" data-bind="text: bundle.pcs.dp.roles.name_label"></label>
+			<input id="pcs-dp-roles-selectedrole" class="pcs-dp-role-name-input" type="text"
+				   data-bind="attr:{placeholder: bundle.pcs.dp.roles.untitled},
+               					ojComponent:{component: 'ojInputText',required:true, invalidComponentTracker: tracker, value: displayName , disabled : readOnly()}"/>
+
+		</div>
+
+		<div>
+			<!-- ko if: consumerType() === 'admin_roles' -->
+			<div class="pcs-dp-roles-processdefinition-div">
+				<!-- ko if: selectedRole().getScopeType() === 'DEFINITION' -->
+				<label for="pcs-dp-roles-processdeflist" data-bind="text: bundle.pcs.dp.roles.process_def_label"></label>
+				<input id="pcs-dp-roles-processdeflist"
+					   data-bind="ojComponent: {component: 'ojCombobox',
+											value: selectedProcessDef,
+											options: processDefinitionList,
+											multiple: false, required:true,
+											disabled: !selectedRole().isNewRole(),
+											invalidComponentTracker: tracker,
+											rootAttributes: {style:'width: 500px;'}}"/>
+				<!-- /ko -->
+			</div>
+			<!-- /ko -->
+			<label for="pcs-dp-roles-role-user-name" class="oj-label" data-bind="text: bundle.pcs.dp.roles.members_label"></label>
+			<!-- ko ifnot: readOnly() -->
+			<div id="pcs-dp-roles-role-user-name"
+				 class="pcs-dp-roles-idbClass"
+				 data-bind='component: {name: "pcs-identity-browser" ,
+					params: {multiple: true, value: selectedIdentities,
+					selectLabel: bundle.pcs.dp.roles.select_all_id , placehoderTxt: bundle.pcs.dp.roles.searchUsers , disabled : readOnly(),
+					scope: ["user","group"], idbID: "pcs-dp-roles-idb"}}'>
+			</div>
+			<!-- /ko -->
+			<!-- ko if: readOnly()  -->
+			<div id="pcs-dp-roles-user-name-ro"  class="pcs-dp-roles-idbClass" style="margin-top:10px">
+				<!-- ko foreach: selectedIdentities() -->
+					<span style="margin-right:10px" data-bind="text : $data.id"></span>
+				<!-- /ko -->
+			</div>
+			<!-- /ko -->
+
+
+			<div class="pcs-dp-roles-perm-div">
+				<span class="pcs-dp-roles-perm-label"  data-bind="text: bundle.pcs.dp.roles.permissions_label"></span>
+			</div>
+			<span class="pcs-dp-roles-info-label"  data-bind="text: bundle.pcs.dp.roles.instance_perm_info"></span>
+			<span data-bind="attr: { title: $parent.bundle.pcs.dp.roles.instance_perm_help} " role="img" class="oj-fwk-icon-status-info oj-fwk-icon"></span>
+			<div class="pcs-dp-info-text" data-bind="text: $parent.bundle.pcs.dp.roles.detail_perm_info_note"></div>
+			<div class="pcs-dp-roles-permtemplatediv" data-bind="template: {name: 'dp-roles-instance-permissions'}"></div>
+			<div>
+				<button id="pcs-dp-roles-enablepermbtn" class="pcs-dp-roles-editpermbtndiv"
+						data-bind="click: showDetailPermissionUI, ojComponent: {
+                    component:'ojButton', label: bundle.pcs.dp.roles.advanced_perm +' (' + selectedPermissionList().length +')', chroming: 'full',
+                    disabled : selectedProcessDef().length === 0,
+                    icons: {start:'oj-fwk-icon'}}">
+				</button>
+			</div>
+		</div>
+		<!-- /ko -->
+
+		<!-- ko if: editPermissionEnabled() -->
+			<div class="pcs-dp-info-text" data-bind="text: $parent.bundle.pcs.dp.roles.detail_perm_task_info_note"></div>
+			<!-- ko ifnot: readOnly() -->
+				<button id="pcs-dp-roles-addPermBtn" class="pcs-dp-roles-add-perm-btn"
+						data-bind="click : addNewPermission, ojComponent: {
+									   component:'ojButton', label:bundle.pcs.dp.roles.add_perm, display: 'both', chroming: 'full',
+									   icons: {start:'demo-icon-font pcs-dp-roles-add-icon'}}">
+				</button>
+			<!-- /ko -->
+			<div style="margin-left: 0px !important">
+				<div class="pcs-dp-roles-perm-parent-div oj-flex oj-sm-12" data-bind="template: {name: 'dp-roles-detail-permissions'}"></div>
+			</div>
+		<!-- /ko -->
+	</div>
+
+	<div class="pcs-dp-roles-main-btns-div">
+		<!-- ko if: !editPermissionEnabled() -->
+			<button id="pcs-dp-roles-main-btns-cancel" class="pcs-dp-roles-bar-btn"
+					data-bind="click: discardRoleChanges, ojComponent: {
+									component:'ojButton', label: bundle.pcs.dp.roles.cancel_label, chroming: 'full',
+									icons: {start:'oj-fwk-icon'}}">
+			</button>
+			<!-- ko ifnot: readOnly() -->
+				<button id="pcs-dp-roles-main-btns-save" class="pcs-dp-roles-bar-btn"
+						data-bind="click: saveRoleChanges, ojComponent: {
+										   component:'ojButton', label: saveLabel, chroming: 'full',
+										   icons: {start:'oj-fwk-icon'}}">
+				</button>
+			<!-- /ko -->
+		<!-- /ko -->
+		<!-- ko if: editPermissionEnabled() -->
+			<!-- ko ifnot: readOnly() -->
+				<button id="pcs-dp-roles-main-btns-perm-cancel" class="pcs-dp-roles-bar-btn"
+						data-bind="click: cancelPermissionChanges, ojComponent: {
+											component:'ojButton', label: bundle.pcs.dp.roles.revert_label, chroming: 'full',
+											icons: {start:'oj-fwk-icon'}}">
+				</button>
+			<!-- /ko -->
+			<button id="pcs-dp-roles-main-btns-perm-done" class="pcs-dp-roles-bar-btn"
+					data-bind="click: goBackButton, ojComponent: {
+										component:'ojButton', label: bundle.pcs.dp.roles.back_label, chroming: 'full',
+										icons: {start:'oj-fwk-icon'}}">
+			</button>
+		<!-- /ko -->
+	</div>
+	<!-- /ko -->
+
+	<div id="pcs-dp-roles-detail-overlay"></div>
+</div>
+
+
+<script type="text/html" id="dp-roles-instance-permissions">
+
+	<!-- ko if: instancePermission() -->
+	<div id="pcs-dp-roles-perm-main-container" data-bind="with: instancePermission()" class="pcs-dp-roles-perm-topcontainer">
+
+		<div class="pcs-dp-roles-actionschkbox"
+			 data-bind="ojComponent: {
+          				component: 'ojCheckboxset', disabled: $parent.readOnly(),
+          				optionChange: actionChangeHandler,
+          				value: selectedActions}" >
+
+			<!-- ko foreach: $parent.permissionsActionList.CASE_INSTANCE -->
+			<span class="oj-choice-item pcs-dp-roles-perm-label-span">
+				<input data-bind="attr: { value: $data.value , id: $data.id }, disable : $parents[1].consumerType() === 'instance_roles' && $data.value === 'CREATE'" type="checkbox">
+				<label class="pcs-dp-roles-perm-label-options" data-bind="attr: { for: $data.id }, text :$data.label"></label>
+			</span>
+			<!-- /ko  -->
+
+		</div>
+	</div>
+	<!-- /ko -->
+
+</script>
+
+
+<script type="text/html" id="dp-roles-detail-permissions">
+
+	<div class="oj-flex-items-pad oj-flex oj-sm-12" style="min-height:300px">
+		<!-- ko foreach: selectedPermissionList -->
+		<div class="oj-flex-item oj-sm-12 oj-md-10 oj-lg-8">
+			<div class="pcs-dp-roles-collapsiblediv"
+				 data-bind="ojComponent: {component: 'ojCollapsible', expanded: true}">
+
+				<h3  class="pcs-dp-roles-permheaderlabel oj-header-border">
+					<span data-bind="text: $parent.bundle.pcs.dp.roles.permission_label"></span>
+
+					<!-- ko if: selectedCondition() && selectedCondition() != 'default' -->
+						<span data-bind="attr: { title: conditionText} " role="img" class="oj-fwk-icon-status-info oj-fwk-icon"></span>
+					<!-- /ko -->
+
+					<!-- ko ifnot: $parent.readOnly() -->
+						<button  class="pcs-dp-roles-del-perm-btn"
+								data-bind="click : $parent.deletePermission, ojComponent: {
+											   component:'ojButton', label: $parent.bundle.pcs.dp.roles.perm_delete_label, display: 'icons', chroming: 'half',
+											   icons: {start:'demo-icon-font pcs-dp-roles-del-perm-icon'}}">
+						</button>
+					<!-- /ko -->
+				</h3>
+
+
+				<div>
+
+					<div class="oj-row pcs-dp-roles-perm-info-label-row">
+						<div class="oj-col pcs-dp-roles-perm-info-label">
+							<span data-bind="text: $parent.bundle.pcs.dp.roles.detail_resource_info"></span>
+						</div>
+					</div>
+					<div class="oj-row pcs-dp-roles-res-type-row">
+						<div class="oj-col">
+							<input
+								   data-bind="attr: { id: 'pcs-dp-roles-perm-res-type-' + $data.randomId },
+								   ojComponent: {
+							           component: 'ojSelect',
+							           value: selectedResourceType, disabled: $parent.readOnly(),
+							           optionChange: resourceTypeOptionChangeHandler,
+							           options: $parent.resourceTypeOptions,
+							           invalidComponentTracker: $parent.tracker,
+							           required: true}"/>
+						</div>
+					</div>
+
+					<div class="oj-row pcs-dp-roles-res-row">
+						<div class="oj-col">
+							<select
+								   data-bind=" attr: { id: 'pcs-dp-roles-perm-res-' + $data.randomId },
+								   ojComponent: {
+							           component: 'ojSelect',
+							           multiple: 'true',
+							           placeholder : $parent.bundle.pcs.dp.roles.resouce_placeholder ,
+							           value: selectedResources,
+							           options: $parent.resourceOptions()[$data.selectedResourceType()[0]](),
+							           optionChange: resourceOptionChangeHandler,
+							           invalidComponentTracker: $parent.tracker,
+							           required: true,
+							           disabled: $parent.readOnly(),
+							           rootAttributes: {style:'max-width:30em'}}"/>
+						</div>
+					</div>
+
+					<div class="oj-row pcs-dp-roles-act-label-row">
+						<div class="oj-col pcs-dp-roles-perm-act-label">
+							<span data-bind="text: $parent.bundle.pcs.dp.roles.detail_perm_info"></span>
+							<div class="pcs-dp-info-text" data-bind="text: $parent.bundle.pcs.dp.roles.detail_perm_info_note"></div>
+						</div>
+					</div>
+
+					<div class="oj-row pcs-dp-roles-act-type-row">
+						<div class="oj-col">
+							<div aria-label="Actions" class="pcs-dp-roles-actionschkbox"
+								 data-bind="attr: { id: 'pcs-dp-roles-perm-actions-chkbox-' + $data.randomId },
+								 			ojComponent: {
+          									component: 'ojCheckboxset',
+          									optionChange: actionChangeHandler,
+          									disabled: $parent.readOnly(),
+          									value: selectedActions}" >
+
+								<!-- ko foreach: $parent.permissionsActionList[$data.selectedResourceType()[0]] -->
+								<span class="oj-choice-item pcs-dp-roles-perm-label-span">
+									<input style="margin-right:0.75rem;margin-top:10px" data-bind="attr: { value: $data.value , id: $data.id + '-' + $parent.randomId }" type="checkbox">
+									<label class="pcs-dp-roles-perm-label-options" data-bind="attr: { for: $data.id + '-' + $parent.randomId }, text :$data.label"></label>
+								</span>
+								<!-- /ko  -->
+
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /ko -->
+	</div>
+
+</script>

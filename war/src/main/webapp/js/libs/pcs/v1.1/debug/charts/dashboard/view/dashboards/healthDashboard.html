@@ -1,0 +1,61 @@
+<div class="oj-offcanvas-outer-wrapper bpm-dsb-panel">
+
+	<div data-bind="template: { name: 'bpm-dsb-icon-bar-template', data: $data }"></div>
+
+	<h1 data-bind="text: bundle.health.title"></h1>
+
+	<div  class="oj-sm-12 bpm-dsb-center-align" >
+		<div  class="bpm-dsb-center-align" >
+			<div class="bpm-dsb-billb-box bpm-dsb-dark-grey-bg right-width-zero">
+				<div class="bpm-dsb-billboard-number">
+					<a data-bind="click : totalDrilldown" class="bpm-dsb-dark-black-numb" style=" text-decoration: none;cursor: pointer;"><span data-bind="text:openCount" ></span></a>
+				</div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.health.billboard.total_open  , attr : { title : bundle.health.billboard.total_open }"></div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-green-bg right-width-zero">
+				<div class="bpm-dsb-billboard-number"  >
+					<a data-bind="click : activeDrilldown" class="bpm-dsb-dark-green-numb" style=" text-decoration: none;cursor: pointer;"><span data-bind="text:progressCount" ></span></a>
+				</div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.health.billboard.in_progress  , attr : { title : bundle.health.billboard.in_progress }"></div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-red-bg right-width-zero" >
+				<div class="bpm-dsb-billboard-number">
+					<a  data-bind="click : recoverableDrilldown" class="bpm-dsb-dark-red-numb" style=" text-decoration: none;cursor: pointer;"><span data-bind="text:recoverableCount" ></span></a>
+				</div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.health.billboard.recoverable  , attr : { title : bundle.health.billboard.recoverable }"></div>
+			</div>
+			<div style="background-color: #bee5f6"  class="bpm-dsb-billb-box" >
+				<div class="bpm-dsb-billboard-number">
+					<a  data-bind="click : suspendedDrilldown" style="color:#101356;text-decoration: none;cursor: pointer;"><span data-bind="text:suspendedCount" ></span></a>
+				</div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.health.billboard.suspended  , attr : { title : bundle.health.billboard.suspended }"></div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="oj-flex bpm-dsb-chart-container" id="bpm-dsb-health-chart-container">
+		<div id="bpm-dsb-health-chart" class="oj-sm-12 oj-md-12 oj-lg-12 oj-xl-12 oj-col bpm-dsb-chart-height" data-bind="ojComponent: {
+            component: 'ojChart',
+            type: 'bar',
+            orientation: 'horizontal',
+            stack: 'on',
+            series: barSeriesValue,
+            groups: barGroupsValue,
+            zoomAndScroll: 'live',
+            animationOnDisplay: 'auto',
+            animationOnDataChange: 'auto',
+            hoverBehavior: 'dim',
+            drilling:'on',
+            selectionMode: 'single',
+            hideAndShowBehavior: 'withRescale'
+        }">
+		</div>
+		<div id="bpm-dsb-health-chart-overlay"/>
+	</div>
+
+</div>

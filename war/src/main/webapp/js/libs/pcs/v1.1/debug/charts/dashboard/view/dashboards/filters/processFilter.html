@@ -1,0 +1,99 @@
+<div class="demo-offcanvas-close">
+	<button class="oj-button-sm "
+			aria-label="close" role="button"
+			data-bind="click: $parent.closeInner, ojComponent: {component:'ojButton',
+                                     label: bundle.processFilter.close,
+                                     display: 'icons',
+                                     icons: {start: 'oj-fwk-icon-cross oj-fwk-icon'}}">
+	</button>
+</div>
+
+<br/>
+
+<div class="bpm-dsb-parameter-box-width" >
+
+	<div data-bind="if : $parent.selectedTab() === 3">
+		<label for="dateRangeInput" ><span data-bind="text: bundle.processFilter.date_range"></span>	</label>
+		<input id="dateRangeInput"
+			   data-bind="ojComponent: {component: 'ojInputNumber',min:0,value:dateRange} , attr :{placeholder : bundle.processFilter.days}"/>
+		<br/>
+		<br/>
+		<hr/>
+		<br/>
+	</div>
+
+	<div>
+		<label for="input" id="processlabelid"><span data-bind="text: bundle.processFilter.select_process"></span>	</label>
+		<input id="input" placeholder="" data-bind="ojComponent: {component: 'ojInputText',value : searchText}, attr :{placeholder : bundle.processFilter.search_process}">
+		<button  data-bind="click: search,
+									   ojComponent: {component:'ojButton',
+									   label:  bundle.processFilter.search,
+										display: 'icons',
+									   icons: {start: 'oj-fwk-icon-magnifier oj-fwk-icon'}}">
+		</button>
+
+
+		<div  style="margin-top: 10px" data-bind="if: showSelectAll">
+			<input type="checkbox" id="checkboxAll" data-bind="checked: selectAllProcess " />
+			<label for="checkboxAll" style="margin-left: 8px;" ><span data-bind="text: bundle.processFilter.all"></span> </label>
+		</div>
+		<div class="bpm-dsb-process-list-loading bpm-dsb-parameter-box-width bpm-dsb-center-align">
+			<div class="bpm-dsb-loading bpm-dsb-center-align"></div>
+		</div>
+		<div id="processSetId" class="bpm-dsb-processSetId bpm-dsb-parameter-box-width" aria-labelledby="processlabelid" data-bind="ojComponent: {component: 'ojCheckboxset', value: processes}">
+			<!-- ko foreach:processList -->
+			<span class="oj-choice-row">
+					<input data-bind="attr: { value: $data , id: $data }" type="checkbox">
+					<label data-bind="attr: { for: $data }"><span data-bind="text :$data"></span> </label>
+				</span>
+			<!-- /ko  -->
+		</div>
+
+
+		<br/>
+		<br/>
+		<hr/>
+		<br/>
+	</div>
+
+	<div data-bind="if :$parent.selectedTab() === 2 && $parent.workloadSubTab() !== 'top10_by_task'">
+		<label id="assigneelabelid"><span data-bind="text: bundle.processFilter.show_assignee"></span></label>
+		<div id="assigneeSetId" aria-labelledby="assigneelabelid"
+			 data-bind="ojComponent: {
+			  component: 'ojCheckboxset',
+			  value: assignees}" >
+		  <span class="oj-choice-row">
+			<input id="roles&Groups" type="checkbox" value="Roles and Groups">
+			<label for="roles&Groups"><span data-bind="text: bundle.processFilter.roles_groups"></span></label>
+		  </span>
+			<span class="oj-choice-row">
+			<input id="user" type="checkbox" value="Users">
+			<label for="user"><span data-bind="text: bundle.processFilter.users"></span></label>
+		  </span>
+		</div>
+		<br/>
+		<br />
+		<hr/>
+		<br/>
+	</div>
+
+	<div data-bind="if : $parent.selectedTab() === 3">
+		<label for="topNRangeInput" ><span data-bind="text: bundle.processFilter.show_top_N"></span></label>
+		<input id="topNRangeInput"
+			   data-bind="ojComponent: {component: 'ojInputNumber',min:0,value:topN}, attr :{placeholder : bundle.processFilter.top_N}"/>
+		<br/>
+		<br/>
+		<hr/>
+		<br/>
+	</div>
+
+	<div class="bpm-dsb-param-apply">
+		<button  data-bind="click: apply, attr: {title: bundle.processFilter.apply},
+							ojComponent: {component:'ojButton',
+							  label: bundle.processFilter.apply,
+							}">
+		</button>
+	</div>
+
+</div>
+

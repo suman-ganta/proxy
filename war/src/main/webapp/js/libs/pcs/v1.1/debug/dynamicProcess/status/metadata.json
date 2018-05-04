@@ -1,0 +1,42 @@
+{
+  "properties": {
+    "instanceid":{
+      "description":"The instanceid fof selected instance",
+      "type": "string",
+	  "required" : true
+    },
+	"activities":{
+      "description":"List of all activities of the selected  instance",
+      "type": "array"
+    },
+	"instanceitem":{
+	  "description":"The instance detail of selected instance",
+	  "type": "Instance"
+	},
+	"consumed":{
+	  "description":"If the component is used in consumed environment",
+	  "type": "boolean",
+	  "default" :"false"
+	},
+	"showTimeline":{
+	  "description":"If the component has to show milestone view",
+	  "type": "boolean",
+	  "default" :"true"
+	},
+	"showStages":{
+	  "description":"If the component has to show stage view",
+	  "type": "boolean",
+	  "default" :"true"
+	},
+	"showMilestones":{
+	  "description":"If the component has to show timeline view",
+	  "type": "boolean",
+	  "default" :"false"
+	}
+  },
+  "methods" :{
+  },
+  "events" :{
+
+  }
+}

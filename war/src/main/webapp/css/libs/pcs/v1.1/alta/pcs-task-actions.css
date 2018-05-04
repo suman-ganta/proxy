@@ -1,0 +1,12 @@
+@import url("pcs-common.css");
+
+.pcs-task-actions-container {
+}
+
+.pcs-task-action-items {
+    margin: 5px;
+}
+
+.pcs-act-custom{
+	margin-right: 5px;
+}

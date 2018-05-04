@@ -1,0 +1,51 @@
+{
+  "properties": {
+    "instanceid":{
+      "description":"The instance id of selected instance",
+      "type": "string",
+	  "required" : true
+    },
+    "instanceitem":{
+      "description":"The instance detail of selected instance",
+      "type": "Instance"
+    },
+	"consumed":{
+	  "description":"If the component is used in consumed environment",
+	  "type": "boolean",
+	  "value" :"false"
+	}
+  },
+  "methods" :{
+
+  },
+  "events": {
+	"actionPerformed": {
+	  "description": "When an action is performed in instance detail",
+	  "bubbles": true,
+	  "detail": {
+		"instanceId": {
+		  "description": "Instance Id of selected instance",
+		  "type": "string"
+		},
+		"action": {
+		  "description": "Action name",
+		  "type": "string"
+		}
+	  }
+	},
+    "closeView": {
+      "description": "Triggered when a  detail region is closed",
+      "bubbles": true,
+      "detail": {
+        "instanceId": {
+          "description": "Instance Id  of selected instance",
+          "type": "string"
+        },
+        "action":{
+          "description": "Action performed on the instance",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

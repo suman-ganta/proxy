@@ -1,0 +1,22 @@
+{
+  "properties": {
+  },
+  "methods" :{
+  },
+  "events": {
+    "instanceSelect": {
+      "description": "Triggered when a process instance is selected",
+      "bubbles": true,
+      "detail": {
+        "instanceId": {
+          "description": "The instanceId of selected instance",
+          "type": "string"
+        },
+        "instanceItem":{
+          "description":"instance detail of the selected instance",
+          "type":"Instance"
+        }
+      }
+    }
+  }
+}

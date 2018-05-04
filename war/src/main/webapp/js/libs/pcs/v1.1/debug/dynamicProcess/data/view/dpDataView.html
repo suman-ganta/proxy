@@ -1,0 +1,84 @@
+<div id="pcs-dp-data-form-container pcs-dp-font " class="oj-flex oj-sm-12" >
+    <!-- ko if: instanceId() -->
+	<div class="oj-form-layout oj-flex oj-sm-12 pcs-dp-empty-watermark pcs-dp-display-none" id="pcs-dp-data-empty-containor">
+		<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center" style="">
+			<span class="pcs-dp-data-empty-data-icon"></span>
+		</div>
+		<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center">
+			<span class="pcs-dp-empty-watermark-text" data-bind="text: 'No data associated with this instance'" ></span>
+		</div>
+	</div>
+
+	<div class="oj-form-layout pcs-dp-display-none" id="pcs-dp-data-error">
+		<span style="margin:20px; color:red" data-bind="text: 'Error occurred while getting the data for this instance'" ></span>
+	</div>
+
+	<div class="oj-row oj-flex oj-sm-12 " style="margin-top:10px" id="pcs-dp-data-list">
+		<!-- ko foreach: variableList -->
+		<div class="oj-xl-3 oj-lg-3 oj-md-4 oj-sm-6 oj-flex-item oj-flex pcs-common-center-align pcs-dp-data-variable-box">
+			<div class="oj-flex  oj-sm-12 pcs-common-center-align pcs-dp-data-variable-container">
+				<a data-bind="click:$parent.launchVariableDetail" class="oj-sm-12 pcs-dp-data-var-link">
+					<!--<div data-bind="style : {background: $data.colorCode} , attr : {title : $data.variableName} "-->
+						 <!--class="pcs-dp-data-variable-link pcs-dp-data-var-holder-smaller" >-->
+						<!--<span data-bind="text:$data.initials " class="pcs-dp-data-variable-initials"></span>-->
+					<!--</div>-->
+					<div class="pcs-common-center-align pcs-dp-data-var-icon"></div>
+				</a>
+				<a data-bind="click:$parent.launchVariableDetail" style=" text-decoration: none;cursor: pointer;" class="oj-sm-12">
+					<div data-bind="text:$data.variableName" class=" pcs-dp-data-var-label"></div>
+				</a>
+			</div>
+		</div>
+		<!-- /ko -->
+	</div>
+
+	<div id="pcs-dp-data-input-container" class="oj-flex oj-sm-12">
+		<div id="pcs-dp-data-input-label">
+			<span class="pcs-dp-data-start-form-label" data-bind="text: 'Start Form'"></span>
+		</div>
+		<div id="pcs-dp-data-form-frame" class="oj-flex oj-sm-12" >
+			<div class="oj-sm-12 pcs-common-center-align" id="pcs-dp-data-loading">
+				<div class="pcs-common-center-align pcs-common-loading"/>
+			</div>
+			<div class="oj-xl-12 oj-lg-12 oj-md-12 oj-col" id="pcs-dp-data-iframe-container" >
+			</div>
+		</div>
+
+		<div class="oj-flex oj-sm-12 pcs-dp-display-none" id="pcs-dp-data-form-error">
+			<span class="oj-flex oj-sm-12" style="margin:20px; color:red" data-bind="text: 'Error occurred while getting the start form'" ></span>
+		</div>
+	</div>
+
+
+    <!-- /ko -->
+    <!-- ko ifnot: instanceId() -->
+    <div style="color:red">Instance Id is missing</div>
+    <!-- /ko -->
+</div>
+
+
+<div id="pcs-dp-data-var-dialog" class="pcs-dp-dialog"
+	 data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide',rootAttributes:{class:'pcs-dp-dialog-custom', style:'width:400px'}}">
+	<div id="pcs-dp-data-var-header" class="oj-dialog-header oj-helper-clearfix pcs-dp-dialog-header">
+		<span class="oj-dialog-title" data-bind="text: selectedVariableDialogTitle"></span>
+		<span class="pcs-dp-dialog-close-btn">
+				<button data-bind="click: closeVariableDialog,
+								ojComponent: {
+									component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.close, display: 'icons',
+									icons: {start:'oj-fwk-icon pcs-dp-dialog-close-icon'}
+								}">
+				</button>
+			</span>
+	</div>
+	<div class="pcs-dp-dialog-body oj-dialog-body" id="pcs-dp-data-var-body">
+		<div class="oj-sm-12 pcs-common-center-align" id="pcs-dp-data-var-body-loading">
+			<div class="pcs-common-center-align pcs-common-loading"/>
+		</div>
+		<div id="pcs-dp-data-var-body-content"></div>
+	</div>
+	<div class="oj-dialog-footer pcs-dp-dialog-footer">
+		<button data-bind="click:closeVariableDialog,
+                	ojComponent: {component: 'ojButton', label: bundle.pcs.dp.common.cancel, chroming: 'full',
+                	rootAttributes: {style: 'padding-left:13px;padding-right:13px;font-weight:normal'}}"> </button>
+	</div>
+</div>

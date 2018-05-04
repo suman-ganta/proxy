@@ -1,0 +1,378 @@
+/*--------Main page --------------------------*/
+
+.pcs-dp-roles-admincontainer {
+	padding: 0px !important; min-height: 80vh;
+}
+
+.pcs-dp-roles-instancecontainer {
+	border: 0px !important; padding: 0px !important; min-height: 80vh; border-right: none;
+}
+
+.pcs-dp-roles-empty-role-add {
+	margin-left: 25px;
+	margin-top: 12px;
+	height: 32px;
+	padding-left: 12px;
+	padding-right: 12px;
+	border-radius: 2px;
+	background-color: #E9ECEE;
+	border: 1px solid #C4CED7;
+}
+
+.pcs-dp-roles-empty-role-add > span {
+	font-weight: normal;
+	font-size: 14px;
+	color: #000000 !important;
+}
+
+.pcs-dp-roles-navdiv {
+	padding: 0px; border: 0px !important;
+	width: 100%;
+}
+
+.pcs-dp-roles-navdiv > .oj-listview-element > .oj-listview-item {
+	background-color: transparent !important;
+	border-top: 1px solid #D6DFE6 !important;
+}
+
+.pcs-dp-roles-navdiv >.oj-listview-element > .oj-listview-item:first-child {
+	border-top: 0px !important;
+}
+
+.pcs-dp-roles-toolbar .oj-focus{
+	outline: none;
+}
+
+.pcs-dp-roles-toolbar{
+	width: 100%;
+	background-color: #EBEDEE;
+	padding-top: 10px;
+	padding-bottom: 6px;
+}
+
+.pcs-dp-roles-search-container {
+	width: 300px;
+	margin-left: 20px;
+}
+
+.pcs-dp-roles-searchTxt-container{
+	background-color: #fcfdfe;
+	height: 33px;
+	border: 1px solid #dfe4e7;
+	border-radius: 2px;
+}
+
+#pcs-dp-roles-search-input.oj-inputtext-input{
+	background-color:#fcfdfe;
+	border-width:0px;
+	border-style: none none none none;
+	height:29px;
+}
+
+.pcs-dp-roles-btndiv1 {
+	padding-right: 8px;
+}
+
+.pcs-dp-roles-add-role-btn-div {
+	float: right;
+	height: 32px;
+	padding-left: 0px;
+	border-radius: 2px;
+	background-color: #E9ECEE;
+	border: 1px solid #C4CED7;
+}
+
+.pcs-dp-roles-add-role-btn-div > span {
+	font-weight: normal;
+	font-size: 14px;
+	color: #000000 !important;
+}
+
+.pcs-dp-roles-add-icon:before{
+	content: url("images/func_plus_16_ena.png");
+}
+
+.pcs-dp-roles-listviewdiv {
+	margin-top: 20px;
+}
+
+.pcs-dp-roles-rolelistdiv {
+	padding-top: 5px; padding-bottom: 5px; max-height: 55px;
+}
+
+.pcs-dp-roles-roleitempadding {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.pcs-dp-roles-roleitemlabel {
+	font-weight: normal;
+	color: #000000;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.pcs-dp-roles-editmenubtn {
+	float: right;
+}
+
+.pcs-dp-roles-img {
+	content: url("images/qual_personkey_192_mono.svg");
+}
+
+.pcs-dp-roles-menuIcon:before {
+	height: 14px;
+	width: 14px;
+	content: url("images/hamburger_menu.svg");
+}
+
+
+/*remove the mewnu arrow icon for all the action buttons in the task list*/
+[id^=pcs-dp-roles-role-btn-]>span.oj-button-menu-dropdown-icon:before{
+	content: '';
+}
+[id^=pcs-dp-roles-role-btn-]>span.oj-button-icon.oj-end{
+	margin-right: 0 !important;
+}
+
+
+.pcs-dp-roles-content-success{
+	/*margin:5px;*/
+	color:green;
+	background-color: #ffffff;
+	/*border: 1px solid #d6dfe6*/
+}
+
+.pcs-dp-roles-content-error{
+	/*margin:5px;*/
+	color:red;
+	background-color: #ffffff;
+	/*border: 1px solid #d6dfe6*/
+}
+
+.pcs-dp-roles-content-success-icon:before{
+	content: url("images/stat_checkmark_16.png");
+	margin-right:5px;
+}
+
+.pcs-dp-roles-content-error-icon:before{
+	content: url("images/stat_x_16.png");
+	margin-right:5px;
+}
+
+
+
+/*--------Details page --------------------------*/
+
+
+.pcs-dp-roles-detailpaneldiv {
+	width: 100%; padding: 0px !important; border: none;
+	margin-left: 20px; margin-top: 20px;
+}
+
+.pcs-dp-roles-detailpaneldiv_1 {
+	margin-bottom: 13px;
+	margin-top: 20px;
+}
+
+.pcs-dp-roles-detailpaneldiv > .pcs-dp-roles-add-perm-btn {
+	margin-top: 12px;
+	height: 32px;
+	padding-left: 12px;
+	padding-right: 12px;
+	border-radius: 2px;
+	background-color: #E9ECEE;
+	border: 1px solid #C4CED7;
+	margin-right: 30px;
+}
+
+.pcs-dp-roles-detailpaneldiv > .pcs-dp-roles-add-perm-btn > span {
+	font-weight: normal;
+	font-size: 14px;
+	color: #000000 !important;
+}
+
+.pcs-dp-roles-name-main-label {
+	font-weight: lighter;
+	color: #252525;
+	font-size: 20px;
+	line-height: 26px;
+}
+
+.pcs-dp-role-name-input  {
+	height: 40px;
+	line-height: 40px;
+	width: 500px;
+}
+
+.pcs-dp-roles-processdefinition-div {
+	margin-bottom: 13px;
+	/*margin-top: 35px; margin-left: 10px;*/
+}
+
+.pcs-dp-roles-processdefinition-div > .oj-combobox {
+	max-width: 90%;
+	width: initial;
+	min-width: 18em;
+}
+
+.pcs-dp-roles-processdefinition-div > .oj-combobox > .oj-combobox-choice {
+	height: 40px !important; line-height: 40px !important;
+}
+
+.pcs-dp-roles-idbClass {
+	height: 40px;
+	width: 500px;
+}
+
+.pcs-dp-roles-perm-div {
+	margin-top: 35px;
+	margin-bottom: 8px;
+}
+
+
+.pcs-dp-roles-perm-label {
+	font-weight: normal;
+	color: #252525;
+	font-size: 18px;
+	line-height: 24px;
+}
+
+.pcs-dp-roles-info-label, .pcs-dp-roles-perm-info-label, .pcs-dp-roles-perm-act-label {
+	font-weight: normal;
+	color: #333333;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.pcs-dp-roles-permtemplatediv {
+	margin-top: 10px;
+}
+
+.pcs-dp-roles-editpermbtndiv {
+	/*margin-left: 5%;*/
+	margin-top: 12px;
+	height: 32px;
+	padding-left: 12px;
+	padding-right: 12px;
+	border-radius: 2px;
+	background-color: #E9ECEE;
+	border: 1px solid #C4CED7;
+}
+
+.pcs-dp-roles-editpermbtndiv > span {
+	font-weight: normal;
+	font-size: 14px;
+	color: #000000 !important;
+}
+
+.pcs-dp-roles-add-perm-btn {
+	float: right; margin-right: 20px;
+}
+
+.pcs-dp-roles-perm-parent-div {
+	margin-top: 20px;
+}
+
+.pcs-dp-roles-main-btns-div {
+	/*position: absolute;*/
+	bottom: 5px;
+	right: 5px;
+	float: right;
+	margin-right: 10px;
+}
+
+.pcs-dp-roles-bar-btn {
+	/*margin-left: 5%;*/
+	margin-top: 12px;
+	height: 32px;
+	padding-left: 12px;
+	padding-right: 12px;
+	border-radius: 2px;
+	background-color: #E9ECEE;
+	border: 1px solid #C4CED7;
+}
+
+.pcs-dp-roles-bar-btn > span {
+	font-weight: normal;
+	font-size: 14px;
+	color: #000000 !important;
+}
+
+.pcs-dp-roles-actionschkbox {
+	/*margin-left: 5%;*/
+	display: table;
+}
+
+.pcs-dp-roles-perm-label-span {
+	/*display: table-row;*/
+}
+
+.pcs-dp-roles-perm-label-options {
+	font-weight: normal;
+	color: #333333;
+	font-size: 14px;
+	line-height: 20px;
+	margin-bottom: 8px;
+}
+
+
+.pcs-dp-roles-collapsiblediv {
+	margin-left: 10px;
+}
+
+
+.pcs-dp-roles-permheaderlabel {
+	font-weight: normal;
+	color: #000000;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.pcs-dp-roles-back-icon:before{
+	content: url("images/func_caretleft_16_ena.png");
+}
+
+.pcs-dp-roles-del-perm-btn {
+	float: right; margin-right: 20px
+}
+
+.pcs-dp-roles-del-perm-icon:before{
+	content: url("images/func_trashcan_16_ena.png");
+}
+
+.pcs-dp-roles-perm-info-label-row {
+	margin-top: 15px;
+}
+
+.pcs-dp-roles-res-type-row > .oj-col > .oj-select > .oj-select-choice {
+	height: 40px !important;
+	line-height: 40px !important;
+}
+
+.pcs-dp-roles-res-row {
+	margin-top: 13px;
+}
+
+.pcs-dp-roles-act-label-row {
+	margin-top: 20px;
+}
+
+.pcs-dp-roles-act-type-row{
+	margin-top:10px
+}
+
+
+.pcs-dp-roles-refresh-btn{
+	margin-right: 8px;
+}
+
+.pcs-dp-roles-refresh-icon:before{
+	content: url("images/func_arrowcircledown_16_ena.svg");
+}
+.oj-button.oj-hover .pcs-dp-roles-refresh-icon:before{
+	content: url("images/func_arrowcircledown_16_hov.svg");
+}
+.oj-button.oj-active .pcs-dp-roles-refresh-icon:before{
+	content: url("images/func_arrowcircledown_16_onb.svg");
+}

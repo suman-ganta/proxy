@@ -1,0 +1,67 @@
+<div class="oj-offcanvas-outer-wrapper bpm-dsb-panel">
+
+	<div data-bind="template: { name: 'bpm-dsb-icon-bar-template', data: $data }"></div>
+
+	<h1 data-bind="text: bundle.open.title"></h1>
+
+
+	<div  class="oj-sm-12 bpm-dsb-center-align">
+		<div class="bpm-dsb-center-align">
+			<div class="bpm-dsb-billb-box bpm-dsb-dark-grey-bg">
+				<div class="bpm-dsb-billboard-number" data-bind="text: totals()[0]"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.open.billboard.total_open  , attr : { title : bundle.open.billboard.total_open }"></div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-green-bg open-on-track" >
+				<div class="bpm-dsb-billboard-number bpm-dsb-dark-green-numb" data-bind="text: totals()[1]"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.open.billboard.on_track  , attr : { title : bundle.open.billboard.on_track }"></div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-orange-bg right-width-zero" >
+				<div class="bpm-dsb-billboard-number bpm-dsb-dark-orange-numb" data-bind="text: totals()[2]"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.open.billboard.due_this_week  , attr : { title : bundle.open.billboard.due_this_week }"></div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-red-bg" >
+				<div class="bpm-dsb-billboard-number bpm-dsb-dark-red-numb" data-bind="text: totals()[3]"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.open.billboard.overdue  , attr : { title : bundle.open.billboard.overdue }"></div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-grey-bg open-opened-today" >
+				<div class="bpm-dsb-billboard-number" data-bind="text: totals()[4]"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.open.billboard.opened_today  , attr : { title : bundle.open.billboard.opened_today }"></div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-grey-bg" >
+				<div class="bpm-dsb-billboard-number"  data-bind="text: totals()[5]"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.open.billboard.closed_today  , attr : { title : bundle.open.billboard.closed_today }"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="bpm-dsb-chart-container oj-flex">
+		<table id="openProcesses" summary="Open Processes" aria-label="Open Processes Table"
+			   data-bind="ojComponent: {component: 'ojTable',
+								 data: datasource,
+								 columns: columns,
+								 rootAttributes: {'style': 'width: 100%; height: 100%; font-size: 16px; '}}">
+		</table>
+		<div id="bpm-dsb-open-table-overlay"></div>
+	</div>
+
+	<!-- This template is used in the process name Column of the above table -->
+	<script type="text/html" id="bpm_charts_open_proc_header">
+		<th style="padding-left: 5px; padding-right: 5px;">
+			<span data-bind="text:$parent.bundle.open.table.process"></span>
+		</th>
+	</script>
+	<script type="text/html" id="bpm_charts_open_proc_proc_name">
+		<td>
+			<a tabindex="0" data-bind="click : $parent.processDrillDown,text: process , attr: { title: processId },
+								event: {keypress: $parent.processDrillDown }" style="cursor:pointer;"></a>
+		</td>
+	</script>
+
+</div>
+
