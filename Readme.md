@@ -31,6 +31,6 @@ UI Snippet Consumption
 ----------------------
 
 use the followinh path in the requireJs path and css path
-- jcs_host:port/js/libs
+- jcs_host:port/p/js/libs
 
-- jcs_host:port/css/libs
+- jcs_host:port/p/css/libs
