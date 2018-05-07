@@ -4,6 +4,8 @@ Set the following to configure this servlet in war/src/main/webapp/WEB-INF/web.x
 user (defaulted to weblogic)
 password (defaulted to weblogic1)
 targetUri (defaulted to http://localhost:7001)
+processdefs - a comma separated list of allowed process defs (defaulted to oracleinternalpcs~KtbAlterSuspend!1.0~KtbAlterSuspendProcess,def)
+whitelist - a comma separated list of whitelisted PCS resources (defaulted to /process-definitions,/webforms,/processes)
 
 Build instructions
 ------------------

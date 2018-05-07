@@ -22,12 +22,17 @@ import org.mitre.dsmiley.httpproxy.ProxyServlet;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.X509Certificate;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.StringTokenizer;
 
 /**
  * Configures the base servlet's http client to ignore ssl handshake
@@ -35,13 +40,30 @@ import java.security.cert.X509Certificate;
  */
 public class PCSProxy extends ProxyServlet {
 
+  String user;
+  String password;
+  List<String> whitelist;
+  List<String> defs = new ArrayList<String>();
+
+  @Override public void init() throws ServletException {
+    super.init();
+    user = getConfigParam("user");
+    password = getConfigParam("password");
+    StringTokenizer tokenizer = new StringTokenizer(",");
+    final String processdefs = getConfigParam("processdefs");
+    final String whitelisturls = getConfigParam("whitelist");
+    whitelist = Arrays.asList(whitelisturls.split(","));
+    defs = Arrays.asList(processdefs.split(","));
+  }
+
   @Override
   protected HttpClient createHttpClient(final RequestConfig requestConfig) {
     CloseableHttpClient httpClient;
     try {
       httpClient = HttpClientBuilder.create().setDefaultRequestConfig(requestConfig)
           .setSSLSocketFactory(new SSLConnectionSocketFactory(getNoOpSSLContext(), new String[] { "TLSv1" }, null, new NoopHostnameVerifier()))
-          .setDefaultCredentialsProvider(getCredentialProvider())
+          //.setDefaultCredentialsProvider(getCredentialProvider())
+          .useSystemProperties()
           .build();
     } catch (Exception e) {
       throw new RuntimeException("Failed to set sslsocketfactory ", e);
@@ -52,7 +74,7 @@ public class PCSProxy extends ProxyServlet {
   private CredentialsProvider getCredentialProvider() {
     CredentialsProvider provider = new BasicCredentialsProvider();
     UsernamePasswordCredentials credentials
-        = new UsernamePasswordCredentials(getConfigParam("user"), getConfigParam("password"));
+        = new UsernamePasswordCredentials(user, password);
     provider.setCredentials(AuthScope.ANY, credentials);
     return provider;
   }
@@ -93,6 +115,32 @@ public class PCSProxy extends ProxyServlet {
           proxyRequest.getRequestLine().getUri());
     }
     final HttpHost targetHost = getTargetHost(servletRequest);
-    return getProxyClient().execute(targetHost, proxyRequest, getHttpClientContext(targetHost));
+    if(attachAuthHeader(servletRequest))
+      return getProxyClient().execute(targetHost, proxyRequest, getHttpClientContext(targetHost));
+    return getProxyClient().execute(targetHost, proxyRequest);
+  }
+
+  private boolean attachAuthHeader(HttpServletRequest request) {
+    if(request.getMethod().equals("GET")) {
+      final String path = request.getPathInfo();
+      boolean whitelisted = false;
+      for (String w : whitelist) {
+        if (path.contains(w)) {
+          whitelisted = true;
+          break;
+        }
+      }
+      if (whitelisted) {
+        if(path.endsWith("process-definitions") || path.endsWith("process-definitions/"))
+          return true;
+        for (String def : defs) {
+          if (path.contains(def)) {
+            return true;
+          }
+        }
+      }
+      return false;
+    }
+    return true;
   }
 }
