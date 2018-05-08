@@ -1,0 +1,175 @@
+<div id="pcs-dp-roles-main-container" class="oj-flex oj-panel pcs-case-font "
+	 data-bind="css: {'pcs-dp-roles-admincontainer': consumerType() === 'admin_roles', 'pcs-dp-roles-instancecontainer': consumerType() === 'instance_roles'} ">
+
+	<div id="pcs-dp-roles-main" class="oj-flex oj-sm-12" data-bind="css: { 'pcs-dp-display-none': selectedRole() != null }">
+
+
+
+		<div class=" oj-flex-items-pad oj-panel pcs-dp-roles-navdiv">
+			<div id="pcs-dp-roles-toolbar" data-bind="attr: {'aria-label' : bundle.pcs.dp.list.dpToolbar}"
+				 aria-controls="controlled" class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-space-between pcs-dp-roles-toolbar oj-sm-12">
+
+				<div id="pcs-dp-roles-search-container" class="oj-flex pcs-dp-roles-search-container oj-md-down-12">
+					<span class="oj-flex-item pcs-dp-roles-searchTxt-container">
+						<span  class="oj-flex-item" >
+							<input id="pcs-dp-roles-search-input" class="" type="text" data-bind="attr:{title: bundle.pcs.dp.common.search},
+								ojComponent:{
+									component: 'ojInputText', rawValue: searchText, placeholder:bundle.pcs.dp.common.search,
+								},
+								attr: {'aria-label' : bundle.pcs.dp.common.search}"/>
+						</span>
+						<span class="oj-flex-item pcs-dp-roles-search-btn-span">
+							<!-- ko if: searchText().length === 0 -->
+							<button id="pcs-dp-roles-search-btn" 	data-bind="
+									ojComponent: {
+										component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.search, display: 'icons', disabled :true,
+										icons: {start:'oj-fwk-icon oj-fwk-icon-magnifier'},
+										rootAttributes: {style:'height:31px'}
+									}">
+							</button>
+							<!-- /ko -->
+							<!-- ko if: searchText().length > 0 -->
+							<button id="pcs-dp-roles-search-clear-btn" 	data-bind="click: onSearchClearClick,
+									ojComponent: {
+										component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.clearSearch, display: 'icons',
+										icons: {start:'oj-fwk-icon oj-fwk-icon-cross'},
+										rootAttributes: {style:'height:31px'}
+									}">
+							</button>
+							<!-- /ko -->
+						</span>
+					</span>
+				</div>
+
+				<div class="pcs-dp-roles-tools-right oj-flex-item oj-sm-align-content-flex-end oj-md-down-12">
+					<div id="pcs-dp-roles-add-btnsrow" class="oj-flex oj-sm-flex-direction-row">
+						<button id="pcs-dp-roles-refresh-btn" class="oj-flex-item pcs-dp-roles-refresh-btn" data-bind="visible: true, click: onRefreshBtnClick, ojComponent: {
+															component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.refresh, display: 'icons',
+															icons: {start:'oj-fwk-icon pcs-dp-roles-refresh-icon'}
+														}">
+						</button>
+						<!-- ko if: consumerType() === 'admin_roles' && !readOnly() -->
+						<!-- ko if: (roleListDS().totalSize() > 0 || searchText().length > 0)-->
+						<div class="oj-flex-item pcs-dp-roles-btndiv1">
+							<div class="pcs-dp-roles-add-role-btn-div">
+								<button id="pcs-dp-roles-addRoleBtn"
+										data-bind="click : addNewRole,
+											   ojComponent: {
+											   component:'ojButton', label: bundle.pcs.dp.roles.create, display: 'both', chroming: 'half',
+											   icons: {start:'oj-fwk-icon pcs-dp-roles-add-icon'}}">
+								</button>
+							</div>
+						</div>
+						<!-- /ko -->
+						<!-- /ko -->
+					</div>
+				</div>
+			</div>
+
+			<div class="oj-flex oj-sm-12 pcs-dp-roles-content-msg-container" id="pcs-dp-roles-content-msg-container"></div>
+
+			<!-- ko if: (roleListDS().totalSize() > 0 || searchText().length > 0)-->
+			<div id="pcs-dp-roles-view-wrapper" class="pcs-dp-roles-listviewdiv">
+				<ul id="pcs-dp-roles-list" class="pcs-dp-roles-list"
+					data-bind="ojComponent: {component: 'ojListView',
+								data: roleListDS,
+								item: {template: 'pcs_dp_roles_template'},
+								selectionMode: 'single',
+								translations: { msgNoData : 'No role with current search criteria', msgFetchingData : 'Loading' },
+								rootAttributes: { style: 'overflow: hidden'}}">
+				</ul>
+			</div>
+			<!-- /ko -->
+		</div>
+
+		<!-- ko if: roleListDS().totalSize() === 0 && searchText().length === 0-->
+		<div id="pcs-dp-roles-empty-container" class="pcs-dp-empty-watermark oj-flex oj-sm-12">
+			<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center">
+				<img class="pcs-dp-roles-img oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center"></img>
+				<!-- ko if:consumerType() === 'admin_roles' && !readOnly() -->
+				<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center" style="margin-left:-50px">
+					<button id="pcs-dp-roles-empty-addRoleBtn" class="pcs-dp-roles-empty-role-add"
+							data-bind="click : addNewRole,
+										   ojComponent: { component:'ojButton', label: bundle.pcs.dp.roles.create, display: 'both',
+														chroming: 'full', icons: {start:'oj-fwk-icon pcs-dp-roles-add-icon'}}">
+					</button>
+				</div>
+				<!-- /ko -->
+				<!-- ko if:consumerType() === 'instance_roles'-->
+				<span data-bind="text: bundle.pcs.dp.roles.emptyText" class="pcs-dp-empty-watermark-text"></span>
+				<!-- /ko -->
+			</div>
+		</div>
+		<!-- /ko -->
+
+	</div>
+
+	<!-- ko if: selectedRole() -->
+	<pcs-dproles-details class="oj-flex oj-sm-12"
+						 params="consumerType: consumerType, role: selectedRole , instanceid: instanceId , processdefinitionid: processDefinitionId(), readonly : readOnly()"></pcs-dproles-details>
+	<!-- /ko -->
+
+	<div id="pcs-dp-roles-overlay"></div>
+</div>
+
+<script type="text/html" id="pcs_dp_roles_template">
+	<li data-bind="attr: {id: 'pcs-dp-roles-role-'+ $data.getRoleId()}" class="pcs-dp-roles-rolelistdiv">
+		<div class="oj-flex">
+
+			<div class="oj-lg-12 oj-md-12 oj-sm-12">
+				<div class="pcs-dp-roles-roleitempadding">
+					<div class="oj-sm-12">
+
+						<span class="pcs-dp-roles-roleitemlabel" data-bind="text: getRoleDisplayName()"></span>
+
+						<button class="pcs-dp-roles-editmenubtn" tabindex="0" data-bind="ojComponent: {
+									component:'ojButton',
+									chroming: 'half',
+									label: $parent.bundle.pcs.dp.roles.actions ,
+									display: 'icons',
+									menu: '#pcs-dp-roles-role-actionMenu-' + $data.getRoleId(),
+									icons: {start:'oj-fwk-icon pcs-dp-roles-menuIcon'},
+									rootAttributes:{style:'outline:none'}
+								}, attr: {id: 'pcs-dp-roles-role-btn-'+ $data.getRoleId()}">
+						</button>
+					</div>
+					<div class="oj-sm-12">
+						<!-- ko if: $data.getOverriddenRoleId() -->
+						<span class="pcs-dp-info-text" data-bind="text:  $parent.bundle.pcs.dp.roles.override_note"></span>
+						<!-- /ko-->
+						<!-- ko if: $data.getScopeType() === 'DEFINITION' && $parent.consumerType() === 'instance_roles' -->
+						<span class="pcs-dp-info-text" data-bind="text:  $parent.bundle.pcs.dp.roles.definition_note"></span>
+						<!-- /ko-->
+						<!-- ko if: $data.getScopeType() === 'INSTANCE' -->
+						<span class="pcs-dp-info-text" data-bind="text: $parent.bundle.pcs.dp.roles.instance_note"></span>
+						<!-- /ko-->
+					</div>
+
+					<ul class="pcs-dp-roles-menu" data-bind="ojComponent: {component: 'ojMenu'}, attr: {'id': 'pcs-dp-roles-role-actionMenu-'+ $data.getRoleId()}">
+
+						<li>
+							<a href="#" data-bind="click :$parent.selectEditInMenu">
+								<!-- ko if: $data.getScopeType() != 'DEFINITION' || $parent.consumerType() != 'instance_roles' -->
+								<span data-bind="text: $parent.readOnly() ? $parent.bundle.pcs.dp.roles.view_role : $parent.bundle.pcs.dp.roles.edit_role"></span>
+								<!-- /ko-->
+								<!-- ko if: $data.getScopeType() === 'DEFINITION' && $parent.consumerType() === 'instance_roles' -->
+								<span data-bind="text: $parent.readOnly() ? $parent.bundle.pcs.dp.roles.view_role : $parent.bundle.pcs.dp.roles.override_role"></span>
+								<!-- /ko-->
+							</a>
+						</li>
+						<!-- ko if: $parent.consumerType() === 'admin_roles' || $data.getScopeType() === 'INSTANCE' -->
+							<!-- ko if: !$parent.readOnly() -->
+							<li>
+								<a href="#" data-bind="click :$parent.selectDeleteInMenu">
+									<span data-bind="text: $parent.bundle.pcs.dp.roles.delete_role "></span>
+								</a>
+							</li>
+							<!-- /ko-->
+						<!-- /ko-->
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</li>
+</script>

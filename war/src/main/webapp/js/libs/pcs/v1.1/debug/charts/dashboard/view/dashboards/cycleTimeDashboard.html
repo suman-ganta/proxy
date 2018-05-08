@@ -1,0 +1,96 @@
+<div class="oj-offcanvas-outer-wrapper bpm-dsb-panel">
+
+	<div data-bind="template: { name: 'bpm-dsb-icon-bar-template', data: $data }"></div>
+
+	<h1 data-bind="text: bundle.cycleTime.title"></h1>
+
+	<div id="viewBy-container" class="trend-viewBy-container">
+		<div id="viewBy" class="oj-button-half-chrome oj-button-primary trend-viewBy"
+			 data-bind="ojComponent: {component: 'ojButtonset', checked: viewBy}"
+			 aria-label="Select a view">
+			<!-- ko foreach: viewButtons -->
+			<label data-bind="attr: {for: id , title: label}"></label>
+			<input type="radio" name="viewBy"
+				   data-bind="value: id, attr: {id: id},
+							  ojComponent: {component: 'ojButton', label: label}"/>
+			<span class="btn-separator"></span>
+			<!-- /ko -->
+		</div>
+	</div>
+	<div  class="oj-sm-12 bpm-dsb-center-align stats-margin">
+		<div   class="bpm-dsb-center-align" >
+			<div class="bpm-dsb-billb-box bpm-dsb-dark-grey-bg right-width-zero">
+				<div class="bpm-dsb-billboard-number" data-bind="text: total"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.cycleTime.billboard.total_open , attr : { title : bundle.cycleTime.billboard.total_open }"></div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-grey-bg right-width-zero">
+				<div class="bpm-dsb-billboard-number" data-bind="text: opened"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.cycleTime.billboard.opened_today , attr : { title : bundle.cycleTime.billboard.opened_today }"></div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-grey-bg">
+				<div class="bpm-dsb-billboard-number" data-bind="text: closed"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.cycleTime.billboard.closed_today , attr : { title : bundle.cycleTime.billboard.closed_today }"></div>
+			</div>
+
+		</div>
+	</div>
+	<div class="oj-flex">
+		<div id="cycleTimeChart" class="oj-flex-item oj-col oj-sm-12 oj-md-6">
+			<!--<h3 data-bind="text: viewByLabel1"></h3>-->
+			<div class="bpm-dsb-chart-container">
+				<div
+						data-bind="ojComponent: {
+					component: 'ojChart',
+					type: 'line',
+					series: cycleSeries,
+					groups: cycleGroups,
+					animationOnDisplay: 'auto',
+					hoverBehavior: 'dim',
+					timeAxisType: 'enabled',
+					zoomAndScroll: 'live',
+					overview: {rendered: 'on'},
+					hideAndShowBehavior: 'withRescale',
+					yAxis: {title: bundle.cycleTime.chart.days},
+					styleDefaults: {markerSize: 18},
+					xAxis: {step :86400000},
+					translations : { labelNoData : bundle.cycleTime.chart.no_data_cycle},
+					title : {text :  viewByLabel1() , halign : 'plotAreaCenter' },
+					valueFormats: [{type: 'series', tooltipLabel:  bundle.cycleTime.chart.process},
+					 				{type: 'value', tooltipLabel:  bundle.cycleTime.chart.time_days, scaling : 'none'  ,converter : ko.toJS(cycleValueConverter)}]
+				}" style="width: 100%; height: 500px">
+				</div>
+				<div id="bpm-dsb-cycle-chart-cycle-overlay"/>
+			</div>
+		</div>
+
+		<div id="workloadChart" class="oj-flex-item oj-col oj-sm-12 oj-md-6 verticalLine">
+			<!--<h3 data-bind="text: viewByLabel2"></h3>-->
+			<div class="bpm-dsb-chart-container">
+				<div
+						data-bind="ojComponent: {
+					component: 'ojChart',
+					type: 'line',
+					series: workloadSeries,
+					groups: workloadGroups,
+					animationOnDisplay: 'auto',
+					hoverBehavior: 'dim',
+					timeAxisType: 'enabled',
+					zoomAndScroll: 'live',
+					overview: {rendered: 'on'},
+					hideAndShowBehavior: 'withRescale',
+					translations : { labelNoData : bundle.cycleTime.chart.no_data_wkld},
+					title : {text :  viewByLabel2() , halign : 'plotAreaCenter' },
+					yAxis: {minStep :1 , title: bundle.cycleTime.chart.count},
+					xAxis: {step :86400000},
+					valueFormats: [{type: 'series', tooltipLabel:  bundle.cycleTime.chart.process},
+					 				{type: 'value', tooltipLabel: bundle.cycleTime.chart.count, scaling : 'none'  ,converter : ko.toJS(workloadValueConverter)}]
+				}" style="width: 100%; height: 500px">
+				</div>
+				<div id="bpm-dsb-cycle-chart-wkld-overlay"/>
+			</div>
+		</div>
+	</div>
+</div>

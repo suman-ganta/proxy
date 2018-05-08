@@ -1,0 +1,153 @@
+<div id="pcs-dp-hist-container" class="pcs-dp-hist-container pcs-dp-font oj-sm-12" >
+	<!-- ko if: instanceId() -->
+    <div id="pcs-dp-hist-toolbar"
+		 aria-controls="controlled" class="oj-sm-justify-content-flex-end oj-flex pcs-dp-hist-toolbar"
+		 data-bind="ojComponent: {component:'ojToolbar'}, css:'oj-toolbar-top-border', attr:{'aria-label':bundle.pcs.dp.history.historyToolbar}">
+
+		<div id="pcs-dp-hist-search" class="oj-flex pcs-dp-hist-search">
+			<input id="pcs-dp-hist-search-input" type="text" class="pcs-dp-hist-search-input"
+				   data-bind="ojComponent:{
+				    component: 'ojInputText', rawValue: searchText, placeholder:bundle.pcs.dp.common.search,
+               		rootAttributes: {style:'width:15em'}
+               		}"/>
+			<span class="oj-flex-item pcs-dp-hist-search-btn-span">
+				<button id="pcs-dp-hist-search-btn" data-bind="visible:!hasSearchTxt(),
+						ojComponent: {
+							component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.search, display: 'icons',
+							icons: {start:'oj-fwk-icon oj-fwk-icon-magnifier'},
+							rootAttributes: {style:'height:31px'}
+						}">
+				</button>
+				<button id="pcs-dp-hist-search-clear-btn" 	data-bind="visible:hasSearchTxt(), click: onSearchClearClick,
+						ojComponent: {
+							component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.clearSearch, display: 'icons',
+							icons: {start:'oj-fwk-icon oj-fwk-icon-cross'},
+							rootAttributes: {style:'height:31px'}
+						}">
+				</button>
+			</span>
+		</div>
+
+		<div id="pcs-dp-hist-sort" class="oj-flex" style="margin-left: 5px">
+			<select id="pcs-dp-hist-sortBy"
+					class="oj-flex"
+					data-bind=" ojComponent: {component: 'ojSelect', optionChange: onSortOptionChange, value: selectedSort,
+					rootAttributes: {style:'min-width:11em;'}}">
+				<!-- ko foreach: sortListBy -->
+				<option data-bind="value:id, text:label, attr: {title:label}"></option>
+				<!-- /ko -->
+			</select>
+		</div>
+
+		<div class="oj-flex">
+			<button id="pcs-dp-hist-direction-asc-btn"
+					class="oj-flex pcs-dp-display-none"
+					data-bind=" click:onDirectionBtnClick ,
+                    ojComponent: {
+						component:'ojButton', display: 'icons', chroming: 'half', label: bundle.pcs.dp.common.asc,
+						icons: {start:'oj-fwk-icon pcs-dp-hist-sorta-icon'}
+					}">
+			</button>
+			<button id="pcs-dp-hist-direction-dsc-btn"
+					class="oj-flex"
+					data-bind=" click:onDirectionBtnClick ,
+                     ojComponent: {
+						component:'ojButton', display: 'icons', chroming: 'half', label: bundle.pcs.dp.common.desc,
+						icons: {start:'oj-fwk-icon pcs-dp-hist-sortd-icon'}
+					}">
+			</button>
+		</div>
+
+		<div class="oj-flex">
+			<!-- ko ifnot: isConsumed -->
+			<button id="pcs-dp-hist-refresh-btn" class="oj-button-sm "
+					data-bind="visible: true, click: onRefreshBtnClick, ojComponent: {
+								component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.refresh, display: 'icons',
+								icons: {start:'oj-fwk-icon pcs-dp-hist-refresh-icon'}
+							}">
+			</button>
+			<!-- /ko -->
+		</div>
+
+
+
+    </div>
+
+    <div id="pcs-dp-hist-lv-container" class="oj-sm-12" >
+        <ul id="listview" aria-label="list with context menu"  class="oj-sm-12"
+            data-bind="ojComponent: {component: 'ojListView',
+            data: dataSource, item: {template: 'server_template_history'}, selectionMode: 'single',
+            rootAttributes: {style:'overflow-y:hidden;border-width :0px'},
+            translations : {msgNoData : bundle.pcs.dp.milestone.noActivitiesWithCriteriaMsg} }">
+        </ul>
+    </div>
+
+	<div  class="oj-flex oj-sm-12 pcs-dp-empty-watermark pcs-dp-display-none" id="pcs-dp-hist-lv-empty-container">
+		<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center">
+			<span class="pcs-dp-hist-empty-data-icon"></span>
+		</div>
+		<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center">
+			<span data-bind="text: bundle.pcs.dp.milestone.noActivitiesRunningMsg" class="pcs-dp-empty-watermark-text"></span>
+		</div>
+	</div>
+
+	<div class="oj-form-layout pcs-dp-display-none" style="margin-top: 20px;" id="pcs-dp-hist-error">
+		<span style="margin:20px; color:red" data-bind="text: bundle.pcs.dp.common.errGettingInstanceDetailsMsg" ></span>
+	</div>
+
+	<!-- /ko -->
+	<!-- ko ifnot: instanceId() -->
+	<div style="color:red" data-bind="text:bundle.pcs.dp.common.instanceIdMissingMsg"></div>
+	<!-- /ko -->
+</div>
+
+<script type="text/html" id="server_template_history">
+
+    <li data-bind="attr: {id: getId()}" class="pcs-dp-hist-nopad-left oj-sm-12" style="min-height: 64px;">
+			<div class="oj-flex oj-sm-12 oj-sm-align-items-center">
+						<div style="width: 75px">
+							<div class="oj-flex oj-sm-align-items-center" >
+								<span data-bind="css:getStatusBarClass()"></span>
+								<span class="pcs-dp-hist-act-icon ">
+									<span  data-bind="css :getIconClass(), attr :{ title : getActivityTypeDisplayName()}"></span>
+								</span>
+							</div>
+						</div>
+				<div class="oj-flex oj-sm-flex-direction-column">
+					<div class="oj-flex-item" >
+							<span class="pcs-dp-hist-title" data-bind="text: getActivityName()"></span>
+							<!--<span class="oj-md-down-hide pcs-dp-hist-marginLeft20">&nbsp;</span>-->
+
+							<!-- ko if: showHistoryDrillDown() -->
+							<span class=" oj-sm-justify-content-flex-end">
+								<button class="oj-button-sm" style="margin-left:5px;margin-right:5px"
+										aria-label="Show" role="button"
+										data-bind="click:$parent.drillDown ,ojComponent: {component:'ojButton',
+												label: $parent.bundle.pcs.dp.common.open, chroming: 'half',
+												display: 'icons',
+												icons: {start: 'pcs-dp-hist-goto-icon'}}">
+								</button>
+							</span>
+							<!-- /ko -->
+						</div>
+
+						<div class="oj-flex-item" >
+							<span class="pcs-dp-hist-label" data-bind="text: $parent.bundle.pcs.dp.history[getState()+'_LBL']"></span>
+							<!-- ko ifnot: getState() === 'ACTIVE' -->
+							<span class="pcs-dp-hist-value" data-bind="text: getExecutionCompletedDateFormatted()"></span>
+							<!-- /ko -->
+							<!-- ko if: getState() === 'ACTIVE' -->
+								<span class="pcs-dp-hist-value" data-bind="text: getExecutionCreatedDateFormatted()"></span>
+							<!-- /ko -->
+							<!-- ko if: getDuration() -->
+							<span class="oj-md-down-hide pcs-dp-hist-marginLeft20">&nbsp;</span>
+							<span class="pcs-dp-hist-label">Duration: </span>
+							<span class="pcs-dp-hist-value" data-bind="text: getDuration()"></span>
+							<!-- /ko -->
+						</div>
+				</div>
+		</div>
+    </li>
+
+</script>
+

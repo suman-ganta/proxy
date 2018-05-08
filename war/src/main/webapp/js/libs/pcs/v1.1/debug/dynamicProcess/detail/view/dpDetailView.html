@@ -1,0 +1,298 @@
+<div id="pcs-dp-det-container" class="oj-flex  oj-sm-12 pcs-dp-font ">
+	<!-- ko if: instanceId() -->
+	<div class="oj-flex  oj-sm-12">
+		<div class="oj-flex oj-sm-12  oj-flex-items-pad" id="pcs-dp-det-content-holder">
+
+			<div id="pcs-dp-det-header" class="oj-flex oj-sm-12  oj-sm-flex-items-initial oj-sm-justify-content-space-between pcs-dp-det-header">
+				<div class="oj-flex-item">
+					<button id="pcs-det-close-btn" role="button" class="oj-button-primary"
+							data-bind="click:closeDetailPage ,ojComponent: {component:'ojButton',
+										 label: bundle.pcs.dp.common.close, chroming: 'half',
+										 display: 'icons',
+										 icons: {start: 'oj-fwk-icon-caret-start oj-fwk-icon'},
+										 rootAttributes:{style:'margin-bottom:15px;margin-left:8px'}},
+										 attr:{'aria-label':bundle.pcs.dp.common.close}">
+					</button>
+					<span data-bind="text: instanceTitle() " class="pcs-dp-det-header-title"></span>
+					<a id="pcs-dp-det-info-btn" href="#" class="oj-button-primary" aria-label="info" data-bind="click:showInfoPopup,
+											ojComponent: {component:'ojButton',
+                                            label: bundle.pcs.dp.detail.info, chroming: 'half',
+                                            display: 'icons',
+                                            icons: {start: 'pcs-dp-det-info-icon oj-fwk-icon '},
+                                            rootAttributes:{style:'margin-bottom:12px'}},
+                                            attr: {'aria-label' : bundle.pcs.dp.detail.info}">
+					</a>
+				</div>
+				<div class="oj-flex oj-flex-item oj-lg-align-items-center oj-sm-justify-content-flex-end oj-sm-text-align-end oj-sm-float-end ">
+
+					<div class='oj-flex-bar oj-sm-justify-content-flex-end oj-sm-text-align-end oj-sm-float-end'>
+
+						<div class='oj-flex-bar-start'></div>
+						<div class='oj-flex-bar-middle'>
+							<!-- ko if: instanceItem() -->
+							<!-- ko foreach:instanceItem().getAvailableActions()-->
+							<button class="oj-button-sm oj-button-primary pcs-dp-det-act-btn"
+									role="button"
+									data-bind="click:$parent.performInstanceAction,ojComponent: {component:'ojButton',
+                                            label: $data.actionDisplayName,
+                                            rootAttributes:{style:'margin-bottom:0px'}},
+                                            attr: {'id': 'pcs-cact-btn-'+action , 'aria-label' : actionDisplayName}">
+							</button>
+							<!-- /ko -->
+							<!-- /ko -->
+						</div>
+						<div class='oj-flex-bar-end'>
+
+							<button id="pcs-dp-det-refresh-btn" class="oj-button-primary"
+									data-bind="visible: true, click: onRefreshBtnClick, ojComponent: {
+											component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.refresh, display: 'icons',
+											icons: {start:'oj-fwk-icon pcs-dp-det-refresh-icon'},
+											rootAttributes:{style:'margin-bottom:0px;margin-left:10px;margin-right:20px'},
+											attr: {'aria-label' : bundle.pcs.dp.common.refresh}
+										}">
+							</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div id="pcs-dp-det-highlight-region" class="oj-flex oj-sm-12  oj-sm-justify-content-center" style="background-color: #E9ECEE;">
+				<pcs-dpstatus id="pcs-dp-det-milestone"
+									params="activities: executionsList, instanceid:instanceId, instanceitem :instanceItem, consumed: true"
+									class="oj-flex oj-lg-12 oj-md-12 oj-sm-12 pcs-dp-det-milestone"></pcs-dpstatus>
+			</div>
+
+			<div class="oj-flex oj-sm-12 pcs-dp-det-content-msg-container oj-sm-justify-content-center" id="pcs-dp-det-content-msg-container">
+
+			</div>
+			<!-- main content -->
+
+			<div class="oj-flex oj-sm-12" style="flex-wrap: nowrap;min-height:600px;">
+				<div class="oj-flex-item pcs-dp-det-act-panel oj-sm-12">
+						<pcs-dpactivity id="pcs-dp-det-activity" class="pcs-dp-det-activity"
+									params="activities: executionsList, instanceid:instanceId, consumed: true, selectedexecutionid : selectedTabExecutionId"></pcs-dpactivity>
+				</div>
+				<div class="oj-flex-item oj-sm-12 pcs-dp-detail-container" style="">
+					<div class="oj-flex" id="pcs-dp-det-nav-list" data-bind="ojComponent:{
+								component: 'ojNavigationList',
+								drillMode: 'none',
+								selection: selectedNavigationItem ,optionChange :navOptionChange,
+								navigationLevel: 'page',
+								edge: 'top'
+								}" style="margin-top:20px;margin-left:1px">
+						<ul >
+							<li id="CD_DATA">
+								<a href="#">
+									<!--<span class="oj-navigationlist-item-icon pcs-dp-det-details-ui-icon demo-icon-font-24 fontSize36"></span>-->
+									<span data-bind="text:bundle.pcs.dp.detail.details"></span>
+								</a>
+							</li>
+							<li id="CD_DOCS">
+								<a href="#" class="">
+									<!--<span class="oj-navigationlist-item-icon pcs-dp-det-documents-ui-icon demo-icon-font-24 fontSize36"></span>-->
+									<span data-bind="text:bundle.pcs.dp.detail.documents"></span>
+								</a>
+							</li>
+							<li id="CD_HISTORY">
+								<a href="#" class="">
+									<!--<span class="oj-navigationlist-item-icon pcs-dp-det-data-ui-icon demo-icon-font-24 fontSize36"></span>-->
+									<span data-bind="text:bundle.pcs.dp.detail.history"></span>
+								</a>
+							</li>
+							<li id="CD_ROLE">
+								<a href="#" class="">
+									<!--<span class="oj-navigationlist-item-icon pcs-dp-det-member-ui-icon demo-icon-font-24 fontSize36"></span>-->
+									<span data-bind="text:bundle.pcs.dp.detail.roles"></span>
+								</a>
+							</li>
+							<!-- ko if:openedActivities().length > 0 -->
+							<li id="CD_TASK">
+								<a href="#" class="">
+									<!--<span class="oj-navigationlist-item-icon pcs-dp-det-member-ui-icon demo-icon-font-24 fontSize36"></span>-->
+									<span data-bind="text:bundle.pcs.dp.detail.tasks"></span>
+								</a>
+							</li>
+							<!-- /ko -->
+						</ul>
+					</div>
+					<div class="oj-sm-12 pcs-dp-det-tab-separator"></div>
+					<div class="oj-flex-item oj-sm-12 pcs-dp-det-bar-height">
+						<!-- ko if:selectedNavigationItem() === 'CD_DATA' -->
+						<div class="oj-sm-12">
+							<pcs-dpdata class="oj-flex oj-sm-12" params="instanceitem: instanceItem, instanceid:instanceId, consumed: true" style="margin-top:20px"></pcs-dpdata>
+						</div>
+						<!-- /ko -->
+
+						<!-- ko if:selectedNavigationItem() === 'CD_DOCS' -->
+						<div class="oj-sm-12">
+							<div id="pcs-attachments1"></div>
+						</div>
+						<!-- /ko -->
+
+						<!-- ko if:selectedNavigationItem() === 'CD_HISTORY' -->
+						<div class="oj-sm-12">
+							<pcs-dphistory id="pcs-dp-det-history"
+										   params="activities: executionsList, instanceid:instanceId, consumed: true"></pcs-dphistory>
+						</div>
+						<!-- /ko -->
+
+						<!-- ko if:selectedNavigationItem() === 'CD_ROLE' -->
+						<div class="oj-sm-12">
+							<!-- ko if: instanceItem() -->
+							<pcs-dproles style="width: 100%" id="pcs-dp-det-roles"
+									   params="instanceid: instanceId, processdefinitionid: instanceItem().getProcessDefinitionId(),  consumerType: 'instance_roles', readonly : !isRoleWritable()"></pcs-dproles>
+							<!-- /ko -->
+						</div>
+						<!-- /ko -->
+
+						<div class="oj-sm-12">
+							<div id="pcs-dp-det-act-tab" class="oj-sm-12 marginTop10 pcs-dp-display-none"
+								 data-bind="ojComponent:{component: 'ojTabs', overflow: 'hidden',
+								 			reorderable:true,removable:true, truncation:'none',
+								 			select : activityTabSelectionListener,
+								 			beforeRemove : activityTabRemoveListener}">
+								<!-- Do not remove populated in VM  -->
+								<ul id="pcs-dp-det-act-tab-items"></ul>
+							</div>
+						</div>
+
+					</div>
+					<div class="pcs-dp-det-tabsdiv">
+
+					</div>
+					<!--<button id="pcs-dp-det-actions-btn"-->
+							<!--data-bind="click:onActionClick, ojComponent: {-->
+							<!--component: 'ojButton', label: 'Activities',-->
+							<!--icons: {start:'demo-icon-font demo-gear-icon-16'},-->
+							<!--rootAttributes : {class: 'pcs-dp-det-actions-btn'}-->
+						<!--}">-->
+					<!--</button>-->
+				</div>
+			</div>
+		</div>
+
+		<div class="oj-form-layout pcs-dp-display-none" style="margin-top:20px" id="pcs-dp-det-error">
+			<span style="margin:20px; color:red" data-bind="text: bundle.pcs.dp.common.errGettingInstanceDetailsMsg" ></span>
+		</div>
+
+		<div id="pcs-dp-det-overlay"></div>
+
+	</div>
+
+	<div class="pcs-dp-display-none" style="width:200px;min-height:75px;" id="pcs-dp-det-info-popup"
+		 data-bind="ojComponent:{component: 'ojPopup',
+                    tail: 'simple', modality:'modeless'}">
+		<div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center">
+			<!-- ko if: instanceItem() -->
+			<div class="oj-flex-item oj-sm-12">
+				<div>
+					<span class="pcs-dp-info-label" data-bind="text:bundle.pcs.dp.detail.instanceId + ' : '"></span>
+					<span class="pcs-dp-info-val" data-bind="text: instanceItem().getNumber()"></span>
+				</div>
+			</div>
+			<div class="oj-flex-item oj-sm-12 marginTop10">
+				<div>
+					<span class="pcs-dp-info-label" data-bind="text:bundle.pcs.dp.detail.currentState + ' : '"></span>
+					<span class="pcs-dp-info-val" data-bind="text: instanceItem().getStateDisplayName()"></span>
+				</div>
+			</div>
+			<div class="oj-flex-item oj-sm-12 marginTop10">
+				<div>
+					<span class="pcs-dp-info-label"  data-bind="text:bundle.pcs.dp.detail.createdDate + ' : '"></span>
+					<span class="pcs-dp-info-val" data-bind="text: instanceItem().getInstanceCreatedDateFormatted()"></span>
+				</div>
+			</div>
+			<!-- ko if: instanceItem().getUpdatedBy() -->
+			<div class="oj-flex-item oj-sm-12 marginTop10">
+				<div>
+					<span class="pcs-dp-info-label" data-bind="text:bundle.pcs.dp.detail.updatedBy + ' : '"></span>
+					<span class="pcs-dp-info-val" data-bind="text: instanceItem().getUpdatedBy()"></span>
+				</div>
+			</div>
+			<!-- /ko -->
+			<!-- ko if: instanceItem().getInstanceCompletedDate() -->
+			<div class="oj-flex-item oj-sm-12 marginTop10">
+				<div>
+					<span class="pcs-dp-info-label" data-bind="text:bundle.pcs.dp.detail.completedDate + ' : '"></span>
+					<span class="pcs-dp-info-val" data-bind="text: instanceItem().getInstanceCompletedDateFormatted()"></span>
+				</div>
+			</div>
+			<!-- /ko -->
+			<!-- ko if: instanceItem().getDuration() -->
+			<div class="oj-flex-item oj-sm-12 marginTop10">
+				<div>
+					<span class="pcs-dp-info-label" data-bind="text:bundle.pcs.dp.detail.duration + ' : '"></span>
+					<span class="pcs-dp-info-val"data-bind="text: instanceItem().getDuration()"></span>
+				</div>
+			</div>
+			<!-- /ko -->
+
+			<div class="oj-flex-item oj-sm-12 marginTop10">
+				<span id="pcs-dp-det-desc" class="pcs-dp-info-val" data-bind="text: instanceItem().getDescription()" style="margin-top: 10px"></span>
+			</div>
+			<!-- /ko -->
+		</div>
+	</div>
+
+	<div id="pcs-dp-det-confirm-dialog" title="Alert" class="pcs-dp-dialog"
+		 data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide', rootAttributes:{class:'pcs-dp-dialog-custom', style:'width:400px'}}">
+		<div id="pcs-dp-det-confirm-header" class="oj-dialog-header oj-helper-clearfix pcs-dp-dialog-header">
+			<span class="oj-dialog-title" data-bind="text:bundle.pcs.dp.common.confirm"></span>
+			<span class="pcs-dp-dialog-close-btn">
+				<button data-bind="click: closeDialog,
+								ojComponent: {
+									component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.close, display: 'icons',
+									icons: {start:'oj-fwk-icon pcs-dp-dialog-close-icon'}
+								}">
+				</button>
+			</span>
+		</div>
+		<div class="pcs-dp-dialog-body oj-dialog-body" id="pcs-dp-det-confirm-body" >
+			<div class="pcs-dp-det-err-short-msg" data-bind="text:actionConfirmMessage"></div>
+		</div>
+		<div class="oj-dialog-footer pcs-dp-dialog-footer">
+			<button class="oj-button-primary" data-bind="click:confirmInstanceAction,
+			 ojComponent: {component: 'ojButton', label: bundle.pcs.dp.common.ok,
+			 rootAttributes: {style: 'padding-left:13px;padding-right:13px;font-weight:normal'}}">
+			</button>
+			<button id="pcs-dp-confirm-cancel" data-bind="click:closeDialog,
+			 ojComponent: {component: 'ojButton', label: bundle.pcs.dp.common.cancel,
+			 rootAttributes: {style: 'padding-left:13px;padding-right:13px;font-weight:normal'}}"> </button>
+		</div>
+	</div>
+
+	<div id="pcs-dp-det-err-dialog" title="Error" class="pcs-dp-dialog"
+		 data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide', rootAttributes:{style:'width:400px'},
+		 			rootAttributes:{class:'pcs-dp-dialog-custom'}}">
+		<div id="pcs-dp-det-err-header" class="oj-dialog-header oj-helper-clearfix pcs-dp-dialog-header">
+			<span class="oj-dialog-title" data-bind="text:bundle.pcs.dp.common.error"></span>
+			<span class="pcs-dp-dialog-close-btn">
+				<button data-bind="click: closeDialog,
+								ojComponent: {
+									component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.close, display: 'icons',
+									icons: {start:'oj-fwk-icon pcs-dp-dialog-close-icon'}
+								}">
+				</button>
+			</span>
+		</div>
+		<div class="pcs-dp-dialog-body oj-dialog-body" id="pcs-dp-det-err-body">
+			<div class="pcs-dp-det-err-short-msg" data-bind="text:shortErrorMessage"></div>
+			<br>
+			<div data-bind="text:longErrorMessage"></div>
+		</div>
+		<div class="oj-dialog-footer  pcs-dp-dialog-footer">
+			<button class="oj-button-primary" data-bind="click:closeDialog,
+			ojComponent: {component: 'ojButton', label: bundle.pcs.dp.common.ok,
+			rootAttributes: {style: 'padding-left:13px;padding-right:13px;font-weight:normal'}}"> </button>
+		</div>
+	</div>
+
+
+	<!-- /ko -->
+
+	<!-- ko ifnot: instanceId() -->
+	<div style="color:red" data-bind="text:bundle.pcs.dp.common.instanceIdMissingMsg"></div>
+	<!-- /ko -->
+</div>
+

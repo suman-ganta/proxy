@@ -1,0 +1,24 @@
+{
+  "properties": {
+    "instanceid":{
+      "description":"The instanceId of selected instance",
+      "type": "string",
+	  "required" : true
+    },
+    "instanceitem":{
+      "description":"The instance detail of selected instance",
+      "type": "Instance"
+    },
+	"consumed":{
+	  "description":"If the component is used in consumed environment",
+	  "type": "boolean",
+	  "value" :"false"
+	}
+  },
+  "methods" :{
+
+  },
+  "events": {
+
+  }
+}

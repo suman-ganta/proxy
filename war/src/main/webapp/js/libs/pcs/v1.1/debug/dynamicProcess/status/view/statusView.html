@@ -1,0 +1,206 @@
+<div class=" oj-flex oj-sm-12">
+	<!-- ko if: instanceId() -->
+	<div class="oj-flex oj-sm-12" style="flex-wrap: nowrap;max-height:120px;height:120px">
+
+		<div class="oj-flex-item">
+			<section id="pcs-dp-status-containor"
+					 class="cd-horizontal-timeline oj-flex oj-sm-12 pcs-dp-font oj-md-flex-wrap-nowrap">
+				<!-- Milestone start -->
+				<div id="pcs-dp-mile-timeline" class="timeline" data-bind="visible:selectedView() === 'milestone'">
+					<div class="events-wrapper">
+						<div class="events">
+							<ol>
+								<li>
+									<a href="#" class="timelineEvent started" ></a>
+									<a class="milestoneTxt" data-bind="text:bundle.pcs.dp.milestone.start"></a>
+									<a class="dateTxt" data-bind="pcsFormatDate: startDate(), datePattern:'MMM d'" ></a>
+								</li>
+								<!-- ko foreach: completedMilestones -->
+									<!-- ko if: ($parent.completedMilestones().length - 1) === $index()-->
+									<li>
+										<a href="#" class="timelineEvent selected"  data-bind="click:$parent.showMilestoneInfo,attr:{id: 'pcs-mile-'+ getActivityName().replace(' ','') + getId()}"></a>
+										<a class="milestoneTxt" data-bind="text:getActivityName()"></a>
+										<a class="dateTxt" data-bind="pcsFormatDate: getExecutionCompletedDate(), datePattern:'MMM d'"></a>
+									</li>
+									<!-- /ko -->
+									<!-- ko if: ($parent.completedMilestones().length - 1) !== $index()-->
+									<li>
+										<a class="timelineEvent completed" data-bind="click:$parent.showMilestoneInfo,attr:{id: 'pcs-mile-'+ getActivityName().replace(' ','') + getId()}"></a>
+										<a class="milestoneTxt" data-bind="text:getActivityName()"></a>
+										<a class="dateTxt" data-bind="pcsFormatDate: getExecutionCompletedDate(), datePattern:'MMM d'"></a>
+									</li>
+									<!-- /ko -->
+								<!-- /ko -->
+								<li>
+									<a href="#" class="timelineEvent currentDate" ></a>
+									<a class="milestoneTxt" data-bind="text:bundle.pcs.dp.milestone.today"></a>
+									<a class="dateTxt" data-bind="pcsFormatDate: getCurrentDateFormatted(), datePattern:'MMM d'"></a>
+								</li>
+								<!-- foreach: incompleteMilestones
+                                       <li><a href="#" class="timelineEvent" data-bind="text:getActivityName()"></a>
+                                       <a class="dateTxt" data-bind="pcsFormatDate: getExecutionCompletedDate(), datePattern:'MMM d'"></a></li>
+                                 -->
+							</ol>
+							<div class="filling-line" aria-hidden="true"></div>
+						</div> <!-- .events -->
+					</div> <!-- .events-wrapper -->
+
+					<ul class="cd-timeline-navigation">
+						<li><a href="#" class="prev inactive" data-bind="click:clickPrevious, ojComponent: {
+										component:'ojButton', label: bundle.pcs.dp.milestone.previous, display: 'icons', chroming: 'half',
+										icons: {start:'oj-fwk-icon timeline-nxt-icon'}
+									}"></a></li>
+						<li><a href="#" class="next" data-bind="click:clickNext, ojComponent: {
+										component:'ojButton', label: bundle.pcs.dp.milestone.next, display: 'icons', chroming: 'half',
+										icons: {start:'oj-fwk-icon timeline-prev-icon;'}
+									}"></a></li>
+					</ul>
+				</div>
+				<!-- Milestone end -->
+
+				<!-- Timeline start -->
+				<div id="pcs-dp-timeline" class="oj-flex oj-sm-12 "
+					 data-bind='visible:selectedView() === "timeline", ojComponent: {component:"ojTimeline",
+				animationOnDisplay: "auto",
+				minorAxis:{
+					scale:"days",
+					zoomOrder:["months","days","hours"],
+					converter:{days:daysConverter}
+				},
+				majorAxis:{scale:""},
+				start:graphStartDate,
+				end: graphEndDate,
+				selectionMode: "single",
+				series:[{
+					id:"s1",
+					emptyText:"No Milestones met.",
+					items:completedTimeEvents(),
+				}],
+				overview:{
+					rendered:"off"
+				},
+				styleDefaults:{
+					borderColor:"none",
+					item:{
+						backgroundColor:"#f9fdff",
+						borderColor:"#dcf1ff",
+						hoverBackgroundColor:"white",
+						selectedBorderColor:"#ed813e"
+					},
+					majorAxis:{separatorColor:"none"},
+					minorAxis:{
+						backgroundColor:"white"},
+					series:{
+						backgroundColor:"white"
+					}
+				}
+			}'
+					 style="width:100%;height: 120px"></div>
+				<!-- Timeline end -->
+
+				<!-- Stage start -->
+				<div class="pcs-stage-container oj-flex oj-sm-12  oj-sm-justify-content-center oj-sm-align-items-center" data-bind="visible:selectedView() === 'stage'">
+					<!-- ko foreach: stages -->
+					<div class="pcs-stage-tablet" data-bind="click:$parent.onStageUIClick, text:label, css:css, attr:{title:title, id:id}">
+					</div>
+					<!-- /ko -->
+				</div>
+				<!-- Stage end -->
+			</section>
+		</div>
+		<div class="oj-flex-item" style="min-width:30px;max-width:30px">
+			<div class="oj-flex oj-sm-12" style="margin-top:10px">
+				<div id="pcs-milestone-view-switch" class="oj-flex oj-sm-12 pcs-milestone-view-switch"
+					 data-bind="ojComponent: {component: 'ojButtonset', checked: selectedView,
+									  optionChange: onViewClick,
+									  rootAttributes:{class:'oj-flex oj-sm-12'}},
+								attr:{'aria-label':bundle.pcs.dp.milestone.chooseView}">
+					<!-- ko foreach: views() -->
+						<!-- ko if: isVisible && !isEmpty() -->
+						<label class="oj-flex oj-sm-12" data-bind="attr: {for: id}" ></label>
+						<input class="oj-flex oj-sm-12" type="radio" name='views' data-bind="value: id, attr: {id: id},
+									  ojComponent: {
+									  component: 'ojButton', label: label,
+									  display: 'icons',
+									  icons: {start: classes},
+									  chroming: 'half',
+									  rootAttributes:{style:'border:1px;outline:none'}}"/>
+						<!-- /ko -->
+					<!-- /ko -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="oj-form-layout pcs-dp-display-none" id="pcs-dp-status-error">
+		<span style="margin:20px; color:red" data-bind="text: bundle.pcs.dp.common.errGettingInstanceDetailsMsg" ></span>
+	</div>
+	<!-- /ko -->
+</div>
+<!-- ko ifnot: instanceId() -->
+<div style="color:red" data-bind="text:bundle.pcs.dp.common.instanceIdMissingMsg"></div>
+<!-- /ko -->
+<div id="pcs-milestone-popup" class="pcs-milestone-popup" data-bind="ojComponent:{component: 'ojPopup', modality:'modeless', tail:'simple'}">
+	<div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center">
+		<!-- ko if: popupData() -->
+		<div class="oj-flex-item oj-sm-12">
+			<div> <span class="pcs-milestone-popup-label" data-bind="text:bundle.pcs.dp.milestone.activityLbl"></span>  <span data-bind="text: popupData().getActivityName()"></span></div>
+		</div>
+		<!-- ko if: popupData().getActivityDescription() -->
+		<div class="oj-flex-item oj-sm-12 marginTop10" >
+			<div><span class="pcs-milestone-popup-label" data-bind="text:bundle.pcs.dp.milestone.descriptionLbl"></span><span data-bind="text: popupData().getActivityDescription()"></span></div>
+		</div>
+		<!-- /ko -->
+		<div class="oj-flex-item oj-sm-12 marginTop10" >
+			<div><span class="pcs-milestone-popup-label" data-bind="text:bundle.pcs.dp.milestone.completedOnLbl"></span><span  data-bind="text: popupData().getExecutionCompletedDateFormatted()"></span></div>
+		</div>
+		<div class="oj-flex-item oj-sm-12 marginTop10" >
+			<div><span class="pcs-milestone-popup-label" data-bind="text:bundle.pcs.dp.milestone.durationLbl"></span><span data-bind="text: popupData().getDuration()"></span></div>
+		</div>
+		<!-- /ko -->
+	</div>
+</div>
+<div id="pcs-stage-popup" class="pcs-stage-popup" data-bind="ojComponent:{component: 'ojPopup', modality:'modeless', tail:'simple',
+																	rootAttributes:{class:'pcs-stage-popup'}}">
+	<div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-center">
+		<!-- ko if: stagePopupData() -->
+			<div data-bind="template:{name:stagePopupTemplate, data: stagePopupData()}"></div>
+		<!-- /ko -->
+	</div>
+</div>
+<script id="stageData" type="text/html">
+	<div class="oj-flex-item oj-sm-12">
+		<div class="pcs-stage-popup-header" data-bind="text:$parent.bundle.pcs.dp.milestone.activitiesLbl"></div>
+		<div class="pcs-dp-line"></div>
+	</div>
+	<div class="oj-flex-item oj-sm-12 pcs-stage-popup-lineItem" >
+		<div>
+			<span class="pcs-stage-availableTxt " data-bind="text: $data.available"></span>
+			<span class="pcs-milestone-popup-label" data-bind="text:$parent.bundle.pcs.dp.milestone.availableLbl"></span>
+		</div>
+	</div>
+	<div class="oj-flex-item oj-sm-12 pcs-stage-popup-lineItem" >
+		<div>
+			<span class="pcs-stage-activeTxt " data-bind="text:  $data.active"></span>
+			<span class="pcs-milestone-popup-label" data-bind="text:$parent.bundle.pcs.dp.milestone.activeLbl"></span>
+		</div>
+	</div>
+	<div class="oj-flex-item oj-sm-12 pcs-stage-popup-lineItem" style="margin-bottom: 10px">
+		<div>
+			<span class="pcs-stage-completedTxt" data-bind="text: $data.completed"></span>
+			<span class="pcs-milestone-popup-label" data-bind="text:$parent.bundle.pcs.dp.milestone.completedLbl"></span>
+		</div>
+	</div>
+</script>
+
+<script id="stageAvailable" type="text/html">
+	<div class="pcs-stage-notStarted" data-bind="text: $parent.bundle.pcs.dp.milestone.stageNotStarted"></div>
+</script>
+
+<script id="stageCompleted" type="text/html">
+	<div class="pcs-stage-notStarted" data-bind="text: $data.completedOn"></div>
+	<div class="pcs-dp-line"></div>
+	<div data-bind="template:{name:'stageData'}"></div>
+</script>
+

@@ -1,0 +1,160 @@
+@import url("pcs-common.css");
+@import url("pcs-dp-status.css");
+@import url("pcs-dp-roles.css");
+@import url("pcs-dp-activity.css");
+@import url("pcs-dp-data.css");
+@import url("pcs-dp-detail.css");
+@import url("pcs-dp-history.css");
+@import url("pcs-dp-list.css");
+@import url("pcs-dp-mgmt.css");
+@import url("pcs-taskdetail.css");
+@import url("pcs-attachments.css");
+
+.pcs-box{
+    border: 1px solid #d9dfe3;
+}
+
+.pcs-dp-font {
+	font-family: "Helvetica Neue", Roboto, "Segoe UI", sans-serif;
+}
+
+.pcs-dp-info-text{
+	font-size : 10px;
+	font-style: italic ;
+}
+
+
+.pcs-dp-line{
+	border: 1px solid #D6DFE6
+}
+
+
+.marginTop10{
+	margin-top: 10px
+}
+
+.pcs-dp-empty-watermark{
+	margin-top:100px
+}
+
+.pcs-dp-empty-watermark-text{
+	color: #737373;
+	font-size: 24px;
+	font-face : SFUIDisplay-Light;
+	line-height: 29px;
+	margin-top:40px
+}
+
+.pcs-dp-empty-watermark-desc{
+	color: #737373;
+	font-size: 14px;
+}
+
+.pcs-dp-display-none{
+	display: none;
+}
+
+.pcs-dp-separator{
+	margin:5px;
+}
+
+/* **** DP dialog styling starts **** */
+.pcs-dp-dialog-header{
+	height: 61px;
+	line-height: 61px;
+	background-color: #8D909B;
+	padding-left: 25px;
+	padding-top: 0;
+	padding-right: 21px;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", "Roboto Light", Roboto, "Segoe UI Semilight", "Segoe UI", sans-serif;
+	font-weight: normal;
+	font-size: 24px;
+	color: #FFFFFF;
+	border: 0;
+}
+
+.pcs-dp-dialog-header .oj-dialog-close-icon{
+	color: #ffffff;
+	font-size: 18px;
+}
+
+.pcs-dp-dialog-body.oj-dialog-body{
+	background-color: #ffffff;
+	padding: 25px;
+}
+
+.pcs-dp-dialog.oj-dialog-content{
+	background-color: #ffffff;
+}
+
+.pcs-dp-dialog-footer{
+	padding-left: 25px;
+	padding-right: 29px;
+	padding-bottom: 25px;
+	padding-top: 0;
+	background-color: #ffffff;
+}
+
+.pcs-dp-dialog-custom.oj-dialog{
+	box-shadow: 0 0 5px 0 rgba(0,0,0,0.45);
+	background: #f9f9f9;
+	border: 0;
+	border-radius: 5px;
+}
+
+.pcs-dp-dialog-close-icon:before{
+	content: url("images/func_xthin_16_onb.png");
+}
+.oj-button.oj-hover .pcs-dp-dialog-close-icon:before{
+	content: url("images/func_xthin_16_hov.png");
+}
+.oj-button.oj-active .pcs-dp-dialog-close-icon:before{
+	content: url("images/func_xthin_16_ena.png");
+}
+
+.pcs-dp-dialog-close-btn{
+	float: right;
+}
+
+.pcs-dp-dialog-header .oj-dialog-header-close-wrapper{
+	display: none;
+}
+/* **** DP dialog styling ends **** */
+
+
+.pcs-dp-common-close-icon:before{
+	content: url("images/func_xthin_16_ena.png");
+}
+.oj-button.oj-hover .pcs-dp-common-close-icon:before{
+	content: url("images/func_xthin_16_hov.png");
+}
+.oj-button.oj-active .pcs-dp-common-close-icon:before{
+	content: url("images/func_xthin_16_onb.png");
+}
+
+.pcs-dp-menu-header-txt{
+	margin-left: 10px;
+	color:#999999;
+	font-size: 14px;
+	line-height: 1.5;
+	font-family:"Helvetica Neue", Roboto, "Segoe UI", sans-serif;
+}
+
+.pcs-dp-menu-item{
+	line-height: 2;
+	font-size: 14px;
+	font-family:"Helvetica Neue", Roboto, "Segoe UI", sans-serif;
+}
+
+.pcs-dp-menu-checkbox{
+	margin: 0 10px 0 10px;
+}
+
+.pcs-dp-menu-radio{
+	margin: 0 10px 0 10px !important;
+}
+
+.pcs-dp-act-filter-btn .oj-button-menu-dropdown-icon{
+  display: none;
+}
+

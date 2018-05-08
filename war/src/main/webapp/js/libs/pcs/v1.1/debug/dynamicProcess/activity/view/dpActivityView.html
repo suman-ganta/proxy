@@ -1,0 +1,436 @@
+<div id="pcs-dp-act-container" class="pcs-dp-act-container pcs-dp-font ">
+    <!-- ko if: instanceId() -->
+	<div id="pcs-dp-act-toolbar" class="oj-flex oj-sm-align-items-center pcs-dp-act-toolbar">
+		<span id="pcs-dp-act-act-hdr-label" data-bind="visible: !isSearchTxtVisible(), text:bundle.pcs.dp.activity.activitiesLbl" class="oj-flex-item pcs-dp-act-act-hdr-label" ></span>
+		<span id="pcs-dp-act-search" class="oj-flex oj-sm-justify-content-flex-end pcs-dp-act-search">
+			<span  id="pcs-dp-act-filter-ipContainer" class="oj-flex-item pcs-dp-act-filter-input"  data-bind="visible: isSearchTxtVisible()">
+				<input id="pcs-dp-act-filter-input" class="pcs-dp-act-filter-input" type="text" data-bind="
+					ojComponent:{
+						component: 'ojInputText', rawValue: searchText, placeholder: bundle.pcs.dp.activity.searchActivity
+					}"/>
+			</span>
+			<span class="oj-flex">
+				<button id="pcs-dp-act-search-btn" 	data-bind="visible:!isSearchTxtVisible(), click: onSearchBtnClick,
+						ojComponent: {
+							component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.search, display: 'icons',
+							icons: {start:'oj-fwk-icon oj-fwk-icon-magnifier'}
+						}, attr: {'aria-label' : bundle.pcs.dp.common.search, title:bundle.pcs.dp.common.search}">
+				</button>
+				<button id="pcs-dp-act-search-clear-btn" 	data-bind="visible:isSearchTxtVisible(), click: onSearchBtnClick,
+						ojComponent: {
+							component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.clearSearch, display: 'icons',
+							icons: {start:'oj-fwk-icon oj-fwk-icon-cross'}
+						}, attr: {'aria-label' : bundle.pcs.dp.common.clearSearch, title:bundle.pcs.dp.common.clearSearch}">
+				</button>
+			</span>
+			<span class="oj-flex-item" data-bind="visible: !isSearchTxtVisible()">
+				<button id="pcs-dp-act-filter-btn" class="pcs-dp-act-filter-btn" data-bind="visible: true,
+							ojComponent: {
+								component:'ojButton', chroming: 'half', label: bundle.pcs.dp.activity.filterSort, display: 'icons',
+								icons: {start:'demo-icon-font pcs-dp-act-gear-icon'}, menu:'#pcs-act-filter-menu'
+							}, attr: {'aria-label' : bundle.pcs.dp.activity.filterSort, title:bundle.pcs.dp.activity.filterSort}">
+				</button>
+			</span>
+			<!-- ko ifnot: isConsumed -->
+			<span class="oj-flex-item" data-bind="visible: !isSearchTxtVisible()">
+				<button id="pcs-dp-act-refresh-btn" data-bind="visible: true, click: onRefreshBtnClick,
+							ojComponent: {
+								component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.refresh, display: 'icons',
+								icons: {start:'oj-fwk-icon pcs-dp-act-refresh-icon'}
+							}, attr: {'aria-label' : bundle.pcs.dp.common.refresh, title:bundle.pcs.dp.common.refresh}">
+				</button>
+			</span>
+			<!-- /ko -->
+		</span>
+		<ul id="pcs-act-filter-menu" class="pcs-dp-display-none" data-bind="ojComponent: {component: 'ojMenu'}">
+			<li>
+				<span class="pcs-dp-menu-header-txt">Show</span>
+			</li>
+			<li>
+				<div class="oj-flex oj-sm-align-items-center pcs-dp-menu-item">
+					<input id="pcs-act-available" type="checkbox" class="pcs-dp-menu-checkbox" data-bind="checked: availableChecked"/>
+					<label for="pcs-act-available" class="oj-checkbox-label-nocomp" data-bind="text:bundle.pcs.dp.common.available"></label>
+				</div>
+			</li>
+			<li>
+				<div class="oj-flex oj-sm-align-items-center pcs-dp-menu-item">
+					<input id="pcs-act-running" type="checkbox" class="pcs-dp-menu-checkbox" data-bind="checked: runningChecked"/>
+					<label for="pcs-act-running" class="oj-checkbox-label-nocomp" data-bind="text:bundle.pcs.dp.common.running"></label>
+				</div>
+			</li>
+			<li>
+				<div class="oj-flex oj-sm-align-items-center pcs-dp-menu-item">
+					<input id="pcs-act-completed" type="checkbox" class="pcs-dp-menu-checkbox" data-bind="checked: completedChecked"/>
+					<label for="pcs-act-completed" class="oj-checkbox-label-nocomp" data-bind="text:bundle.pcs.dp.common.completed"></label>
+				</div>
+			</li>
+			<li id="divider" class="oj-menu-divider"></li>
+			<li>
+				<span class="pcs-dp-menu-header-txt">Sort by</span>
+			</li>
+			<li>
+				<div aria-labelledby="mainlabelid"
+								 data-bind="ojComponent: {component: 'ojRadioset', value:activitySortValue}" >
+					<div class="oj-flex oj-sm-align-items-center pcs-dp-menu-item pcs-dp-menu-radio">
+						<input id="pcs-act-status" name="rad" type="radio" value="status">
+						<label for="pcs-act-status" data-bind="text:bundle.pcs.dp.activity.status"></label>
+					</div>
+					<div class="oj-flex oj-sm-align-items-center pcs-dp-menu-item pcs-dp-menu-radio">
+						<input id="pcs-act-stage" name="rad" type="radio" value="stage">
+						<label for="pcs-act-stage" data-bind="text:bundle.pcs.dp.activity.stage"></label>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="pcs-dp-line"></div>
+
+	<!-- ko if: displayTemplate() === 'COMBINED_VIEW' -->
+	<div id="pcs-dp-act-actionable-activities" class="pcs-dp-act-actionable-activities">
+
+		<!-- ko foreach: actionableActivities -->
+		<div class="pcs-dp-act-row pcs-dp-act-row-height" data-bind="css: { 'pcs-dp-act-row-selected': $parent.selectedExecutionId() === getExecutionId() }">
+			<span data-bind="css:getStatusBarClass() +' pcs-dp-act-row-height'" style="height:45px"></span>
+			<div class="pcs-dp-act-row-icon-containor">
+				<span data-bind="css :getIconClass() , attr :{ title : getActivityType()}"></span>
+			</div>
+			<div class="pcs-dp-act-row-content">
+				<span class="pcs-dp-act-row-content-text" >
+					<!-- ko if:isRequired() -->
+					<span class="pcs-dp-act-required-icon" data-bind="attr :{ title : 'Required'}">*</span>
+					<!-- /ko -->
+					<span class="pcs-dp-act-activity-title " data-bind="text:getActivityName()"></span>
+				</span>
+				<span class="pcs-dp-act-row-content-infotext" data-bind="text:getInfoText()"></span>
+
+				<span data-bind="css :getStatusIconClass() , attr :{ title : getStateDisplayName()}"></span>
+			</div>
+
+			<!-- ko if:getAvailableActions().length >0 -->
+			<div class="pcs-dp-act-row-actions">
+				<button tabindex="0" data-bind="ojComponent: {
+									component:'ojButton',
+									chroming: 'half',
+									label: $parent.bundle.pcs.dp.activity.actions,
+									display: 'icons',
+									menu: '#pcs-dp-act-actionMenu' + getId(),
+									icons: {start:'oj-fwk-icon pcs-dp-act-actions-icon'},
+									rootAttributes:{style:'outline:none'}
+								}, attr: {id: 'pcs-dp-act-actions-act-'+ getId()}">
+				</button>
+			</div>
+			<!-- /ko -->
+
+		</div>
+
+		<ul class="pcs-dp-display-none"
+			data-bind="ojComponent: {component: 'ojMenu'}, attr: {id: 'pcs-dp-act-actionMenu'+ getId()}">
+			<!-- ko foreach:getAvailableActions()-->
+			<li>
+				<a href="#" class="" data-bind="text:$data.actionDisplayName, value:$parent.getId() , click: $parents[1].performActivityActionSelection"></a>
+			</li>
+			<!-- /ko -->
+		</ul>
+		<!-- /ko -->
+
+		<!-- ko if:actionableActivities().length === 0 && searchText().length ===0 -->
+		<div data-bind="template: {name: 'pcs_dp_act_empty_template'}"></div>
+		<!-- /ko -->
+
+	</div>
+	<!-- /ko -->
+
+	<!-- ko if: displayTemplate() === 'ALL_ACTIVITIES' -->
+	<div id="pcs-dp-act-all-activities" class="pcs-dp-act-actionable-activities">
+
+		<!-- ko foreach: activityData() -->
+		<div class="pcs-dp-act-row pcs-dp-act-row-height" data-bind="css: { 'pcs-dp-act-row-selected': $parent.selectedExecutionId() === getExecutionId() }">
+			<span data-bind="css:getStatusBarClass(), attr :{ title : getStateDisplayName()}" style="width: 6px;left: -3px"></span>
+			<div class="pcs-dp-act-row-icon-containor">
+				<span data-bind="css :getIconClass(), attr :{ title : getActivityTypeDisplayName()}"></span>
+			</div>
+			<div class="pcs-dp-act-row-content">
+				<div class="oj-flex pcs-dp-act-row-content-text">
+					<!-- ko if:isRequired() -->
+					<span class="pcs-dp-act-required-icon" data-bind="attr :{ title : $parent.bundle.pcs.dp.activity.required}">*</span>
+					<!-- /ko -->
+					<!-- ko ifnot:showHistoryDrillDown() -->
+					<span class="pcs-dp-act-activity-title " data-bind="text:getActivityName()"></span>
+					<!-- /ko -->
+					<!-- ko if:showHistoryDrillDown() -->
+					<a class="pcs-dp-act-activity-title " data-bind="click: $parent.drillDown , text:getActivityName()" style="cursor: pointer"></a>
+					<!-- /ko -->
+					<span data-bind="css :getStatusIconClass() , attr :{ title : getStateDisplayName()}"></span>
+				</div>
+				<div class="oj-flex oj-sm-justify-content-space-between pcs-dp-act-row-content-infotext">
+					<!-- ko ifnot:getStageName() === '' -->
+						<div class="oj-flex-item pcs-dp-act-stage-name" data-bind="text:getStageName()"></div>
+					<!-- /ko -->
+					<span class="oj-sm-justify-content-flex-end" data-bind="pcsFormatDate:getExecutionCompletedDate(), datePattern:'MMM d'"></span>
+				</div>
+			</div>
+
+			<!-- ko if:getAvailableActions().length >0 -->
+			<div class="pcs-dp-act-row-actions">
+				<button tabindex="0" data-bind="ojComponent: {
+									component:'ojButton',
+									chroming: 'half',
+									label: $parent.bundle.pcs.dp.activity.actions,
+									display: 'icons',
+									menu: '#pcs-dp-act-actionMenu' + getId(),
+									icons: {start:'oj-fwk-icon pcs-dp-act-actions-icon'},
+									rootAttributes:{style:'outline:none'}
+								}, attr: {id: 'pcs-dp-act-actions-act-'+ getId()}">
+				</button>
+			</div>
+			<!-- /ko -->
+
+		</div>
+
+		<ul class="pcs-dp-display-none"
+			data-bind="ojComponent: {component: 'ojMenu'}, attr: {id: 'pcs-dp-act-actionMenu'+ getId()}">
+			<!-- ko foreach:getAvailableActions()-->
+			<li>
+				<a href="#" class="" data-bind="text:$data.actionDisplayName, value:$parent.getId() , click: $parents[1].performActivityActionSelection"></a>
+			</li>
+			<!-- /ko -->
+		</ul>
+		<!-- /ko -->
+
+		<!-- ko if:activityData().length === 0 && searchText().length ===0 -->
+		<div data-bind="template: {name: 'pcs_dp_act_empty_template'}"></div>
+		<!-- /ko -->
+
+	</div>
+	<!-- /ko -->
+
+
+	<!-- ko if: displayTemplate() === 'FILTERED_VIEW' -->
+    <div id="pcs-dp-act-accordion" class="pcs-dp-act-accordion">
+
+		<!-- ko if: availableActivities().length >0 -->
+        <div id="pcs-dp-act-available-container" class="pcs-dp-act-available-container" data-bind="ojComponent: {component: 'ojCollapsible', expanded:true}">
+            <span id="pcs-dp-act-available-header" class="pcs-dp-act-available-header pcs-dp-act-accordion-header">
+                <span id="pcs-dp-act-available-header-text" class="pcs-dp-act-available-header-text" data-bind="text:bundle.pcs.dp.activity.available"></span>
+                <hr class="pcs-dp-act-act-hr"/>
+            </span>
+
+            <div id="pcs-dp-act-available-div" class="pcs-dp-act-available-div">
+				<!-- ko foreach: availableActivities -->
+				<!-- ko if:getAvailableActions().length >0 -->
+				<div class="oj-flex-bar  pcs-dp-act-activity-item" >
+					<div class="oj-flex-bar-start">
+						<div style="margin-right:10px">
+							<span data-bind="css :getIconClass() , attr :{ title : getActivityTypeDisplayName()}"></span>
+							<span data-bind="css :getStatusIconClass() , attr :{ title : getStateDisplayName()}" style="margin-left:-10px;"></span>
+						</div>
+					</div>
+					<div class="oj-flex-bar-middle pcs-dp-act-bar-middle">
+
+						<span class="pcs-dp-act-activity-title" data-bind="text:getActivityName()"></span>
+						<!-- ko if:isRequired() -->
+						<span class="pcs-dp-act-required-icon"></span>
+						<!-- /ko -->
+
+						<span class="floatRight pcs-dp-act-action-dots" data-bind="attr: {'id': 'pcs-dp-act-action-dots-'+getExecutionId()}">
+							<button  id="pcs-dp-act-actions-btn" class="oj-button-sm"
+									role="button"
+									data-bind="attr:{'aria-label':$parent.bundle.pcs.dp.activity.disable},
+									ojComponent: {component:'ojButton', label: $parent.bundle.pcs.dp.activity.disable, chroming: 'half',
+									display: 'icons', icons: {start:'oj-fwk-icon pcs-dp-act-actions-icon'} }">
+							</button>
+						</span>
+						<span class="floatRight pcs-dp-act-activity-actions">
+							<!-- ko foreach:getAvailableActions()-->
+							<button class="oj-button-sm pcs-dp-act-act-btn"
+								role="button"
+								data-bind="click: $parents[1].performActivityAction ,ojComponent: {component:'ojButton',
+								label: $data.actionDisplayName,chroming: 'half'},
+								attr: {'id': 'pcs-dp-act-btn-'+action , 'aria-label' : actionDisplayName}">
+							</button>
+							<!-- /ko -->
+						</span>
+					</div>
+				</div>
+				<!-- /ko -->
+				<!-- /ko -->
+            </div>
+        </div>
+		<!-- /ko -->
+
+		<!-- ko if: runningActivities().length >0 -->
+        <div id="pcs-dp-act-inprogress-container" class="pcs-dp-act-inprogress-container" data-bind="ojComponent: {component: 'ojCollapsible', expanded:true}">
+            <span id="pcs-dp-act-inprogress-header" class="pcs-dp-act-inprogress-header pcs-dp-act-accordion-header">
+                <span id="pcs-dp-act-inprogress-header-text" class="pcs-dp-act-inprogress-header-text" data-bind="text:bundle.pcs.dp.activity.inProgress"></span>
+                  <hr class="pcs-dp-act-act-hr"/>
+            </span>
+
+            <div id="pcs-dp-act-inprogress-div" class="pcs-dp-act-inprogress-div">
+				<!-- ko foreach: runningActivities -->
+				<div class="oj-flex-bar  pcs-dp-act-activity-item" >
+					<div class="oj-flex-bar-start">
+						<div style="margin-right:10px">
+							<span data-bind="css :getIconClass() , attr :{ title : getActivityTypeDisplayName()}"></span>
+							<span data-bind="css :getStatusIconClass() , attr :{ title : getStateDisplayName()}" style="margin-left:-10px;"></span>
+						</div>
+					</div>
+					<div class="oj-flex-bar-middle pcs-dp-act-bar-middle">
+
+						<span class="pcs-dp-act-activity-title" data-bind="text:getActivityName()"></span>
+
+						<span class="floatRight pcs-dp-act-action-dots">
+							<!-- ko if:getAvailableActions().length >0 -->
+							<button class="oj-button-sm" role="button"
+									data-bind="attr:{'aria-label':$parent.bundle.pcs.dp.activity.disable},
+									ojComponent: {component:'ojButton', label: $parent.bundle.pcs.dp.activity.disable, chroming: 'half',
+									display: 'icons', icons: {start:'oj-fwk-icon pcs-dp-act-actions-icon'} }">
+							</button>
+							<!-- /ko -->
+						</span>
+
+						<span class="floatRight pcs-dp-act-activity-actions">
+							<!-- ko foreach:getAvailableActions()-->
+						   <button class="oj-button-sm pcs-dp-act-act-btn"
+								   role="button"
+								   data-bind="click: $parents[1].performActivityAction ,ojComponent: {component:'ojButton',
+								label: $data.actionDisplayName,chroming: 'half'},
+								attr: {'id': 'pcs-dp-act-btn-'+action , 'aria-label' : actionDisplayName}">
+							</button>
+							<!-- /ko -->
+						</span>
+
+						<!--<span class="floatRight">-->
+							<!--&lt;!&ndash; ko if: showHistoryDrillDown() &ndash;&gt;-->
+							<!--<button class="oj-button-sm"-->
+									<!--aria-label="Show" role="button"-->
+									<!--data-bind="click:$parent.drillDown ,ojComponent: {component:'ojButton',-->
+									<!--label: 'Open Details', chroming: 'half',-->
+									<!--display: 'icons',-->
+									<!--icons: {start: 'pcs-dp-act-goto-icon'}}">-->
+							<!--</button>-->
+							<!--&lt;!&ndash; /ko &ndash;&gt;-->
+						<!--</span>-->
+
+					</div>
+				</div>
+				<!-- /ko -->
+            </div>
+        </div>
+		<!-- /ko -->
+
+		<!-- ko if:completedActivities().length >0 -->
+        <div id="pcs-dp-act-completed-container" class="pcs-dp-act-completed-container"
+             data-bind="ojComponent: {component: 'ojCollapsible', expanded:false}">
+            <span id="pcs-dp-act-completed-header" class="pcs-dp-act-completed-header pcs-dp-act-accordion-header">
+                <span id="pcs-dp-act-completed-header-text" class="pcs-dp-act-completed-header-text" data-bind="text:bundle.pcs.dp.activity.completed"></span>
+                  <hr class="pcs-dp-act-act-hr"/>
+            </span>
+
+            <div id="pcs-dp-act-completed-div" class="oj-p pcs-dp-act-completed-div" >
+				<!-- ko foreach: completedActivities -->
+				<div class="oj-flex-bar pcs-dp-act-activity-item" >
+					<div class="oj-flex-bar-start">
+						<div style="margin-right:10px">
+							<span data-bind="css :getIconClass() , attr :{ title : getActivityTypeDisplayName()}"></span>
+							<span data-bind="css :getStatusIconClass() , attr :{ title : getStateDisplayName()}" style="margin-left:-10px;"></span>
+						</div>
+					</div>
+					<div class="oj-flex-bar-middle pcs-dp-act-bar-middle">
+
+						<span class="pcs-dp-act-activity-title" data-bind="text:getActivityName()"></span>
+
+						<span class="floatRight">
+							<!-- ko if: showHistoryDrillDown() -->
+							<button class="oj-button-sm" role="button"
+									data-bind="click:$parent.drillDown , attr:{'aria-label':$parent.bundle.pcs.dp.activity.openDetail},
+									ojComponent: {component:'ojButton',
+									label: $parent.bundle.pcs.dp.activity.openDetail, chroming: 'half',
+									display: 'icons',
+									icons: {start: 'pcs-dp-act-goto-icon'}}">
+							</button>
+							<!-- /ko -->
+						</span>
+
+					</div>
+				</div>
+				<!-- /ko -->
+            </div>
+        </div>
+		<!-- /ko -->
+
+    </div>
+	<!-- /ko -->
+
+	<div id="pcs-dp-act-confirm-dialog" class="pcs-dp-dialog"
+		 data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide',rootAttributes:{class:'pcs-dp-dialog-custom', style:'width:400px'}}">
+		<div id="pcs-dp-act-confirm-header" class="oj-dialog-header oj-helper-clearfix pcs-dp-dialog-header">
+			<span  class="oj-dialog-title" data-bind="text:bundle.pcs.dp.common.confirm"></span>
+			<span class="pcs-dp-dialog-close-btn">
+				<button data-bind="click: closeDialog,
+								ojComponent: {
+									component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.close, display: 'icons',
+									icons: {start:'oj-fwk-icon pcs-dp-dialog-close-icon'}
+								}">
+				</button>
+			</span>
+		</div>
+		<div class="pcs-dp-dialog-body oj-dialog-body" id="pcs-dp-act-confirm-body">
+			<div class="pcs-dp-act-err-short-msg" style="white-space: pre-wrap" data-bind="text:actionConfirmMessage"></div>
+		</div>
+		<div class="oj-dialog-footer pcs-dp-dialog-footer">
+			<button class="oj-button-primary" data-bind="click:confirmActivityAction,
+                	ojComponent: {component: 'ojButton', label: bundle.pcs.dp.common.ok, chroming: 'full',
+                	rootAttributes: {style: 'padding-left:13px;padding-right:13px;font-weight:normal'}}"> </button>
+			<button data-bind="click:closeDialog,
+                	ojComponent: {component: 'ojButton', label: bundle.pcs.dp.common.cancel, chroming: 'full',
+                	rootAttributes: {style: 'padding-left:13px;padding-right:13px;font-weight:normal'}}"> </button>
+		</div>
+	</div>
+
+	<div id="pcs-dp-act-err-dialog" class="pcs-dp-dialog"
+		 data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide', rootAttributes:{style:'width:400px'},
+		 			rootAttributes:{class:'pcs-dp-dialog-custom'}}">
+		<div id="pcs-dp-act-error-header" class="oj-dialog-header oj-helper-clearfix pcs-dp-dialog-header">
+			<span  class="oj-dialog-title" data-bind="text:bundle.pcs.dp.common.error"></span>
+			<span class="pcs-dp-dialog-close-btn">
+				<button data-bind="click: closeDialog,
+								ojComponent: {
+									component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.close, display: 'icons',
+									icons: {start:'oj-fwk-icon pcs-dp-dialog-close-icon'}
+								}">
+				</button>
+			</span>
+		</div>
+		<div class="pcs-dp-dialog-body oj-dialog-body" id="pcs-dp-act-error-body" >
+			<div class="pcs-dp-act-err-short-msg" data-bind="text:shortErrorMessage"></div>
+			<br>
+			<div data-bind="text:longErrorMessage"></div>
+		</div>
+		<div class="oj-dialog-footer  pcs-dp-dialog-footer">
+			<button class="oj-button-primary" data-bind="click:closeDialog,
+                	ojComponent: {component: 'ojButton', label: bundle.pcs.dp.common.ok,
+                	rootAttributes: {style: 'padding-left:13px;padding-right:13px;font-weight:normal'}}"> </button>
+		</div>
+	</div>
+
+	<div class="oj-form-layout pcs-dp-display-none" style="margin-top:20px" id="pcs-dp-act-error">
+		<span style="margin:20px; color:red" data-bind="text: bundle.pcs.dp.common.errGettingInstanceDetailsMsg" ></span>
+	</div>
+
+	<div id="pcs-dp-act-overlay"></div>
+	<!-- /ko -->
+    <!-- ko ifnot: instanceId() -->
+    <div style="color:red" data-bind="text:bundle.pcs.dp.common.instanceIdMissingMsg"></div>
+    <!-- /ko -->
+</div>
+
+<script type="text/html" id="pcs_dp_act_empty_template">
+	<div class="oj-form-layout oj-flex oj-sm-12 pcs-dp-empty-watermark" style="margin-top:50px" id="pcs-dp-act-actionable-activities-dummy">
+	<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center" style="">
+		<span class="pcs-dp-act-empty-act-icon"></span>
+	</div>
+	<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center">
+		<span class="pcs-dp-act-watermark-text" data-bind="text: bundle.pcs.dp.activity.noActivitiesMsg" ></span>
+	</div>
+</div>
+</script>

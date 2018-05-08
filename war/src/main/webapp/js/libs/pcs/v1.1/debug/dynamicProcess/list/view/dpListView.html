@@ -1,0 +1,377 @@
+<div id="pcs-dp-list-container" class="pcs-dp-list-container pcs-dp-font oj-sm-12">
+	<!-- header start-->
+	<div class="pcs-dp-list-header oj-flex oj-sm-12">
+		<span class="pcs-dp-list-header-txt" data-bind="text:bundle.pcs.dp.list.listHeader, attr:{title:bundle.pcs.dp.list.listHeader}"></span>
+	</div>
+	<!--header end -->
+
+    <div id="pcs-dp-list-toolbar" data-bind="attr: {'aria-label' : bundle.pcs.dp.list.dpToolbar}"
+		 aria-controls="controlled" class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-space-between pcs-dp-list-toolbar oj-sm-12">
+
+        <div id="pcs-dp-list-search-container" class="oj-flex pcs-dp-list-search-container oj-md-down-12">
+				<span class="oj-flex pcs-dp-list-searchTxt-container">
+					<span  class="oj-flex-item" >
+						<input id="pcs-dp-list-search-input" class="" type="text" data-bind="attr:{title: bundle.pcs.dp.common.search},
+							ojComponent:{
+								component: 'ojInputText', rawValue: searchText, placeholder:bundle.pcs.dp.common.search, rootAttributes: {style:'width:210px;'}
+							},
+							attr: {'aria-label' : bundle.pcs.dp.common.search}"/>
+					</span>
+					<span class="oj-flex-item pcs-dp-list-search-btn-span">
+						<button id="pcs-dp-list-search-btn" 	data-bind="visible:!hasSearchTxt(), click : function (){},
+								ojComponent: {
+									component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.search, display: 'icons',
+									icons: {start:'oj-fwk-icon oj-fwk-icon-magnifier'},
+									rootAttributes: {style:'height:31px'}
+								}">
+						</button>
+						<button id="pcs-dp-list-search-clear-btn" 	data-bind="visible:hasSearchTxt(), click: onSearchClearClick,
+								ojComponent: {
+									component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.clearSearch, display: 'icons',
+									icons: {start:'oj-fwk-icon oj-fwk-icon-cross'},
+									rootAttributes: {style:'height:31px'}
+								}">
+						</button>
+					</span>
+				</span>
+                <button data-bind="click: showAdvanceSearchPopup ,
+                		ojComponent: {
+							component:'ojButton', display: 'icons', chroming: 'half', label: bundle.pcs.dp.list.showFilters,
+							icons: {start:'oj-fwk-icon pcs-dp-list-filters-icon'},
+							rootAttributes: {style:'margin-left:6px;'}
+						},
+						attr: {title: 'Show filters'}"></button>
+        </div>
+
+		<div class="pcs-dp-list-tools-right oj-flex oj-sm-align-content-flex-end oj-md-down-12">
+			<span class="oj-flex-item pcs-dp-list-sortBy-label" id="pcs-dp-list-sortBy-label" data-bind="text: bundle.pcs.dp.common.sortBy"></span>
+			<span id="pcs-dp-list-sortBy-div">
+					<select id="pcs-dp-list-sortBy" class="oj-flex-item"
+							data-bind="ojComponent: {component: 'ojSelect',
+									value: selectedSortBy,
+									optionChange: sortByChangedHandler,
+									minimumResultsForSearch: 10,
+									rootAttributes: {style:'width:210px;'}},
+									attr:{'aria-labelledby' :'pcs-dp-list-sortBy-label'}">
+						<!-- ko foreach: availableSortBy -->
+								<option data-bind="value:value, text:label"></option>
+						<!-- /ko -->
+					</select>
+			</span>
+			<span class="oj-flex-item pcs-dp-list-direction" id="pcs-dp-list-direction">
+				<button id="pcs-dp-list-direction-asc-btn"
+						class=""
+						data-bind=" click:onDirectionBtnClick ,
+						ojComponent: {
+							component:'ojButton', display: 'icons', chroming: 'half', label: bundle.pcs.dp.common.asc,
+							icons: {start:'oj-fwk-icon pcs-dp-list-sorta-icon'}
+						}">
+				</button>
+				<button id="pcs-dp-list-direction-dsc-btn" class="pcs-dp-display-none"
+						data-bind=" click:onDirectionBtnClick ,
+						 ojComponent: {
+							component:'ojButton', display: 'icons', chroming: 'half', label: bundle.pcs.dp.common.desc,
+							icons: {start:'oj-fwk-icon pcs-dp-list-sortd-icon'}
+						}">
+				</button>
+			</span>
+
+			<span role="separator" aria-orientation="vertical" class="oj-flex-item oj-toolbar-separator pcs-dp-separator"></span>
+
+			<button id="pcs-dp-list-refresh-btn" class="oj-flex-item pcs-dp-list-refresh-btn" data-bind="visible: true, click: onRefreshBtnClick, ojComponent: {
+														component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.refresh, display: 'icons',
+														icons: {start:'oj-fwk-icon pcs-dp-list-refresh-icon'}
+													}">
+			</button>
+		</div>
+    </div>
+
+	<!-- ko if:selectedFilterCriteria().length >0 -->
+        <div class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-space-between pcs-dp-filter-criteria">
+            <div class="oj-flex-item">
+				<div >
+					<!-- ko foreach:selectedFilterCriteria-->
+						<span data-bind="text: $data.label + ' : ' +$data.value, attr:{title: $data.label + ' : ' +$data.value}"></span>
+						<button	aria-label="Close" role="button" class="pcs-dp-list-removeFilter"
+								data-bind="click:$parent.removeFilterAction ,ojComponent: {component:'ojButton',
+										 label: $parent.bundle.pcs.dp.common.close, chroming: 'half',
+										 display: 'icons', disabled : $data.disabled(),
+										 icons: {start: 'pcs-dp-common-close-icon oj-fwk-icon'}}">
+						</button>
+					<!-- /ko -->
+				</div>
+            </div>
+            <div class="oj-flex oj-sm-align-items-center">
+				<span class="pcs-dp-list-clear-filter"><a id="pcs-dp-list-clear-filter"
+						data-bind=" click:clearFilterAction , text : 'Clear'">
+				</a></span>
+            </div>
+        </div>
+	<!-- /ko -->
+
+	<div id="pcs-dp-list-view-wrapper"  class="oj-sm-12">
+
+		<!-- ko if: viewDataSource().data.length === 0 -->
+		<div  class="oj-flex oj-sm-12 pcs-dp-list-msgs-area">
+			<!-- ko if:selectedFilterCriteria().length >0 || searchText().length !=0 -->
+			<span data-bind="text:bundle.pcs.dp.list.noInstancesWithFilterMsg"></span>
+			<!-- /ko -->
+		</div>
+		<!-- /ko -->
+
+		<div  class="oj-flex oj-sm-12 pcs-dp-empty-watermark pcs-dp-display-none" id="pcs-dp-list-empty-container">
+			<!-- ko if:viewDataSource().data.length === 0 && selectedFilterCriteria().length === 0 && searchText().length ===0 -->
+			<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center">
+				<span class="pcs-dp-list-empty-data-icon"></span>
+			</div>
+			<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center">
+				<span data-bind="text: bundle.pcs.dp.list.noInstancesToWorkMsg" class="pcs-dp-empty-watermark-text"></span>
+			</div>
+			<!-- /ko -->
+		</div>
+
+
+        <div id="pcs-dp-list-lv-wrapper" style="display: none" class="oj-sm-12">
+            <ul id="pcs-dp-list-lv" class="oj-sm-12"
+                data-bind="ojComponent: {component: 'ojListView',
+								 data: viewDataSource, item: {template: 'pcs-dp-list-lv-template'}, selectionMode: 'single',
+								 rootAttributes: { class: 'oj-sm-12' , style : 'border-width :0px'},
+								 translations: { msgNoData : '', msgFetchingData : 'Loading' }},
+				 attr: {'aria-label' : bundle.pcs.dp.list.listView}">
+            </ul>
+			<a href="#" class="oj-label-inline pcs-dp-list-floatRight pcs-dp-list-load-more"
+			   data-bind="visible: hasMoreRecs, click:loadMoreTasks, text: bundle.pcs.tasklist.loadMore, title: bundle.pcs.tasklist.loadMore">
+			</a>
+        </div>
+
+    </div>
+
+	<div class="" style="margin-top:20px;display: none;" id="pcs-dp-list-error">
+		<div style="margin:20px; color:red" data-bind="text: bundle.pcs.dp.list.errGettingInstancesMsg" ></div>
+	</div>
+
+	<div id="pcs-dp-list-overlay"></div>
+
+</div>
+
+<div id="pcs-dp-list-filter-dialogWrapper">
+    <div id="pcs-dp-list-advanceSearchPopup" title="Filter" class="pcs-dp-dialog"
+         data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide',
+		  rootAttributes: { style: 'width: 500px;  min-width 300px;  min-height: 300px;', class:'pcs-dp-dialog-custom'}}">
+		<div id="pcs-dp-list-dialog-header" class="oj-dialog-header oj-helper-clearfix pcs-dp-dialog-header">
+			<span id="dialogTitleId" class="oj-dialog-title" data-bind="text:bundle.pcs.dp.list.filterHeaderTxt, attr:{title:bundle.pcs.dp.list.filterHeaderTxt}"></span>
+			<span class="pcs-dp-dialog-close-btn">
+				<button data-bind="click: closeDialog,
+								ojComponent: {
+									component:'ojButton', chroming: 'half', label: bundle.pcs.dp.common.close, display: 'icons',
+									icons: {start:'oj-fwk-icon pcs-dp-dialog-close-icon'}
+								}">
+				</button>
+			</span>
+		</div>
+        <div id="pcs-dp-list-searchPopup-body" class="pcs-dp-dialog-body oj-dialog-body">
+            <div class="oj-form-layout">
+                <div class="oj-form oj-sm-odd-cols-12 oj-md-odd-cols-4 oj-md-labels-inline" >
+
+                    <div class="oj-flex" data-bind="visible:true">
+                        <div class="oj-flex-item pcs-dp-list-filter-label">
+                            <label class="pcs-dp-list-filter-label" for="pcs-dp-list-filter-state" data-bind="text: bundle.pcs.dp.list.state"></label>
+                        </div>
+                        <div class="oj-flex-item">
+                            <select id="pcs-dp-list-filter-state"
+                                    data-bind="ojComponent: {
+                                        component: 'ojSelect',
+                                        multiple: false,
+                                        value: selectedStates,
+                                        minimumResultsForSearch:10,
+                                        disabled: false,
+                                        rootAttributes: {style: 'min-width:21em;'}}">
+
+								<!-- ko foreach: availableStates -->
+								<option data-bind="value:value, text:label"></option>
+								<!-- /ko -->
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="oj-flex" data-bind="visible:true">
+                        <div class="oj-flex-item">
+                            <label class="pcs-dp-list-filter-label" for="pcs-dp-list-filter-process" data-bind="text: bundle.pcs.dp.list.process"></label>
+                        </div>
+                        <div class="oj-flex-item">
+
+                            <select id="pcs-dp-list-filter-process" data-bind="ojComponent: {component: 'ojSelect',
+                                                      multiple: false,
+                                                      value: selectedProcessDef,
+                                                      rootAttributes: {style:'max-width:21em'}}">
+                                <!-- ko foreach: processDefinitionList -->
+                                <option data-bind="value:value, text:label"></option>
+                                <!-- /ko -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="oj-flex" data-bind="visible:true">
+                        <div class="oj-flex-item">
+                            <label class="pcs-dp-list-filter-label" for="pcs-dp-list-filter-createdBefore" data-bind="text: bundle.pcs.dp.list.createdBefore"></label>
+                        </div>
+                        <div class="oj-flex-item">
+                            <input id="pcs-dp-list-filter-createdBefore"
+                                   data-bind="ojComponent: {component: 'ojInputDateTime',
+                                                value: selectedCreatedBefore,
+                                        rootAttributes: {style: 'min-width:21em;'}}"/>
+                        </div>
+                    </div>
+                    <div class="oj-flex" data-bind="visible:true">
+                        <div class="oj-flex-item">
+                            <label class="pcs-dp-list-filter-label" for="pcs-dp-list-filter-createdAfter" data-bind="text: bundle.pcs.dp.list.createdAfter"></label>
+                        </div>
+                        <div class="oj-flex-item">
+                            <input id="pcs-dp-list-filter-createdAfter"
+                                   data-bind="ojComponent: {component: 'ojInputDateTime',
+                                                value: selectedCreatedAfter,
+                                        rootAttributes: {style: 'min-width:21em;'}}"/>
+                        </div>
+                    </div>
+                    <div class="oj-flex" data-bind="visible:true">
+                        <div class="oj-flex-item">
+                            <label class="pcs-dp-list-filter-label oj-label oj-label-nocomp" data-bind="text: bundle.pcs.dp.list.updatedBy"></label>
+                        </div>
+                        <div class="oj-flex-item">
+							<pcs-identity-browser id="pcs-dp-list-filter-updatedBy" class="pcs-dp-list-filter-updatedBy"></pcs-identity-browser>
+                        </div>
+                    </div>
+                    <div class="oj-flex" data-bind="visible:true">
+                        <div class="oj-flex-item">
+                            <label class="pcs-dp-list-filter-label" for="pcs-dp-list-filter-closedBefore" data-bind="text: bundle.pcs.dp.list.closedBefore"></label>
+                        </div>
+                        <div class="oj-flex-item">
+                            <input id="pcs-dp-list-filter-closedBefore"
+                                   data-bind="ojComponent: {component: 'ojInputDateTime',
+                                                value: selectedClosedBefore, disabled: !(selectedStates()[0] === 'CLOSED' || selectedStates()[0] === 'ALL'),
+                                        rootAttributes: {style: 'min-width:21em;'}}"/>
+                        </div>
+                    </div>
+                    <div class="oj-flex" data-bind="visible:true">
+                        <div class="oj-flex-item">
+                            <label class="pcs-dp-list-filter-label" for="pcs-dp-list-filter-closedAfter" data-bind="text: bundle.pcs.dp.list.closedAfter"></label>
+                        </div>
+                        <div class="oj-flex-item">
+                            <input id="pcs-dp-list-filter-closedAfter"
+                                   data-bind="ojComponent: {component: 'ojInputDateTime',
+                                                value: selectedClosedAfter, disabled: !(selectedStates()[0] === 'CLOSED' || selectedStates()[0] === 'ALL') ,
+                                        rootAttributes: {style: 'min-width:21em;'}}"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="oj-dialog-footer pcs-dp-dialog-footer">
+            <button id="okButton" class="oj-button-primary" data-bind="attr:{title:bundle.pcs.dp.common.ok}, ojComponent: {component: 'ojButton', label: bundle.pcs.dp.common.ok,
+            rootAttributes: {style: 'padding-left:13px;padding-right:13px;font-weight:normal'}} , click : performFiltering"> </button>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="pcs-dp-list-lv-template">
+    <li data-bind="attr: {id: $data['getNumber()']}, click:$parent.instanceSelected" class="oj-sm-12 pcs-dp-list-lv-item">
+
+		<div class="oj-flex oj-sm-12 oj-sm-align-items-center" style="flex-wrap: nowrap;">
+			<div class="oj-flex-item" style="min-width:75px;max-width:75px">
+					<div data-bind=" style : {background: $data.getColorCode()} , attr : {title : $data.getProcessName()}, text:$data.getInitials() "
+						 class="pcs-dp-list-avatar-smaller" >
+					</div>
+			</div>
+			<div class="oj-flex-item">
+				<div  class="oj-sm-12 oj-md-flex-wrap-nowrap">
+					<div class="oj-sm-12 ">
+						<span class="oj-flex pcs-dp-list-title-text " id="pcs-dp-list-title-text" data-bind="text: getTitle(), attr:{title:getTitle()}"></span>
+					</div>
+					<!-- ko ifnot: getDescription() === null-->
+					<div class="oj-sm-12 ">
+						<span class="oj-flex pcs-dp-list-description-text  pcs-dp-list-height-margin" id="pcs-dp-list-description-text" data-bind="text: getDescription()"></span>
+					</div>
+					<!-- /ko -->
+					<div class="oj-sm-12 ">
+						<span class="oj-flex pcs-dp-list-longtext pcs-dp-list-height-margin" id="pcs-dp-list-longtext" data-bind="text: getLongText()"></span>
+					</div>
+				</div>
+			</div>
+			<div class="oj-flex-item" style="min-width:50px;max-width:50px">
+				<div class="oj-flex oj-sm-12">
+					<div id="pcs-dp-list-state" data-bind="css : getStateIconClass() , attr :{ title : getStateDisplayName()}">
+					</div>
+				</div>
+			</div>
+			<div class="oj-flex-item" style="min-width:50px;max-width:50px">
+				<div class="oj-flex oj-sm-12">
+					<button id="pcs-dp-list-drilldown" data-bind="visible: true,click : $parent.instanceSelected, ojComponent: {
+                                                component:'ojButton', chroming: 'half', label: $parent.bundle.pcs.dp.list.details, display: 'icons',
+                                                icons: {start:'oj-fwk-icon pcs-dp-list-right-caret-icon'},
+                                                rootAttributes:{style:'float:right;'}
+                                            }">
+					</button>
+				</div>
+			</div>
+		</div>
+    </li>
+</script>
+
+<script type="text/html" id="pcs-dp-list-gv-template">
+    <div class="oj-flex-items-pad oj-lg-4 oj-md-6 oj-sm-12" data-bind="click:$parent.instanceSelected">
+        <div class="oj-flex pcs-dp-list-gv-box " style="margin: 10px" >
+            <div  style="margin: 10px" class="oj-flex  oj-sm-12">
+                <div class="oj-flex  oj-sm-12">
+                    <div class="oj-sm-2 oj-md-3">
+                        <div data-bind=" style : {background: $data.getColorCode()} , attr : {title : $data.getProcessName()}, text:$data.getInitials() "
+                             class="pcs-dp-list-avatar-smaller" >
+                        </div>
+                    </div>
+                    <div class="oj-sm-8 oj-md-7">
+                        <h1 class="pcs-dp-list-title-text-gv marginTop18 " data-bind="text: getTitle()"></h1>
+                    </div>
+					<div class="oj-sm-2 oj-md-2">
+						<button id="pcs-dp-list-drilldown-2" class="marginTop18 " data-bind="visible: true,click : $parent.instanceSelected, ojComponent: {
+												component:'ojButton', chroming: 'half', label: $parent.bundle.pcs.dp.list.details, display: 'icons',
+												icons: {start:'oj-fwk-icon pcs-dp-list-right-caret-icon'}
+											}">
+						</button>
+					</div>
+                </div>
+				<!-- ko ifnot: getDescription() === null-->
+                <div class="oj-flex oj-sm-12 ">
+                    <span data-bind="text: getDescription()"></span>
+                </div>
+				<!-- /ko -->
+                <div class="oj-flex oj-sm-12 " style="border: solid #d6dfe6;border-width: 1px 0 0;margin: 7px 0;"></div>
+                <div class="oj-flex oj-sm-12 oj-flex-items-pad ">
+                    <div class="oj-sm-6">
+						<span class="pcs-dp-list-label" data-bind="text:$parent.bundle.pcs.dp.list.instanceId+ ': '"></span><span data-bind="text: getNumber()"></span>
+                    </div>
+                    <div class="oj-sm-6">
+						<span class="pcs-dp-list-label" data-bind="text:$parent.bundle.pcs.dp.list.process+ ': '"></span> <span data-bind="text: getProcessName()"></span>
+                    </div>
+                </div>
+                <div class="oj-flex oj-sm-12 oj-flex-items-pad ">
+                    <div class="oj-sm-6">
+						<span class="pcs-dp-list-label" data-bind="text:$parent.bundle.pcs.dp.list.state+ ': '"></span><span data-bind="text: getStateDisplayName()"></span>
+                    </div>
+
+                    <div class="oj-sm-6">
+                        <span class="pcs-dp-list-label" data-bind="text:$parent.bundle.pcs.dp.list.created+ ': '"></span>
+                        <span data-bind="text: getInstanceCreatedDateFormatted()"></span>
+                    </div>
+
+                </div>
+                <div class="oj-flex oj-sm-12  oj-flex-items-pad ">
+					<!-- ko if:getUpdatedBy() -->
+                    <div class="oj-sm-6">
+                        <span class="pcs-dp-list-label" data-bind="text:$parent.bundle.pcs.dp.list.updatedBy+ ': '"></span>
+                        <span data-bind="text: getUpdatedBy()"></span>
+                    </div>
+					<!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

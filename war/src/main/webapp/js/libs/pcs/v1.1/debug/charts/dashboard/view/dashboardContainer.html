@@ -1,0 +1,120 @@
+<div id="bpm-dsb-tabs-container">
+	<!-- offcanvas outer most wrapper -->
+	<div class="oj-offcanvas-outer-wrapper">
+		<div id="bpm-dsb-vtabs" class="oj-tabs-text-icon"
+			 data-bind="ojComponent:{component: 'ojTabs' , edge : 'start', selected: selectedTab}">
+			<ul>
+				<li>
+					<div>
+						<div class="oj-top bpm-dsb-health-icon demo-icon-font bpm-dsb-nav-icon"
+							 data-bind="attr: {title: bundle.container.health}"
+							 role="img">
+						</div>
+						<div class="oj-sm-only-hide bpm-dsb-nav-text"
+							 data-bind="text: bundle.container.health, attr: {title: bundle.container.health}"></div>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div class="oj-start bpm-dsb-open-icon demo-icon-font bpm-dsb-nav-icon"
+							 data-bind="attr: {title: bundle.container.open}"
+							 role="img">
+						</div>
+						<div class="oj-sm-only-hide bpm-dsb-nav-text"
+							 data-bind="text: bundle.container.open, attr: {title: bundle.container.open}"></div>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div class="oj-start bpm-dsb-wkld-icon demo-icon-font bpm-dsb-nav-icon"
+							 data-bind="attr: {title: bundle.container.workload}"
+							 role="img">
+
+						</div>
+						<div class="oj-sm-only-hide bpm-dsb-nav-text"
+							 data-bind="text: bundle.container.workload, attr: {title: bundle.container.workload}"></div>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div class="oj-start bpm-dsb-cycle-icon demo-icon-font bpm-dsb-nav-icon"
+							 data-bind="attr: {title: bundle.container.cycleTime}"
+							 role="img">
+						</div>
+						<div class="oj-sm-only-hide bpm-dsb-nav-text"
+							 data-bind="text: bundle.container.cycleTime, attr: {title: bundle.container.cycleTime}"></div>
+					</div>
+				</li>
+				<li>
+					<div>
+						<div class="oj-start bpm-dsb-closed-icon demo-icon-font  bpm-dsb-nav-icon"
+							 data-bind="attr: {title: bundle.container.closed}"
+							 role="img">
+						</div>
+						<div class="oj-sm-only-hide bpm-dsb-nav-text"
+							 data-bind="text: bundle.container.closed, attr: {title: bundle.container.closed}"></div>
+					</div>
+				</li>
+			</ul>
+
+			<div id="bpm-dsb-health" class="bpm-dsb-tab-panel">
+				<div id="bpm-dsb-health-container" data-bind="ojModule: { name: 'pcs/charts/dashboard/viewModel/dashboards/healthDashboard', viewName: 'pcs/charts/dashboard/view/dashboards/healthDashboard',
+					params: {parent: $data, loadImmediate: true}}">
+				</div>
+			</div>
+			<div id="bpm-dsb-open" class="bpm-dsb-tab-panel">
+				<div id="bpm-dsb-open-container" data-bind="ojModule: { name: 'pcs/charts/dashboard/viewModel/dashboards/openDashboard', viewName: 'pcs/charts/dashboard/view/dashboards/openDashboard',
+					params: {parent: $data}}">
+				</div>
+			</div>
+			<div id="bpm-dsb-work" class="bpm-dsb-tab-panel">
+				<div id="bpm-dsb-work-container"
+					 data-bind="ojModule: { name: 'pcs/charts/dashboard/viewModel/dashboards/workloadDashboard', viewName: 'pcs/charts/dashboard/view/dashboards/workloadDashboard',
+					params: {parent: $data}}">
+				</div>
+			</div>
+			<div id="bpm-dsb-cycle" class="bpm-dsb-tab-panel">
+				<div id="bpm-dsb-cycle-container"
+					 data-bind="ojModule: { name: 'pcs/charts/dashboard/viewModel/dashboards/cycleTimeDashboard', viewName: 'pcs/charts/dashboard/view/dashboards/cycleTimeDashboard',
+					params: {parent: $data}}">
+				</div>
+			</div>
+			<div id="bpm-dsb-closed" class="bpm-dsb-tab-panel">
+				<div id="bpm-dsb-closed-container" data-bind="ojModule: { name: 'pcs/charts/dashboard/viewModel/dashboards/closedDashboard', viewName: 'pcs/charts/dashboard/view/dashboards/closedDashboard',
+					params: {parent: $data}}">
+				</div>
+			</div>
+		</div>
+
+		<!-- end offcanvas -->
+		<div id="endDrawer" class="oj-offcanvas-end oj-panel"	>
+			<div id="bpm-dsb-proc-filter" data-bind="ojModule: { name: 'pcs/charts/dashboard/viewModel/dashboards/filters/processFilter', viewName: 'pcs/charts/dashboard/view/dashboards/filters/processFilter',
+	 								params: {parent: $data}}"></div>
+		</div>
+
+	</div>
+
+	<script type="text/html" id="bpm-dsb-icon-bar-template">
+		<div class="demo-main-content" style="float: right" >
+			<button data-bind="click: parent.toggleDrawer, attr: {title: $parent.bundle.container.parameters},
+									   ojComponent: {component:'ojButton',
+									   label: bundle.container.parameters,
+									   icons: {start: 'bpm-dsb-filter-icon oj-fwk-icon'}}">
+			</button>
+			<button  data-bind="click: refresh, attr: {title: $parent.bundle.container.refresh},
+									   ojComponent: {component:'ojButton',
+									   label: bundle.container.refresh,
+									   icons: {start: 'bpm-dsb-refresh-icon oj-fwk-icon'}}">
+			</button>
+		</div>
+	</script>
+	<div style="display:none" id="bpm-dsb-error-dialog"
+		 data-bind="attr : { title : bundle.container.error }, ojComponent:{component: 'ojDialog', initialVisibility: 'hide'}">
+		<div class="oj-dialog-body">
+			<div id="bpm-dsb-error-dialog-custom-text"/>
+		</div>
+		<div class="oj-dialog-footer">
+			<button id="okButton"  data-bind="click : closeErrorDialog , ojComponent: {component: 'ojButton', label: bundle.container.ok}"> </button>
+		</div>
+	</div>
+</div>

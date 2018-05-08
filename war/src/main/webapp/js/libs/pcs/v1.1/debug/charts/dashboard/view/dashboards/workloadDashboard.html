@@ -1,0 +1,161 @@
+<div class="oj-offcanvas-outer-wrapper bpm-dsb-panel">
+
+	<div data-bind="template: { name: 'bpm-dsb-icon-bar-template', data: $data }"></div>
+
+	<h1 data-bind="text: bundle.workload.title"></h1>
+
+	<div  class="oj-sm-12 bpm-dsb-center-align" >
+		<div  class="bpm-dsb-center-align" >
+			<div class="bpm-dsb-billb-box bpm-dsb-dark-grey-bg right-width-zero">
+				<div data-bind="text:openCount" class="bpm-dsb-billboard-number"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.workload.billboard.total_open , attr : { title : bundle.workload.billboard.total_open }"></div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-green-bg right-width-zero">
+				<div data-bind="text:onTrackCount" class="bpm-dsb-billboard-number bpm-dsb-dark-green-numb"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.workload.billboard.on_track , attr : { title : bundle.workload.billboard.on_track }"></div>
+			</div>
+			<div class="bpm-dsb-billb-box bpm-dsb-light-orange-bg right-width-zero">
+				<div data-bind="text:dueCount" class="bpm-dsb-billboard-number bpm-dsb-dark-orange-numb"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.workload.billboard.due_this_week , attr : { title : bundle.workload.billboard.due_this_week }"></div>
+			</div>
+
+			<div class="bpm-dsb-billb-box bpm-dsb-light-red-bg">
+				<div data-bind="text:overdueCount" class="bpm-dsb-billboard-number bpm-dsb-dark-red-numb"></div>
+				<div class="bpm-dsb-billboard-title"
+					 data-bind="text: bundle.workload.billboard.overdue , attr : { title : bundle.workload.billboard.overdue }"></div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div id='buttons-container' style="text-align: center;" class="stats-margin">
+		<div id="chartType"  class="workload-chartType oj-button-half-chrome oj-button-primary" data-bind="ojComponent: {component: 'ojButtonset', checked: dataType,
+							optionChange: handleDataTypeChange}"
+			 aria-label="Choose Chart Type">
+			<!-- ko foreach: dataTypeRadios -->
+			<label data-bind="attr: {for: id , title: label}"></label>
+			<input type="radio" name="chart" data-bind="value: id, attr: {id: id},
+							ojComponent: { component: 'ojButton', label: label }"/>
+			<span class="btn-separator"></span>
+			<!-- /ko -->
+		</div>
+	</div>
+
+	<div class="oj-flex " id='bpm-dsb-wkld-chart-container'>
+		<div class="oj-flex-item oj-sm-12 oj-md-6 oj-lg-4 oj-xl-4 oj-col ">
+			<!--<h3 style="text-align: center"><span data-bind="text: bundle.workload.billboard.on_track"></span></h3>-->
+			<div class="bpm-dsb-chart-container">
+				<div id="bpm-dsb-wrkld-chart-ontrack" data-bind="ojComponent: {
+						component: 'ojChart',
+						type: 'bar',
+						orientation: 'horizontal',
+						stack: 'on',
+						series: barSeriesValueOnTrack,
+						groups: barGroupsValueOnTrack,
+						zoomAndScroll: 'live',
+						overview: {rendered: 'on'},
+						dataCursor:'on',
+						legend: {rendered: 'on'},
+						animationOnDisplay: 'auto',
+						animationOnDataChange: 'auto',
+						hoverBehavior: 'dim',
+						hideAndShowBehavior: 'withRescale',
+						yAxis: {minStep :1},
+						translations : { labelNoData :  bundle.workload.chart.no_open_task},
+						title : {text :  bundle.workload.billboard.on_track , halign : 'center' }
+					}"
+					 class="bpm-dsb-chart-height">
+				</div>
+				<div id="bpm-dsb-wrkld-chart-ontrack-overlay"/>
+			</div>
+		</div>
+		<div class="oj-flex-item oj-sm-12 oj-md-6 oj-lg-4 oj-xl-4 oj-col verticalLine">
+			<!--<h3 style="text-align: center"><span data-bind="text: bundle.workload.billboard.due_this_week"></span></h3>-->
+			<div class="bpm-dsb-chart-container">
+				<div id="bpm-dsb-wrkld-chart-due" data-bind="ojComponent: {
+						component: 'ojChart',
+						type: 'bar',
+						orientation: 'horizontal',
+						stack: 'on',
+						series: barSeriesValueDueWeek,
+						groups: barGroupsValueDueWeek,
+						legend: {rendered: 'on'},
+						zoomAndScroll: 'live',
+						overview: {rendered: 'on'},
+						dataCursor:'on',
+						animationOnDisplay: 'auto',
+						animationOnDataChange: 'auto',
+						hoverBehavior: 'dim',
+						hideAndShowBehavior: 'withRescale',
+						translations : { labelNoData :  bundle.workload.chart.due_this_week},
+						title : {text :  bundle.workload.billboard.due_this_week , halign : 'center' },
+						yAxis: {minStep :1}
+					}"
+					 class="bpm-dsb-chart-height">
+				</div>
+				<div id="bpm-dsb-wrkld-chart-due-overlay"/>
+			</div>
+		</div>
+		<div class="oj-flex-item oj-sm-12 oj-md-6 oj-lg-4 oj-xl-4 oj-col verticalLine">
+			<!--<h3 style="text-align: center"><span data-bind="text: bundle.workload.billboard.overdue"></span></h3>-->
+			<div class="bpm-dsb-chart-container">
+				<div id="bpm-dsb-wrkld-chart-overdue" data-bind="ojComponent: {
+						component: 'ojChart',
+						type: 'bar',
+						orientation: 'horizontal',
+						stack: 'on',
+						series: barSeriesValueOverdue,
+						groups: barGroupsValueOverdue,
+						zoomAndScroll: 'live',
+						overview: {rendered: 'on'},
+						dataCursor:'on',
+						legend: {rendered: 'on'},
+						animationOnDisplay: 'auto',
+						animationOnDataChange: 'auto',
+						hoverBehavior: 'dim',
+						hideAndShowBehavior: 'withRescale',
+						yAxis: {minStep :1},
+						translations : { labelNoData : bundle.workload.chart.overdue},
+						title : {text :  bundle.workload.billboard.overdue , halign : 'center' }
+					}"
+					 class="bpm-dsb-chart-height">
+				</div>
+				<div id="bpm-dsb-wrkld-chart-overdue-overlay"/>
+			</div>
+		</div>
+	</div>
+
+	<div class="oj-flex " id='bpm-dsb-wkld-treemap-container' style="display:none">
+
+		<div class="bpm-dsb-chart-container">
+			<div id='bpm-dsb-wkld-bottleneck-treemap' data-bind="ojComponent: {
+				component: 'ojTreemap',
+				animationOnDisplay: 'auto',
+				animationOnDataChange: 'auto',
+				colorLabel: bundle.workload.treemap.colorLabel,
+				sizeLabel: bundle.workload.treemap.sizeLabel,
+				nodes: nodeValues
+			}"
+				 class="bpm-dsb-chart-height" style="border:none;">
+			</div>
+			<div id="bpm-dsb-wkld-bottleneck-treemap-overlay"/>
+		</div>
+
+		<!--<div id='legend-container' class="bpm-dsb-center-align" style="width: 100%">-->
+		<!--<div data-bind="ojComponent: {-->
+		<!--component: 'ojLegend',-->
+		<!--orientation: 'horizontal',-->
+		<!--textStyle: 'font-size:14px;',-->
+		<!--sections: legendSections-->
+		<!--}"-->
+		<!--style="min-width:500px;" class="bpm-dsb-center-align" >-->
+		<!--</div>-->
+		<!--</div>-->
+	</div>
+
+
+</div>

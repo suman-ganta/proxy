@@ -1,0 +1,36 @@
+{
+  "properties": {
+	"instanceid":{
+	  "description":"The instanceId of selected instance",
+	  "type": "string"
+	},
+	"instanceitem":{
+	  "description":"The instance detail of selected instance",
+	  "type": "Instance"
+	},
+	"consumertype":{
+	  "description":"The type of consumer for this component",
+	  "type": "string"
+	}
+  },
+  "events": {
+	"roleSelect": {
+	  "description": "Triggered when a role is selected, added, discarded,deleted",
+	  "bubbles": false,
+	  "detail": {
+		"roleid": {
+		  "description": "The selected role id",
+		  "type": "string"
+		},
+		"eventtype": {
+		  "description": "The type of event can be added, removed, discarded, deleted",
+		  "type": "string"
+		},
+		"roleIdChangeList": {
+		  "description": "The new role id created, for syncup with members",
+		  "type": "array"
+		}
+	  }
+	}
+  }
+}

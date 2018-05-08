@@ -1,0 +1,84 @@
+<div style="display:none" id="pcs-applist-startform-dialog" class="pcs-applist-startform-dialog"
+     data-bind="attr : { title : bundle.pcs.applist.form }, ojComponent:{component: 'ojDialog', initialVisibility: 'hide' , rootAttributes: { style: 'width: 600px'}}">
+    <div class="oj-dialog-body">
+        <div id="pcs-applist-startform-dialog-div"></div>
+    </div>
+</div>
+
+
+<div class="oj-flex" id="pcs-applist-list-area">
+
+
+	<div id="pcs-applist-toolbar" aria-label="Application List Toolbar" style="margin-top:10px"
+		 aria-controls="controlled" class="oj-flex oj-sm-flex-items-initial oj-sm-justify-content-space-between oj-sm-align-items-center pcs-applist-toolbar">
+		<div id="pcs-applist-refresh-container" class="oj-flex-item pcs-applist-refresh-container">
+			<button id="pcs-applist-refresh-icon" data-bind="click: onRefreshBtnClick, ojComponent: {
+														component:'ojButton', chroming: 'half', label: bundle.pcs.applist.refresh, display: 'icons',
+														icons: {start:'oj-fwk-icon pcs-applist-refresh-icon'}
+													}">
+			</button>
+		</div>
+		<div id="pcs-applist-version-container" class="oj-flex-item pcs-applist-version-container">
+				<span class="oj-choice-item">
+					<input id="pcs-applist-default-only" type="checkbox" data-bind="checked: showDefaultOnly">
+					<label for="pcs-applist-default-only" style="margin-right:5px;margin-left: 5px;" data-bind="text: bundle.pcs.applist.default_version"></label>
+					 <span data-bind="attr :{title : bundle.pcs.applist.default_version_info}" role="img"
+						   class="oj-fwk-icon-help oj-fwk-icon" style="color: #878c90;"></span>
+			  </span>
+		</div>
+		<div id="pcs-applist-search-container" class="oj-flex-item pcs-applist-search-container" >
+			<input id="pcs-applist-search-input" type="text"
+				   data-bind="attr:{placeholder: bundle.pcs.applist.search},
+                       ojComponent:{component: 'ojInputText', rootAttributes: {style:'min-width:250px;height:31px;margin-left:20px'}},
+                       textInput: searchText "/>
+		</div>
+	</div>
+
+	<div  class="oj-row oj-sm-12" id="pcs-applist-error" style="display: none; margin:20px;color:red" >
+		<span  class="oj-fwk-icon-status-error oj-fwk-icon" ></span>
+		<span id="pcs-applist-error-msg"></span>
+	</div>
+	<div id="pcs-applist-succes-msg" class="oj-row oj-sm-12" style="margin:20px"></div>
+
+	<div class="oj-form-layout oj-flex oj-sm-12" style="display:none" id="pcs-applist-empty-containor">
+		<div class="oj-form-layout oj-flex oj-sm-12 pcs-applist-empty-watermark">
+			<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center" style="">
+				<span class="pcs-applist-data-empty-data-icon"></span>
+			</div>
+			<div class="oj-flex oj-sm-12 oj-sm-flex-items-initial oj-sm-justify-content-center">
+				<span class="pcs-applist-empty-watermark-text" data-bind="text: bundle.pcs.applist.empty_text" ></span>
+			</div>
+		</div>
+	</div>
+
+    <div class="oj-row oj-flex oj-sm-12 " style="margin-top:10px" id="pcs-applist-list">
+        <!-- ko foreach: searchedStartFormList -->
+        <div class="oj-xl-3 oj-lg-3 oj-md-4 oj-sm-6 oj-flex-item oj-flex pcs-common-center-align pcs-applist-form-box">
+            <div class="oj-flex  oj-sm-12 pcs-common-center-align pcs-applist-link-container">
+                <a data-bind="click:$parent.launchForm" style=" text-decoration: none;cursor: pointer;word-break: break-all;" class="oj-sm-12">
+                    <div data-bind="css: $parent.iconStyle, style : {background: $data.process.processIcon.colorCode} , attr : {title : 'Application: ' + $data.process.applicationDisplayName} "
+                         class="pcs-applist-process-process-link" >
+                            <span data-bind="text:$data.process.processIcon.initials " class="pcs-applist-link-initials"></span>
+                    </div>
+                </a>
+                <a data-bind="click:$parent.launchForm" style=" text-decoration: none;cursor: pointer;" class="oj-sm-12">
+                    <!-- ko if: typeof title != 'undefined' -->
+                    <div style="margin-top:10px;word-break: break-all;" data-bind="text:$data.title" class="pcs-applist-process-process-title">
+					</div>
+                    <!-- /ko -->
+                </a>
+				<div class="oj-sm-12 pcs-applist-process-process-name">
+					<span data-bind="text: $parent.bundle.pcs.applist.process"> </span>
+					<span data-bind="text:$data.process.processName" ></span>
+				</div>
+                <div style="margin-top:10px;word-break: break-all;" class="pcs-applist-process-process-desc oj-sm-12 " data-bind="text:$data.description"></div>
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+
+	<div id="pcs-applist-overlay"/>
+</div>
+
+
+<div id="pcs-applist-startform"></div>

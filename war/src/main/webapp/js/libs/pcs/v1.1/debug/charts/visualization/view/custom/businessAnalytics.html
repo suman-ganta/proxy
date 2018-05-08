@@ -1,0 +1,568 @@
+<div class="bpm-vis-panel">
+	<div id="bpm-vis-business-analytics" class="demo-grid-sizes demo-grid-display">
+		<div class="oj-flex">
+			<div id="bpm-vis-cust-drawer" class="oj-flex-item oj-xl-3 oj-lg-3 oj-md-3 oj-sm-12  oj-panel bpm-vis-query-style">
+				<div id="bpm-vis-cust-querytoolbar" class="bpm-vis-querytoolbar">
+					<div aria-label="Query Toolbar">
+						<span id="bpm-vis-left-headericon">
+		                </span>
+						<span id="reportsHeader" data-bind="text:bundle.vis.formlbl.reports"></span>
+						<button id="bpm-vis-delete" class="bpm-vis-floatright"
+								data-bind="click:deleteConfirm, ojComponent: {
+				                    component:'ojButton', label: bundle.vis.button.delete, display: 'icons',  disabled: 'true', chroming: 'half',
+				                    icons: {start:'oj-fwk-icon bpm-vis-trash-icon'}
+				                }">
+						</button>
+						<button id="bpm-vis-copy" class="bpm-vis-floatright"
+								data-bind="click: copyQuery, ojComponent: {
+				                    component:'ojButton', label: bundle.vis.button.copy, display: 'icons', disabled: 'true', chroming: 'half',
+				                    icons: {start:'oj-fwk-icon bpm-vis-copy-icon'}
+				                }">
+						</button>
+						<button id="bpm-vis-new" class="bpm-vis-floatright"
+								data-bind="click: newQuery, ojComponent: {
+				                    component:'ojButton', label: bundle.vis.button.new, display: 'icons', chroming: 'half',
+				                    icons: {start:'oj-fwk-icon bpm-vis-new-icon'}
+				                }">
+						</button>
+					</div>
+				</div>
+				<ul id="bpm-vis-query-listview"
+					data-bind="ojComponent: {
+				       		component: 'ojListView',
+				       		data: queriesDS,
+				       		selection: selectedQuery,
+				       		selectionMode: 'single',
+				       		item: {
+				       				template: 'bpm-vis-listTemplate'
+					            }
+				       		},
+				       		translations : { msgNoData  : bundle.vis.chart.no_saved_queries},
+				       		">
+				</ul>
+				<script type="text/html" id="bpm-vis-listTemplate">
+					<li class="bpm-vis-queryItem">
+						<div>
+							<div class="">
+				                <span class='bpm-vis-listitem clipped' data-bind="text:label, attr:{title:label}">
+				                </span>
+							</div>
+						</div>
+					</li>
+				</script>
+			</div>
+			<div class="oj-flex-item oj-lg-1 oj-md-1 oj-sm-12  bpm-vis-snap-out">
+				<div class="bpm-vis-snap-middle">
+					<div id="show-hide-navigation" class="bpm-vis-hide-navlist"
+						 data-bind="click: handleSnapBtnClick"></div>
+				</div>
+			</div>
+			<div id="bpm-vis-chart" class="oj-flex-item oj-lg-8 oj-md-8 oj-sm-12 ">
+				<div class="bpm-vis-hidden box-shadow" id="bpm-vis-chart-row1">
+					<div id="bpm-vis-title-area">
+						<input id="bpm-vis-chartname-input"  type="text" aria-label="Query Name"
+							   data-bind="ojComponent: {component: 'ojInputText', value: queryName, rootAttributes:{style: 'margin-bottom:2px;'}}"/>
+						<input id="bpm-vis-chartname-desc"  type="text" aria-label="Query Description"
+							   data-bind="ojComponent: {component: 'ojInputText', value: description, placeholder:bundle.vis.formlbl.description}"/>
+					</div>
+					<span id="bpm-vis-btnset">
+					    <a id="bpm-vis-cust-download-btn" href="#" class="bpm-vis-floatright"
+						   data-bind="click: downloadCsv, attr: {title: bundle.vis.button.download_csv},
+			                                   ojComponent: {component:'ojButton',
+			                                   label: bundle.vis.button.download_csv,
+			                                   display: 'icons', chroming: 'half',
+			                                   icons: {start: 'bpm-vis-download-icon oj-fwk-icon'}
+			                        }">
+						</a>
+						<button id="bpm-vis-save" class="bpm-vis-floatright"
+								data-bind="click: saveQuery, ojComponent: {
+					                    component:'ojButton', chroming: 'half', label: bundle.vis.button.save, display: 'icons',
+					                    icons: {start:'oj-fwk-icon bpm-vis-save-icon'}
+					                }">
+						</button>
+						<button id="bpm-vis-refresh" class="bpm-vis-floatright"
+								data-bind="click: resetQuery, ojComponent: {
+					                    component:'ojButton', chroming: 'half', label: bundle.vis.button.reset, display: 'icons',
+					                    icons: {start:'oj-fwk-icon bpm-vis-refresh-icon'}
+					                }">
+						</button>
+
+					</span>
+
+				</div>
+				<div class="bpm-vis-hidden bpm-vis-chart-row2" id="bpm-vis-chart-row2">
+					<!--<button id="bpm-vis-querybtn" data-bind="ojComponent: {component: 'ojButton',-->
+					<!--label: bundle.vis.button.query,-->
+					<!--icons:{end:'oj-fwk-icon-arrow02-s oj-fwk-icon'},-->
+					<!--chroming: 'outlined'},-->
+					<!--click: handleQueryBtn">-->
+					<!--</button>-->
+					<span id="bpm-vis-querybtn" data-bind="ojComponent: {component: 'ojButtonset', checked: selectedQueryBtn}">
+								<label for="bpm-vis-cust-querybtn"></label>
+								<input type="checkbox" id="bpm-vis-cust-querybtn" value="visible"
+									   data-bind="attr:{title:bundle.vis.button.query},
+										ojComponent: { component: 'ojButton',
+										label: bundle.vis.button.query,
+										chroming: 'outlined',
+										icons:{end:'oj-fwk-icon-arrow02-s oj-fwk-icon'},
+										rootAttributes: {style:'font-weight: bold;'}}"/>
+					</span>
+					<span id="bpm-vis-chart-tools">
+						<span id='bpm-vis-cust-chart-selection'>
+							<!-- Grid Toggle button -->
+		                    <span id="bpm-vis-cust-chart-icons"
+								  data-bind="ojComponent: {component: 'ojButtonset', checked: selectedChartType, chroming: 'outlined'}"
+								  aria-label="Select chart type.">
+								<!-- ko foreach: chartTypeList -->
+										<label data-bind="attr: {for: name}"></label>
+										<input type="radio" name="chart-types"
+											   data-bind="value: name, attr: {id: name},
+										ojComponent: { component: 'ojButton', label: displayName, icons: {start: icon}, display: 'icons'}"/>
+								<!-- /ko -->
+		                    </span>
+		                    <span id="bpm-vis-cust-grid-toggle"
+								  data-bind="ojComponent: {component: 'ojButtonset', checked: selectedGridToggle}">
+								<label for="bpm-vis-cust-data-grid"></label>
+								<input type="checkbox" id="bpm-vis-cust-data-grid" value="dataGrid"
+									   data-bind="attr:{title:bundle.vis.button.graph_data},
+										ojComponent: { component: 'ojButton',
+										label: bundle.vis.button.graph_data,
+										display: 'icons', chroming: 'outlined',
+										icons: {start: 'bpm-vis-table-icon oj-fwk-icon'}}"/>
+							</span>
+		                </span>
+					</span>
+					<div id="bpm-vis-lastNDays" class="bpm-vis-floatright">
+						<select id="bpm-vis-lastNDaySelect" aria-label="Data for last" data-bind="ojComponent: {component: 'ojSelect',
+                                                    value: selectedLastDays,
+                                                    optionChange: handleLastNDaySelect,
+                                                    rootAttributes: {style:'max-width:6em'}}">
+							<!-- ko foreach: lastNDaysFilter -->
+							<option data-bind="value:id, text:label ,title:label"></option>
+							<!-- /ko -->
+						</select>
+					</div>
+					<div id="bpm-vis-ndaystxt" class="bpm-vis-floatright"><span id="bpm-vis-ndaysspan"
+																				data-bind="text: bundle.vis.formlbl.data_last"></span>
+					</div>
+
+					<div class="oj-lg-12 oj-md-12 oj-sm-12 bpm-vis-hidden" id="bpm-vis-popup1"
+						 data-bind="ojComponent:{component: 'ojPopup', initialFocus: 'none', autoDismiss : 'none', rootAttributes: {style:'margin-top:40px'}}">
+						<!-- <div id="bpm-vis-pop-container" data-bind="ojModule: {viewName: 'custom/queryForm'" ></div> -->
+						<div class="">
+							<div class="oj-form oj-md-odd-cols-4 oj-md-labels-inline">
+								<div  class=" oj-md-labels-inline ">
+									<div class="oj-flex oj-sm-justify-content-flex-end">
+										<button id="bpm-vis-close-popup" class="bpm-vis-floatright"
+												data-bind="click: closePopup, ojComponent: {
+														component:'ojButton', label: bundle.vis.button.close, display: 'icons', chroming: 'half',
+														icons: {start:'oj-fwk-icon oj-fwk-icon-cross'}
+													}">
+										</button>
+									</div>
+								</div>
+								<div id="bpm-vis-cust-ds-div" class="oj-flex oj-md-labels-inline">
+									<div class="oj-flex-item">
+										<label for="bpm-vis-cust-data-source-list"
+											   data-bind="text: bundle.vis.formlbl.data_source_type"></label>
+									</div>
+									<div class="oj-flex-item">
+										<select id="bpm-vis-cust-data-source-list" data-bind="ojComponent: {component: 'ojSelect',
+																			value: selectedDataSource, optionChange: dataSourceChangeHandler,
+																			rootAttributes: {style:'max-width:20em'}}">
+											<!-- ko foreach: dataSourceList -->
+											<option data-bind="value:name, text:displayName, title:displayName"></option>
+											<!-- /ko -->
+										</select>
+									</div>
+								</div>
+								<div id="bpm-vis-cust-app-div" class="oj-flex oj-md-labels-inline">
+									<div class="oj-flex-item">
+										<label for="bpm-vis-cust-app-list"
+											   data-bind="text: bundle.vis.formlbl.select_application"></label>
+									</div>
+									<div class="oj-flex-item">
+										<select id="bpm-vis-cust-app-list" data-bind="ojComponent: {component: 'ojSelect',
+																value: selectedAppName, optionChange: appNameChangeHandler,
+																rootAttributes: {style:'max-width:20em'}}">
+											<option value="ANY"
+													data-bind="text: bundle.vis.formlbl.select_application_opt1"></option>
+											<!-- ko foreach: appNameList -->
+											<option data-bind="text:name, title:displayName"></option>
+											<!-- /ko -->
+										</select>
+									</div>
+								</div>
+								<fieldset class="oj-form oj-md-odd-cols-4 oj-md-labels-inline">
+									<legend class="bold-txt"
+											data-bind="text: bundle.vis.formlbl.x_axis"></legend>
+									<div class="oj-flex">
+										<div class="oj-flex-item">
+											<label for="bpm-vis-cust-series-list"
+												   data-bind="text: bundle.vis.formlbl.series"></label>
+										</div>
+										<div class="oj-flex-item">
+											<select id="bpm-vis-cust-series-list" data-bind="ojComponent: {component: 'ojSelect',
+																							value: selectedSeries, optionChange : seriesChangeHandler,
+																							rootAttributes: {style:'max-width:20em'}}">
+												<optgroup
+														data-bind="attr:{label: bundle.vis.formlbl.business_indicators}">
+													<!-- ko foreach: dimensionBIList -->
+													<option data-bind="value:name, text:displayName"></option>
+													<!-- /ko -->
+												</optgroup>
+												<optgroup
+														data-bind="attr:{label: bundle.vis.formlbl.system_indicators}">
+													<!-- ko foreach: dimensionList -->
+													<option data-bind="value:name, text:displayName"></option>
+													<!-- /ko -->
+												</optgroup>
+											</select>
+										</div>
+									</div>
+									<div id="bpm-vis-srs-timegroups" class="oj-flex bpm-vis-timegroups">
+										<div class="oj-flex-item">
+											<label for="bpm-vis-cust-timegroups-series"
+												   data-bind="text: bundle.vis.formlbl.timegroups"></label>
+										</div>
+										<div class="oj-flex-item">
+											<select id="bpm-vis-cust-timegroups-series" data-bind="ojComponent: {component: 'ojSelect',
+																							value: selectedSrsTimeGroup, placeholder: bundle.vis.formlbl.select_none, rootAttributes: {style:'max-width:20em'}}">
+												<!-- ko foreach: timeGroups -->
+												<option data-bind="value:id, text:label"></option>
+												<!-- /ko -->
+											</select>
+										</div>
+									</div>
+									<div class="oj-flex">
+										<div class="oj-flex-item">
+											<label for="bpm-vis-cust-group-list"
+												   data-bind="text: bundle.vis.formlbl.group"></label>
+										</div>
+										<div class="oj-flex-item">
+											<select id="bpm-vis-cust-group-list" data-bind="ojComponent: {component: 'ojSelect',
+																							value: selectedGroup, optionChange : groupChangeHandler, rootAttributes: {style:'max-width:20em'}}">
+												<optgroup
+														data-bind="attr:{label: bundle.vis.formlbl.business_indicators}">
+													<!-- ko foreach: dimensionBIList -->
+													<option data-bind="value:name, text:displayName"></option>
+													<!-- /ko -->
+												</optgroup>
+												<optgroup
+														data-bind="attr:{label: bundle.vis.formlbl.system_indicators}">
+													<!-- ko foreach: dimensionList -->
+													<option data-bind="value:name, text:displayName"></option>
+													<!-- /ko -->
+												</optgroup>
+											</select>
+										</div>
+									</div>
+									<div id="bpm-vis-grp-timegroups" class="oj-flex bpm-vis-timegroups">
+										<div class="oj-flex-item">
+											<label for="bpm-vis-cust-timegroups-group"
+												   data-bind="text: bundle.vis.formlbl.timegroups"></label>
+										</div>
+										<div class="oj-flex-item">
+											<select id="bpm-vis-cust-timegroups-group" data-bind="ojComponent: {component: 'ojSelect',
+																							value: selectedGrpTimeGroup, placeholder: bundle.vis.formlbl.select_none, rootAttributes: {style:'max-width:20em'}}">
+												<!-- ko foreach: timeGroups -->
+												<option data-bind="value:id, text:label"></option>
+												<!-- /ko -->
+											</select>
+										</div>
+									</div>
+								</fieldset>
+								<fieldset class="oj-form oj-md-odd-cols-4 oj-md-labels-inline">
+									<legend class="bold-txt"
+											data-bind="text: bundle.vis.formlbl.y_axis"></legend>
+									<div class="oj-flex">
+										<div class="oj-flex-item">
+											<label for="bpm-vis-cust-measure-list"
+												   data-bind="text: bundle.vis.formlbl.measure"></label>
+										</div>
+										<div class="oj-flex-item">
+											<select id="bpm-vis-cust-measure-list"
+													data-bind="ojComponent: {component: 'ojSelect', disabled:measureDisabled, value: selectedMeasure, optionChange: measureChangeHandler, rootAttributes: {style:'max-width:20em'}}">
+												<option value='*' disabled
+														data-bind="text: bundle.vis.formlbl.select_none"></option>
+												<optgroup
+														data-bind="attr:{label: bundle.vis.formlbl.business_indicators}">
+													<!-- ko foreach: measureBIList -->
+													<option data-bind="value:name, text:displayName"></option>
+													<!-- /ko -->
+												</optgroup>
+												<optgroup
+														data-bind="attr:{label: bundle.vis.formlbl.system_indicators}">
+													<!-- ko foreach: measureList -->
+													<option data-bind="value:name, text:displayName"></option>
+													<!-- /ko -->
+												</optgroup>
+											</select>
+										</div>
+									</div>
+									<div class="oj-flex">
+										<div class="oj-flex-item">
+											<label for="bpm-vis-cust-function-list"
+												   data-bind="text: bundle.vis.formlbl.function"></label>
+										</div>
+										<div class="oj-flex-item">
+											<select id="bpm-vis-cust-function-list" data-bind="ojComponent: {component: 'ojSelect',
+																					value: selectedFunction, optionChange: functionChangeHandler,rootAttributes: {style:'max-width:20em'}}">
+												<!-- ko foreach: functionList -->
+												<option data-bind="value:name, text:displayName"></option>
+												<!-- /ko -->
+											</select>
+										</div>
+									</div>
+								</fieldset>
+								<br>
+							</div>
+							<div>
+								<div class="">
+									<div class="oj-label-inline">
+										<label id="bpm-vis-cust-match" class="oj-label-inline"
+											   data-bind="text: bundle.vis.formlbl.match"></label>
+										<div data-bind="ojComponent: {component: 'ojRadioset' ,value :selectedFilterType}"
+											 aria-labelledby="bpm-vis-cust-match">
+											<span class="oj-choice-row-inline">
+												<input id="bpm-vis-cust-match-all" type="radio" name="filterType"
+													   value="ALL">
+												<label for="bpm-vis-cust-match-all"
+													   data-bind="text: bundle.vis.formlbl.all"></label>
+											</span>
+											<span class="oj-choice-row-inline">
+												<input id="bpm-vis-cust-match-any" type="radio" name="filterType"
+													   value="ANY">
+												<label for="bpm-vis-cust-match-any"
+													   data-bind="text: bundle.vis.formlbl.any"></label>
+											</span>
+										</div>
+									</div>
+									<div class="bpm-vis-floatright">
+										<button data-bind="click: addFilter, attr: {title: bundle.vis.button.add_filter},
+											   ojComponent: {component:'ojButton',
+											   label: bundle.vis.button.add_filter,
+											   icons: {start: 'bpm-vis-add-filter-icon oj-fwk-icon'}}">
+										</button>
+									</div>
+								</div>
+								<div class="">
+									<hr/>
+								</div>
+								<div class=" oj-cols-nopad">
+									<!-- ko foreach: filterCriteriaList -->
+									<div class="oj-flex oj-cols-nopad bpm-vis-filters-style">
+										<div class="oj-flex-item oj-lg-4 oj-md-8 oj-sm-12 ">
+
+											<select data-bind="ojComponent: {component: 'ojSelect',
+																		value: columnDataValue, optionChange: columnDataValueChangeHandler}">
+												<optgroup
+														data-bind="attr:{label: $parent.bundle.vis.formlbl.business_indicators}">
+													<!-- ko foreach: $parent.columnDataBIList -->
+													<option data-bind="value:name, text:displayName ,title:displayName"></option>
+													<!-- /ko -->
+												</optgroup>
+												<optgroup
+														data-bind="attr:{label: $parent.bundle.vis.formlbl.system_indicators}">
+													<!-- ko foreach: $parent.columnDataList -->
+													<option data-bind="value:name, text:displayName ,title:displayName"></option>
+													<!-- /ko -->
+												</optgroup>
+											</select>
+										</div>
+										<div class="oj-flex-item oj-lg-4 oj-md-8 oj-sm-12 ">
+											<select data-bind="ojComponent: {component: 'ojSelect',
+																		value: operatorValue}">
+												<option value="EQ"
+														data-bind="text:$parent.bundle.vis.filter.equal"></option>
+												<option value="NE"
+														data-bind="text:$parent.bundle.vis.filter.not_equal"></option>
+												<option value="NULL"
+														data-bind="text:$parent.bundle.vis.filter.null"></option>
+												<option value="NOTNULL"
+														data-bind="text:$parent.bundle.vis.filter.not_null"></option>
+												<!-- ko ifnot: dataType() == 'VARCHAR' || dataType() == 'BOOLEAN'-->
+												<option value="LT"
+														data-bind="text:$parent.bundle.vis.filter.lesser"></option>
+												<option value="LE"
+														data-bind="text:$parent.bundle.vis.filter.lesser_equal, attr:{title:$parent.bundle.vis.filter.lesser_equal}"></option>
+												<option value="GT"
+														data-bind="text:$parent.bundle.vis.filter.greater"></option>
+												<option value="GE"
+														data-bind="text:$parent.bundle.vis.filter.greater_equal"></option>
+												<!-- /ko -->
+												<!-- ko if: dataType() == 'VARCHAR' -->
+												<option value="LIKE" data-bind="text:$parent.bundle.vis.filter.like"></option>
+												<option value="NOTLIKE" data-bind="text:$parent.bundle.vis.filter.not_like" ></option>
+												<!-- /ko -->
+											</select>
+										</div>
+										<div class="oj-flex-item oj-lg-4 oj-md-8 oj-sm-12 ">
+											<!-- ko ifnot: operatorValue()== 'NULL' || operatorValue()== 'NOTNULL'-->
+											<!-- ko if: dataType()== 'BOOLEAN' -->
+											<select data-bind="ojComponent: {component: 'ojSelect',
+																		value: selectedValue}">
+												<option value="TRUE"
+														data-bind="text:$parent.bundle.vis.filterValues.true"
+														selected="selected"></option>
+												<option value="FALSE"
+														data-bind="text:$parent.bundle.vis.filterValues.false"></option>
+											</select>
+											<!-- /ko -->
+											<!-- ko if: dataType()== 'VARCHAR'-->
+											<input data-bind="ojComponent: {component: 'ojInputText',validators : [{type: 'regExp', options : {pattern: '[a-zA-Z0-9. _-]{1,}',hint: $parent.bundle.vis.error_msg.hintAlphanumeric, messageSummary: 'Value \'{value}\' Invalid',messageDetail: $parent.bundle.vis.error_msg.msgAlphanumeric}}], value:selectedValue, rootAttributes: {style:'max-width:16em'}}">
+											<!-- /ko -->
+											<!-- ko if: dataType()== 'INT' || dataType()== 'DECIMAL'-->
+											<input data-bind="ojComponent: {component: 'ojInputText', validators : [{type: 'regExp', options : {pattern: '[0-9.]{1,}',hint: $parent.bundle.vis.error_msg.hintNumber, messageSummary: 'Value \'{value}\' Invalid',messageDetail: $parent.bundle.vis.error_msg.msgNumber}}], value:selectedValue, rootAttributes: {style:'max-width:16em'}}">
+											<!-- /ko -->
+											<!-- ko if: dataType()== 'DATETIME' -->
+											<input data-bind="ojComponent: {component: 'ojInputDateTime',
+																		value: selectedValue, rootAttributes: {style:'max-width:16em'}}">
+											<!-- /ko -->
+											<!-- /ko -->
+											<button id="bpm-vis-delete-row" class="bpm-vis-floatright"
+													data-bind="click:$parent.removeFilter, ojComponent: {
+														component:'ojButton', label: $parent.bundle.vis.button.delete, display: 'icons', chroming: 'half',
+														icons: {start:'oj-fwk-icon oj-fwk-icon-cross02'}
+													}">
+											</button>
+										</div>
+									</div>
+									<!-- /ko -->
+								</div>
+								<br>
+								<div class="oj-flex oj-sm-justify-content-center ">
+									<button id="bpm-vis-visualize-btn" class="oj-button-primary" data-bind="click: visualize,
+													attr: {title: bundle.vis.button.visualize},
+													ojComponent: {component:'ojButton', label: bundle.vis.button.visualize}">
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="">
+					<div id="bpm-vis-cust-main" class="oj-lg-12 oj-md-12 oj-sm-12 ">
+						<div class="">
+							<div id="bpm-vis-cust-splash" class="bpm-vis-splash-style">
+								<span class="bpm-vis-chart-msg"
+									  data-bind="text:bundle.vis.chart.blank_chart_header"></span><br><br>
+								<span class="bpm-vis-chart-msgdtl"
+									  data-bind="text:bundle.vis.chart.blank_chart_details"></span>
+							</div>
+							<div id="bpm-vis-cust-chart-container" class="  bpm-vis-center-align bpm-vis-hidden">
+								<div id="bpm-vis-cust-chart" class="bpm-vis-center-align bpm-vis-chart-style"
+									 data-bind="ojComponent: {
+		                                    component: 'ojChart',
+		                                    type: selectedChartType,
+		                                    orientation: orientationValue,
+		                                    stack: stackValue,
+		                                    animationOnDisplay: 'auto',
+		                                    animationOnDataChange: 'auto',
+							                hoverBehavior: 'dim',
+							                zoomAndScroll: 'live',
+							                overview: {rendered: 'on', height: '65px'},
+		                                    yAxis: {title: yLabel()},
+		                                    xAxis: {title: xLabel()},
+		                                    legend: {position: 'end'},
+							                translations : { labelNoData : bundle.vis.chart.no_chart_data},
+							                title : {text :  selectedVisualizationName() , halign : 'plotAreaCenter' },
+							                hideAndShowBehavior: 'withRescale',
+		                                    series: barSeriesValue,
+		                                    groups: barGroupsValue,
+		                                }">
+								</div>
+								<div id="bpm-vis-cust-grid-data" class="bpm-vis-center-align bpm-vis-hidden">
+									<table id="bpm-vis-cust-table" summary="Chart Data Table"
+										   aria-label="Chart Data Table"
+										   data-bind="ojComponent: {component: 'ojTable',
+		                                                            data: gridDataSource,
+		                                                            display: 'grid',
+		                                                            translations: {msgNoData : bundle.vis.chart.no_chart_data},
+		                                                            columnsDefault: {sortable: 'none'},
+		                                                            columns: headerTextArr,
+		                                                            rootAttributes: {'style':'width: 600px; height: 600px;margin-top:20px;'}}">
+									</table>
+								</div>
+								<div id="bpm-vis-cust-chart-overlay"></div>
+								<div class="bpm-vis-center-align bpm-vis-tool-style oj-flex oj-sm-justify-content-center" id="bpm-vis-cust-toolbar"
+									 aria-label="Chart Display Options Toolbar"
+									 data-bind="ojComponent: {component:'ojToolbar'}">
+		                            <span id="bpm-vis-cust-graph-tools" class="oj-flex-item">
+										<!-- vertical/horizontal toggle button -->
+		                                <span id="bpm-vis-cust-radio-buttonset"
+											  data-bind="ojComponent: {component: 'ojButtonset', focusManagement:'none', checked: orientationValue}"
+											  class="oj-button-half-chrome" aria-label="Choose an orientation.">
+		                                    <!-- ko foreach: orientationOptions -->
+		                                    <label data-bind="attr: {for: id}"></label>
+		                                    <input type="radio" name="orientation"
+												   data-bind="value: value, attr: {id: id},
+		                                            ojComponent: {component: 'ojButton', label: label,
+		                                            icons: {start: icon}, display: 'icons'}"/>
+											<!-- /ko -->
+		                                </span>
+		                                <span role="separator" aria-orientation="vertical"
+											  class="oj-toolbar-separator"></span>
+										<!-- unstacked/stacked toggle button -->
+		                                <span id="bpm-vis-cust-radio-buttonset2"
+											  data-bind="ojComponent: {component: 'ojButtonset', focusManagement:'none', checked: stackValue}"
+											  class="oj-button-half-chrome" aria-label="Choose a stack setting.">
+		                                    <!-- ko foreach: stackOptions -->
+		                                    <label data-bind="attr: {for: id}"></label>
+		                                    <input type="radio" name="stack"
+												   data-bind="value: value, attr: {id: id},
+		                                               ojComponent: {component: 'ojButton', label: label,
+		                                                icons: {start: icon}, display: 'icons'}"/>
+											<!-- /ko -->
+		                                </span>
+		                            </span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bpm-vis-hidden" id="bpm-dsb-warning-dialog"
+		 data-bind="attr : { title : bundle.vis.dialog.warning }, ojComponent:{component: 'ojDialog', initialVisibility: 'hide'}">
+		<div class="oj-dialog-body">
+			<div id="bpm-vis-warning-dialog-text"></div>
+		</div>
+		<div class="oj-dialog-footer">
+			<button data-bind="click : closeErrorDialog , ojComponent: {component: 'ojButton', label: bundle.vis.dialog.ok}"></button>
+		</div>
+	</div>
+	<div class="bpm-vis-hidden" id="bpm-dsb-confirm-dialog"
+		 data-bind="attr : { title : bundle.vis.dialog.confirm }, ojComponent:{component: 'ojDialog', initialVisibility: 'hide'}">
+		<div class="oj-dialog-body">
+			<div id="bpm-vis-confirm-dialog-text"></div>
+		</div>
+		<div class="oj-dialog-footer">
+			<button id="bpm-vis-cancelButton"
+					data-bind="click : function(){$('#bpm-dsb-confirm-dialog').ojDialog('close');} , ojComponent: {component: 'ojButton', label: bundle.vis.dialog.cancel}"></button>
+			<button id="bpm-vis-okButton"
+					data-bind="click : deleteQuery , ojComponent: {component: 'ojButton', label: bundle.vis.dialog.ok}"></button>
+		</div>
+	</div>
+	<div class="bpm-vis-hidden" id="bpm-vis-delete-app"
+		 data-bind="attr : { title : bundle.vis.dialog.confirm }, ojComponent:{component: 'ojDialog', initialVisibility: 'hide', cancelBehavior: 'none'}">
+		<div class="oj-dialog-body">
+			<div id="bpm-vis-delete-app-text"></div>
+			</br>
+			<div data-bind="text: bundle.vis.dialog.delete_app_msg"></div>
+		</div>
+		<div class="oj-dialog-footer">
+			<button id="bpm-vis-deleteButton"
+					data-bind="click : deleteQuery , ojComponent: {component: 'ojButton', label: bundle.vis.dialog.delete}"></button>
+			<button id="bpm-vis-continueButton"
+					data-bind="click : newQuery , ojComponent: {component: 'ojButton', label: bundle.vis.dialog.continue}"></button>
+		</div>
+	</div>
+	<div id="bpm-vis-main-splash" style="display: none" class="bpm-vis-splash-style ">
+		<span class="bpm-vis-chart-msg"
+			  data-bind="text:bundle.vis.formlbl.start_msg"></span><br><br>
+		<button id="bpm-vis-startButton" class="bpm-vis-startBtn oj-button-confirm" data-bind="click : handleStartClick , ojComponent: {component: 'ojButton', label: bundle.vis.button.start,
+					icons: {end:'oj-fwk-icon bpm-vis-start-icon'}}"></button>
+	</div>
+</div>

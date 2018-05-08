@@ -1,0 +1,9 @@
+<div id="pcs-dp-mgmt-container" class="pcs-dp-mgmt-containor pcs-dp-font oj-flex oj-sm-12">
+
+    <pcs-dplist id="pcs-dp-mgmt-dplist" class="oj-flex oj-sm-12"></pcs-dplist>
+
+    <!-- ko if: selectedView() === 'DETAILS'-->
+    <pcs-dpdetail id="pcs-dp-mgmt-dpdetail" class="oj-flex oj-sm-12" params="instanceitem: selectedInstance, instanceid:selectedInstanceId, consumed: true" ></pcs-dpdetail>
+    <!-- /ko -->
+
+</div>

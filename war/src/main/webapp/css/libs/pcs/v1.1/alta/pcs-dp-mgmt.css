@@ -1,0 +1,16 @@
+.demo-breadcrumbs-point {
+    display: inline-block;
+    text-align: center;
+    padding-left: 0.857rem;
+    padding-right: 0.857rem;
+    font-size: 14px;
+    color: #9e9e9e;
+}
+
+.demo-breadcrumbs-link {
+    cursor: pointer;
+}
+
+.demo-breadcrumbs-font {
+    font-size: 16px;
+}

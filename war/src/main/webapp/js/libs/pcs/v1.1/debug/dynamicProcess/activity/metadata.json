@@ -1,0 +1,124 @@
+{
+  "properties": {
+    "instanceid":{
+      "description":"The instanceid of selected instance",
+      "type": "string",
+	  "required" : true
+    },
+	"activities":{
+	  "description":"List of all activities of the selected instance",
+	  "type": "array"
+	},
+	"consumed":{
+	  "description":"If the component is used in consumed environment",
+	  "type": "boolean",
+	  "value" :"false"
+	}
+
+  },
+  "methods" :{
+  },
+  "events": {
+    "actionPerformed": {
+      "description": "When an action is performed on the activity",
+      "bubbles": true,
+      "detail": {
+        "executionId": {
+          "description": "Execution id of the activity",
+          "type": "string"
+        },
+        "action": {
+          "description": "Action name",
+          "type": "string"
+        }
+      }
+    },
+	"actionPerformed": {
+	  "description": "When an action is performed in activity component ",
+	  "bubbles": true,
+	  "detail": {
+		"executionId": {
+		  "description": "Execution id of the activity",
+		  "type": "string"
+		},
+		"action": {
+		  "description": "action name",
+		  "type": "string"
+		},
+		"activityName":{
+		  "description": "Activity name",
+		  "type": "string"
+		},
+		"actionDisplayName" : {
+		  "description": "action display name",
+		  "type": "string"
+		}
+	  }
+	},
+	"actionError": {
+	  "description": "When an action  performed in activity component gives error ",
+	  "bubbles": true,
+	  "detail": {
+		"executionId": {
+		  "description": "Execution id of the activity",
+		  "type": "string"
+		},
+		"action": {
+		  "description": "action name",
+		  "type": "string"
+		},
+		"shortErrorMessage": {
+		  "description": "Short error message",
+		  "type": "string"
+		},
+		"longErrorMessage": {
+		  "description": "Detail error message",
+		  "type": "string"
+		}
+	  }
+	},
+	"refreshData": {
+	  "description": "When activity component is refreshed",
+	  "bubbles": true,
+	  "detail": {
+
+	  }
+	},
+	"close": {
+	  "description": "When activity panel needs to be closed",
+	  "bubbles": true,
+	  "detail": {
+		"instanceId": {
+		  "description": "instanceid used in the activity panel",
+		  "type": "string"
+		}
+	  }
+	},
+	"drilldown": {
+	  "description": "When activity drilldown icon is clicked",
+	  "bubbles": true,
+	  "detail": {
+		"title": {
+		  "description": "Title of the  activity",
+		  "type": "string"
+		},
+		"executionId": {
+		  "description": "Execution Id of the activity",
+		  "type": "string"
+		},
+		"type": {
+		  "description": "Type of the activity",
+		  "type": "string"
+		},
+		"id": {
+		  "description": "Id of the execution instance",
+		  "type": "string"
+		},
+		"activityId": {
+		  "description": "Id of the activity",
+		  "type": "string"
+		}
+	  }
+	}
+  }
+}
