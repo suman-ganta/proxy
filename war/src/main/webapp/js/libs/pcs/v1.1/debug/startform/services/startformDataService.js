@@ -54,9 +54,6 @@ define(['jquery', 'pcs/util/pcsUtil'],
                     type: 'GET',
                     url: url,
                     beforeSend:  beforeRequestCallback,
-                    xhrFields: {
-                        withCredentials: true
-                    },
                     contentType: 'multipart/form-data',
                     dataType: dataType,
                     cache: false
@@ -77,9 +74,6 @@ define(['jquery', 'pcs/util/pcsUtil'],
                     processData: false,
                     data: bytes,
                     beforeSend: beforeRequestCallback,
-                    xhrFields: {
-                        withCredentials: true
-                    },
                     contentType: contentType,
                 });
             };
@@ -92,9 +86,6 @@ define(['jquery', 'pcs/util/pcsUtil'],
                     dataType: 'json',
                     data: params,
                     beforeSend: beforeRequestCallback,
-                    xhrFields: {
-                        withCredentials: true
-                    },
                     contentType: contentType,
                     cache: false
                 });
@@ -121,9 +112,6 @@ define(['jquery', 'pcs/util/pcsUtil'],
                             xhr.setRequestHeader('pcs_mode', 'dev');
                         }
                     },
-                    xhrFields: {
-                        withCredentials: true
-                    }
                 });
             };
 
