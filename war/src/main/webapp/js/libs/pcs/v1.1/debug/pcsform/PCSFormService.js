@@ -39,9 +39,6 @@ define(function(require) {
 			processData: false,
 			data: bytes,
 			beforeSend: beforeRequestCallback,
-			xhrFields: {
-				withCredentials: true
-			},
 			contentType: 'application/json'
 		});
 	};
@@ -54,9 +51,6 @@ define(function(require) {
 			dataType: 'json',
 			data: params,
 			beforeSend: beforeRequestCallback,
-			xhrFields: {
-				withCredentials: true
-			},
 			contentType: 'application/json',
 			cache: false
 		});
