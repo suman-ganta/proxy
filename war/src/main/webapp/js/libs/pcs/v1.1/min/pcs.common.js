@@ -1,2 +1,929 @@
-define("pcs/util/loggerUtil",["jquery"],function(e){"use strict";function t(){var e=this;return e.enableLog=!1,{log:function(t){e.enableLog&&console.log(t)},error:function(t){e.enableLog&&console.error(t)},debug:function(t){e.enableLog&&console.debug(t)},warn:function(t){e.enableLog&&console.warn(t)},enableLog:function(){e.enableLog=!0},disableLog:function(){e.enableLog=!1}}}var n=new t;return n}),define("pcs/util/pcsUtil",["module","knockout","ojs/ojcore","jquery","pcs/util/loggerUtil"],function(e,t,n,r,o){"use strict";function i(){var e,t={};if(-1===window.location.href.indexOf("?"))return t;for(var n=window.location.href.slice(window.location.href.indexOf("?")+1).split("&"),r=0;r<n.length;r++){e=n[r].split("=");var o=decodeURIComponent(e[0]),i=decodeURIComponent(e[1]),a=JSON.parse(i);t[o]=a}return t}var a={};r.CustomEvent=function(e){var t,n=e&&a[e];return n||(t=r.Callbacks(),n={publish:t.fire,subscribe:t.add,unsubscribe:t.remove},e&&(a[e]=n)),n},function(){function e(e,t){t=t||{bubbles:!1,cancelable:!1,detail:void 0};var n=document.createEvent("CustomEvent");return n.initCustomEvent(e,t.bubbles,t.cancelable,t.detail),n}return"function"==typeof window.CustomEvent?!1:(e.prototype=window.Event.prototype,void(window.CustomEvent=e))}();var c={addHandler:function(e,t,n){e.addEventListener?e.addEventListener(t,n,!1):e.attachEvent?e.attachEvent("on"+t,n):e["on"+t]=n},removeHandler:function(e,t,n){e.removeEventListener?e.removeEventListener(t,n,!1):e.detachEvent?e.detachEvent("on"+t,n):e["on"+t]=null}};String.prototype.startsWith||Object.defineProperty(String.prototype,"startsWith",{enumerable:!1,value:function(e,t){return t=t||0,this.substr(t,e.length)===e}}),String.prototype.endsWith||Object.defineProperty(String.prototype,"endsWith",{enumerable:!1,value:function(e,t){var n=this.toString();("number"!=typeof t||!isFinite(t)||Math.floor(t)!==t||t>n.length)&&(t=n.length),t-=e.length;var r=n.indexOf(e,t);return-1!==r&&r===t}});var s=function(e){"function"==typeof window.doADFProxyCall?window.doADFProxyCall(e):e&&window.location.assign(e)},u=function(e){function t(e){for(var t=e.split("\r\n"),n="text/plain",r="pcsFormUrl",o={contentType:n,fieldName:r},i=1;i<t.length;i++){var a=t[i],c=a.match(/^.*filename="([^"]*)"/);if(c)o.fieldName=c[1];else{var s="Content-Type:";a.indexOf(s)>-1&&(c=a.substring(a.indexOf(s)+s.length)),c&&(o.contentType=c.trim())}}return o}var n=e.getResponseHeader("Content-Type"),r=e.response,o=n.match(/boundary=(?:'([^']+)'|([^;]+))/i);if(!o)throw new Error("Bad content-type header, no multipart boundary");var i,a,c=o[1]||o[2],s="string"!=typeof r;if(c="\r\n--"+c,s){var u=new Uint8Array(r),p=32768,l=[];for(a=0;a<u.length;a+=p)l.push(String.fromCharCode.apply(null,u.subarray(a,a+p)));i=l.join("")}else i=r;i="\r\n"+i;var d=i.split(new RegExp(c)),f={};for(a=1;a<d.length-1;a++){var v="\r\n\r\n",h=d[a].substring(d[a].indexOf(v)+v.length),g=d[a].substring(0,d[a].indexOf(v)),y=t(g),m=!1;s&&!y.contentType.startsWith("text")&&(m=!0),f[y.fieldName]={data:h,contentType:y.contentType,fileName:y.fieldName}}return f},p=function(e){return r.ajax({type:"GET",url:e,dataType:"text",xhrFields:{withCredentials:!0}})};return{adfProxyCall:s,getAuthToken:p,multipartParse:u,getUrlParametersObject:i,eventHandler:c,initComponentForIFrame:function(e,t,n){if(r.isEmptyObject(r.pcsConnection)){if(r.pcsConnection={},!r.isEmptyObject(e)&&(e.testMode&&(r.pcsConnection.testMode=e.testMode),e.serverURL&&(r.pcsConnection.serverURL=e.serverURL),e.authInfo))return r.pcsConnection.authInfo=e.authInfo,void t();var i=this,a=function(){var e=i.getServerURL();o.log("Script loaded and ready, getting token"),i.getAuthToken(e+"/ic/process/workspace/auth/token").done(function(e){e&&e.startsWith("<html")?n.text("User cannot be authorized").show():(r.pcsConnection.authInfo="Bearer "+e,t())}).fail(function(e){n.text("User cannot be authorized").show()})},c=document.createElement("script");c.onload=a,c.onreadystatechange=function(){"complete"===this.readyState&&a()};var s=this.getServerURL();c.src=s+"/ic/process/workspace/faces/js/homePage.js",document.getElementsByTagName("head")[0].appendChild(c)}else t()},getCookie:function(e){var t;return(t=new RegExp("(?:^|; )"+encodeURIComponent(e)+"=([^;]*)").exec(document.cookie))?t[1]:null},storeLoggedInUser:function(e){r.pcsConnection.isAdmin=e.adminFlag,r.pcsConnection.isProcessOwner=!1,e.roles&&e.roles.items&&r.each(e.roles.items,function(e,t){return t.id.endsWith(".ProcessOwner")?(r.pcsConnection.isProcessOwner=!0,!1):void 0})},getServerURL:function(){if(r.pcsConnection&&r.pcsConnection.serverURL)return r.pcsConnection.serverURL.endsWith("/")?r.pcsConnection.serverURL.substring(0,r.pcsConnection.serverURL.length-1):r.pcsConnection.serverURL;var e=window.location.origin;return r.pcsConnection||(r.pcsConnection={}),r.pcsConnection.serverURL=e,e},getRestUri:function(){return"/bpm/api/4.0/"},getAuthInfo:function(){if(r.pcsConnection&&r.pcsConnection.authInfo){var e=r.pcsConnection.authInfo;return e.startsWith("Bearer ")||e.startsWith("Basic ")||(e="Bearer "+e),e}return""},getRestURL:function(){if(r.pcsConnection&&r.pcsConnection.restURL)return r.pcsConnection.restURL;var e=this.getServerURL()+this.getRestUri();return r.pcsConnection&&(r.pcsConnection.restURL=e),e},getDpServerURL:function(){return r.pcsConnection&&r.pcsConnection.dpServerURL?r.pcsConnection.dpServerURL.endsWith("/")?r.pcsConnection.dpServerURL.substring(0,r.pcsConnection.dpServerURL.length-1):r.pcsConnection.dpServerURL:this.getServerURL()},getDpRestURL:function(){var e=this.getDpServerURL()+"/bpm/api/4.0/";return e},beforeRequestCallback:function(e,t){t.adfProxyCall(),e.setRequestHeader("Authorization",t.getAuthInfo()),t.isTestMode()&&e.setRequestHeader("pcs_mode","dev");var n=requirejs.s.contexts._.config.locale;n&&e.setRequestHeader("Accept-Language",n)},isTestMode:function(){return r.pcsConnection&&r.pcsConnection.testMode?!0:!1},taskIconColor:function(e){var t=["#6e8598","#754b9a","#45ac62","#ed813d","#3f92d0","#E85E93","#81BB5F","#DFE146","#FABC39","#EB5B60","#1FB4AD","#00B6D1"];if(!e)return"grey";var n,r,o,i=0;for(n=0,o=e.length;o>n;n++)r=e.charCodeAt(n),i=(i<<5)-i+r,i|=0;var a=i%t.length;return t[Math.abs(a)]},taskInitials:function(e){if(!e)return"NA";e=e.replace(" ","");for(var t=e.charAt(0).toUpperCase(),n="",r=1;r<e.length;r++)if(e.charAt(r)===e.charAt(r).toUpperCase()){n=e.charAt(r);break}return t+n},getRandomInt:function(e,t){return Math.floor(Math.random()*(t-e+1))+e},unApplyBindings:function(e,n){e.find("*").each(function(){r(this).off(),r(this).unbind()}),e.off(),n?(t.cleanNode(e[0]),e.find("*").each(function(){r(this).remove()}),t.removeNode(e)):(t.cleanNode(e),e.find("*").each(function(){r(this).remove()}))},compositeVersion:function(e){var t;if(e)try{var n=e.split("!"),r=n[1].split("*");t=r[0]}catch(i){o.error("Error while getting version")}return t},applicationName:function(e){var t;if(e)try{var n=e.split("~"),r=n[1].split("*");t=r[0]}catch(i){o.error("Error while getting application Name")}return t}}}),define("pcs/util/dateUtil",["knockout","ojs/ojcore","jquery","ojs/ojdatetimepicker"],function(e,t,n){"use strict";var r=function(e){if(!e)return"";var t="",n=Math.abs(e)/1e3,r=Math.floor(n/86400);n-=86400*r,t=r>0?t+r+"d ":t;var o=Math.floor(n/3600)%24;n-=3600*o,t=o>0?t+o+"h ":t;var i=Math.floor(n/60)%60;if(n-=60*i,t=i>0?t+i+"m":t,""===t){var a=Math.floor(n);t=a+"s"}return t},o=function(e){if(!e)return null;var n;if("string"==typeof e||"number"==typeof e)n=new Date(e);else{if(!(e instanceof Date))return e;n=e}var r=t.IntlConverterUtils.dateToLocalIso(n);return r},i=function(e,n){if(!e||""===e)return"";var r=n?n:"MMM dd yyyy, hh:mm a",o={pattern:r},i=t.Validation.converterFactory(t.ConverterFactory.CONVERTER_TYPE_DATETIME).createConverter(o);return i.format(e)},a=function(e){var t;if("string"==typeof e||"number"==typeof e)t=new Date(e);else{if(!(e instanceof Date))return e.toString();t=e}return t=t.toISOString()};return e.bindingHandlers.pcsFormatDate={update:function(t,n,r){var o=e.unwrap(n());if(o){var a=i(o,r().datePattern);e.bindingHandlers.text.update(t,function(){return a})}}},{getTimeDurationTxt:r,getDateInUserTimezone:o,getFormattedDate:i,getDateStingInUTCTimezone:a}}),define("pcs/util/PropertyChangeHelper",["jquery"],function(e){"use strict";var t=function(t,n,r){var o=n+"-changed";e(t).on(o,function(e){"external"===e.detail.updatedFrom&&r(e.detail.value)})};return{observe:t}}),define("pcs/data-services/DataServices",["require","jquery","pcs/util/pcsUtil"],function(e){"use strict";var t=e("jquery"),n=e("pcs/util/pcsUtil");return function(){function e(){return{get:function(e,r,a){if(-1===e.indexOf(o(a))&&(e=o(a)+e),r&&r.queryParams){var c=t.param(r.queryParams,!0);e+="?"+c}return n.adfProxyCall(),t.ajax({type:"GET",url:e,beforeSend:i,xhrFields:{withCredentials:!0},contentType:r&&r.contentType?r.contentType:"application/json",dataType:r&&r.dataType?r.dataType:"json"})},post:function(e,r,c){-1===e.indexOf(o(c))&&(e=o(c)+e),r.contentType||(r.contentType="application/json");var s=a(r.contentType,r.payload);return n.adfProxyCall(),t.ajax({type:"POST",url:e,cache:!1,processData:!1,data:s,beforeSend:i,xhrFields:{withCredentials:!0},contentType:r&&r.contentType?r.contentType:"application/json",dataType:r&&r.dataType?r.dataType:"json"})},put:function(e,r,c){-1===e.indexOf(o(c))&&(e=o(c)+e),r.contentType||(r.contentType="application/json");var s=a(r.contentType,r.payload);return n.adfProxyCall(),t.ajax({type:"PUT",url:e,cache:!1,processData:!1,data:s,beforeSend:i,xhrFields:{withCredentials:!0},contentType:r&&r.contentType?r.contentType:"application/json",dataType:r&&r.dataType?r.dataType:"json"})},"delete":function(e,r,a){return-1===e.indexOf(o(a))&&(e=o(a)+e),n.adfProxyCall(),t.ajax({type:"DELETE",url:e+"/"+r.payload,beforeSend:i,xhrFields:{withCredentials:!0},contentType:r&&r.contentType?r.contentType:"application/json",cache:!1,processData:!1})}}}var r,o=function(e){return e&&"dp"===e?n.getDpServerURL()+"/bpm/api/4.0":e?n.getServerURL()+"/bpm/api/"+e:n.getServerURL()+"/bpm/api/4.0"},i=function(e){n.beforeRequestCallback(e,n)},a=function(e,t){var n=JSON.stringify(t);if(!e&&e.startsWith("multipart")){n=new Uint8Array(t.length);for(var r=0;r<t.length;r++)n[r]=t.charCodeAt(r)}return n};return{getInstance:function(t){return r||(r=e()),t&&(r.connection=t),r},setConnection:function(t){r||(r=e()),r.connection=t}}}()}),define("pcs/pcs.common",["pcs/util/pcsUtil","pcs/util/dateUtil","pcs/util/loggerUtil","pcs/util/PropertyChangeHelper","pcs/data-services/DataServices"],function(e){"use strict"});
+/**
+ * Created by nisabhar on 4/9/18.
+ */
+
+define('pcs/util/loggerUtil',['jquery'],function($){
+	'use strict';
+
+	function PCSLogger() {
+		var self= this;
+		self.enableLog = false;
+
+		return {
+			log: function(value) {
+				if (self.enableLog) {
+					console.log(value);
+				}
+			},
+			error : function (value) {
+				if (self.enableLog) {
+					console.error(value);
+				}
+			},
+			debug : function (value) {
+				if (self.enableLog) {
+					console.debug(value);
+				}
+			},
+			warn : function (value) {
+				if (self.enableLog) {
+					console.warn(value);
+				}
+			},
+			enableLog :  function (){
+				self.enableLog = true;
+			},
+			disableLog : function(){
+				self.enableLog = false;
+			}
+		}
+	}
+
+	var instance  = new PCSLogger();
+	//console.log('####Intitating logger Util');
+
+	return instance;
+
+});
+
+
+/**
+ * Created by nisabhar on 3/11/2016.
+ */
+
+define('pcs/util/pcsUtil',['module', 'knockout', 'ojs/ojcore', 'jquery','pcs/util/loggerUtil'], function(module, ko, oj, $,loggerUtil) {
+    'use strict';
+
+    var eventList = {};
+
+    //A Pub/Sub system based on JQuery callbacks
+    $.CustomEvent = function(eventId) {
+        var callbacks;
+        var pubsub = eventId && eventList[eventId];
+
+        if (!pubsub) {
+            callbacks = $.Callbacks();
+            pubsub = {
+                publish: callbacks.fire,
+                subscribe: callbacks.add,
+                unsubscribe: callbacks.remove
+            };
+            if (eventId) {
+                eventList[eventId] = pubsub;
+            }
+        }
+        return pubsub;
+    };
+
+    //IE polyfill for the CustomEvent constructor
+	(function () {
+		if ( typeof window.CustomEvent === "function" ) return false; //If not IE
+
+		function CustomEvent ( event, params ) {
+			params = params || { bubbles: false, cancelable: false, detail: undefined };
+			var evt = document.createEvent( 'CustomEvent' );
+			evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+			return evt;
+		}
+
+		CustomEvent.prototype = window.Event.prototype;
+
+		window.CustomEvent = CustomEvent;
+	})();
+
+    var _eventHandler = {
+        addHandler: function(element, type, handler) {
+            if (element.addEventListener) {
+                element.addEventListener(type, handler, false);
+            } else if (element.attachEvent) {
+                element.attachEvent('on' + type, handler);
+            } else {
+                element['on' + type] = handler;
+            }
+        },
+        removeHandler: function(element, type, handler) {
+            if (element.removeEventListener) {
+                element.removeEventListener(type, handler, false);
+            } else if (element.detachEvent) {
+                element.detachEvent('on' + type, handler);
+            } else {
+                element['on' + type] = null;
+            }
+        }
+    };
+
+    if (!String.prototype.startsWith) {
+        Object.defineProperty(String.prototype, 'startsWith', {
+            enumerable: false,
+            value: function(searchString, position) {
+                position = position || 0;
+                return this.substr(position, searchString.length) === searchString;
+            }
+        });
+    }
+
+    if (!String.prototype.endsWith) {
+        Object.defineProperty(String.prototype, 'endsWith', {
+            enumerable: false,
+            value: function(searchString, position) {
+                var subjectString = this.toString();
+                if (typeof position !== 'number' || !isFinite(position) || Math.floor(position) !== position || position > subjectString.length) {
+                    position = subjectString.length;
+                }
+                position -= searchString.length;
+                var lastIndex = subjectString.indexOf(searchString, position);
+                return lastIndex !== -1 && lastIndex === position;
+            }
+        });
+    }
+
+    //TODO nisabhar : Remove this both commented code, We can not assume where snippets is being consumed
+    //util for centering any element in the center of the page
+    //stackoverflow - http://stackoverflow.com/questions/210717/using-jquery-to-center-a-div-on-the-screen
+    //$.fn.center = function () {
+    //    this.css('position','absolute');
+    //    this.css('top', Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) +
+    //            $(window).scrollTop()) + 'px');
+    //    this.css('left', Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) +
+    //            $(window).scrollLeft()) + 'px');
+    //    return this;
+    //};
+    //
+    ////show loading animation for any ajax event
+    //$(document).bind('ajaxStart', function(){
+    //    $('body').append('<img id='pcs-loading-anim' src='css/pcs/images/spin.gif'/>');
+    //    $('#pcs-loading-anim').center();
+    //}).bind('ajaxStop', function(){
+    //    $('#pcs-loading-anim').remove();
+    //});
+
+    /**
+     * This method is to do dummy ADF call
+     * @param url
+     * @private
+     */
+    var _adfProxyCall = function(url) {
+        // Let the container handle if container is willing to
+        if (typeof window.doADFProxyCall === 'function') {
+            window.doADFProxyCall(url);
+        }
+        // else handle ourself
+        else {
+            if (url) {
+                window.location.assign(url);
+            }
+        }
+    };
+
+    /**
+     * Method to parse multi part data used by startform plugin
+     * @param jqXHR
+     * @returns {{}}
+     * @private
+     */
+    var _multipartParse = function(jqXHR) {
+        var contentType = jqXHR.getResponseHeader('Content-Type');
+        var body = jqXHR.response;
+
+        // Examples for content types:
+        //      multipart/form-data; boundary='----7dd322351017c'; ...
+        //      multipart/form-data; boundary=----7dd322351017c; ...
+        var m = contentType.match(/boundary=(?:'([^']+)'|([^;]+))/i);
+
+        if (!m) {
+            throw new Error('Bad content-type header, no multipart boundary');
+        }
+
+        var boundary = m[1] || m[2];
+        var isRaw = typeof(body) !== 'string';
+        var s, i;
+
+        function Header_parse(headerString) {
+
+            var headers = headerString.split('\r\n');
+
+            var contentType = 'text/plain';
+            var fieldName = 'pcsFormUrl';
+
+            //Result object
+            var headerFields = {
+                contentType: contentType,
+                fieldName: fieldName
+            };
+
+            for (var j = 1; j < headers.length; j++) {
+                var header = headers[j];
+                /*jshint validthis:true */
+                var matchResult = header.match(/^.*filename="([^"]*)"/);
+                if (matchResult) {
+                    headerFields.fieldName = matchResult[1];
+                } else {
+                    var searchStr = 'Content-Type:';
+                    if (header.indexOf(searchStr) > -1) {
+                        matchResult = header.substring(header.indexOf(searchStr) + searchStr.length);
+                    }
+                    if (matchResult) {
+                        headerFields.contentType = matchResult.trim();
+                    }
+                }
+            }
+            return headerFields;
+        }
+
+        // \r\n is part of the boundary.
+        boundary = '\r\n--' + boundary;
+
+        if (isRaw) {
+            var view = new Uint8Array(body);
+            //s = String.fromCharCode.apply(null, view);
+
+            var CHUNK_SZ = 0x8000;
+            var c = [];
+            for (i = 0; i < view.length; i += CHUNK_SZ) {
+                c.push(String.fromCharCode.apply(null, view.subarray(i, i + CHUNK_SZ)));
+            }
+            s = c.join('');
+        } else {
+            s = body;
+        }
+
+        // Prepend what has been stripped by the body parsing mechanism.
+        s = '\r\n' + s;
+
+        var parts = s.split(new RegExp(boundary)),
+            partsByName = {};
+
+        // First part is a preamble, last part is closing '--'
+        for (i = 1; i < parts.length - 1; i++) {
+            // var subparts = parts[i].split('\r\n\r\n');
+            // var headers = subparts[0].split('\r\n');
+            // partsByName[fieldName] = isRaw?rawStringToBuffer(subparts[1]):subparts[1];
+
+            var searchStr = '\r\n\r\n';
+            var data = parts[i].substring(parts[i].indexOf(searchStr) + searchStr.length); // we need to igonore the two enters in string thats why +3
+            var header = parts[i].substring(0, parts[i].indexOf(searchStr));
+
+            var headerResult = Header_parse(header);
+
+            var convertDataToBuffer = false;
+
+            if (isRaw && !headerResult.contentType.startsWith('text')) {
+                convertDataToBuffer = true;
+            }
+
+            partsByName[headerResult.fieldName] = {
+                data: data,
+                contentType: headerResult.contentType,
+                fileName: headerResult.fieldName
+            };
+        }
+        return partsByName;
+    };
+
+    //Usage =hideStartform=false&filter={'processName':'AttachApplicationProcess'}&hideSave=true&hideDiscard=true&submitLabel='My Submit'
+    // Read a page's GET URL variables and return them as an associative array.
+    function _getUrlParametersObject() {
+        var vars = {},
+            hash;
+
+        //no query params
+        if (window.location.href.indexOf('?') === -1) {
+            return vars;
+        }
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            //vars[hash[0]] = hash[1];
+            var key = decodeURIComponent(hash[0]);
+            var val = decodeURIComponent(hash[1]);
+            var obj = JSON.parse(val);
+            vars[key] = obj;
+        }
+
+        return vars;
+    }
+
+    var _getAuthToken = function(url) {
+        return $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'text',
+            xhrFields: {
+                withCredentials: true
+            }
+        });
+    };
+
+    return {
+        adfProxyCall: _adfProxyCall,
+        getAuthToken: _getAuthToken,
+        multipartParse: _multipartParse,
+        getUrlParametersObject: _getUrlParametersObject,
+        eventHandler: _eventHandler,
+        initComponentForIFrame: function(options, loadComponent, element) {
+            if (!$.isEmptyObject($.pcsConnection)) {
+                loadComponent();
+            } else {
+                $.pcsConnection = {};
+                //$.pcsConnection.serverURL = "http://den02biu.us.oracle.com:7001";
+
+				// See if test mode is passed
+				if(!$.isEmptyObject(options)){
+					if(options.testMode) {
+						$.pcsConnection.testMode = options.testMode;
+					}
+					if(options.serverURL){
+						$.pcsConnection.serverURL =options.serverURL;
+					}
+					if(options.authInfo){
+						$.pcsConnection.authInfo =options.authInfo;
+						loadComponent();
+						return;
+					}
+				}
+
+                var util = this;
+                var scriptCallback = function() {
+                    var serverURL = util.getServerURL();
+                    loggerUtil.log('Script loaded and ready, getting token');
+                    util.getAuthToken(serverURL + '/ic/process/workspace/auth/token')
+                        .done(function(data) {
+                            if (data && data.startsWith('<html')) {
+                                element.text('User cannot be authorized').show();
+                            } else {
+                                $.pcsConnection.authInfo = 'Bearer ' + data;
+                                loadComponent();
+                            }
+                        })
+                        .fail(function(jqXHR) {
+                            element.text('User cannot be authorized').show();
+                        });
+                };
+
+                //Load a script tag on PCS Server
+                var script = document.createElement('script');
+                //real browsers
+                script.onload = scriptCallback;
+                //Internet explorer
+                script.onreadystatechange = function() {
+                    if (this.readyState === 'complete') {
+                        scriptCallback();
+                    }
+                };
+
+                var serverURL = this.getServerURL();
+                script.src = serverURL + '/ic/process/workspace/faces/js/homePage.js';
+                document.getElementsByTagName('head')[0].appendChild(script);
+            }
+        },
+        getCookie: function(key) {
+            var result;
+            return (result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)) ? (result[1]) : null;
+        },
+		storeLoggedInUser : function (data) {
+
+			$.pcsConnection['isAdmin'] = data.adminFlag;
+			$.pcsConnection['isProcessOwner'] = false;
+
+			if(data.roles && data.roles.items){
+				$.each(data.roles.items, function(index, role) {
+					if(role.id.endsWith('.ProcessOwner')){
+						$.pcsConnection['isProcessOwner'] = true;
+						return false;
+					}
+				});
+			}
+		},
+        getServerURL: function() {
+            if ($.pcsConnection && $.pcsConnection.serverURL) {
+                return $.pcsConnection.serverURL.endsWith('/') ? $.pcsConnection.serverURL.substring(0, $.pcsConnection.serverURL.length - 1) : $.pcsConnection.serverURL;
+            } else {
+            	var url = window.location.origin;
+				if (!$.pcsConnection) {
+					$.pcsConnection= {};
+				}
+				$.pcsConnection.serverURL =url;
+                return url;
+            }
+        },
+        getRestUri: function() {
+            //if($.pcsConnection.restURI){
+            //    return $.pcsConnection.restURI  ;
+            //}else{
+            return '/bpm/api/4.0/';
+            //}
+        },
+        getAuthInfo: function() {
+            if ($.pcsConnection && $.pcsConnection.authInfo) {
+                var authInfo = $.pcsConnection.authInfo;
+                if (!authInfo.startsWith('Bearer ') && !authInfo.startsWith('Basic ')) {
+                    authInfo = 'Bearer ' + authInfo;
+                }
+                return authInfo;
+            }
+            return '';
+        },
+        getRestURL: function() {
+            if ($.pcsConnection && $.pcsConnection.restURL) {
+                return $.pcsConnection.restURL;
+            } else {
+                var url = this.getServerURL() + this.getRestUri();
+                if ($.pcsConnection) {
+                    $.pcsConnection.restURL = url;
+                }
+                return url;
+            }
+        },
+        getDpServerURL: function() {
+            if ($.pcsConnection && $.pcsConnection.dpServerURL) {
+                return $.pcsConnection.dpServerURL.endsWith('/') ? $.pcsConnection.dpServerURL.substring(0, $.pcsConnection.dpServerURL.length - 1) : $.pcsConnection.dpServerURL;
+            } else {
+				return this.getServerURL();
+            }
+        },
+        getDpRestURL: function() {
+            var url = this.getDpServerURL() + '/bpm/api/4.0/';
+            return url;
+        },
+		beforeRequestCallback: function(xhr,util){
+			//Dummy ADF call
+			util.adfProxyCall();
+
+			xhr.setRequestHeader('Authorization', util.getAuthInfo());
+			if (util.isTestMode()) {
+				xhr.setRequestHeader('pcs_mode', 'dev');
+			}
+			var locale = requirejs.s.contexts._.config.locale;
+			if(locale){
+				xhr.setRequestHeader('Accept-Language', locale);
+			}
+		},
+        isTestMode: function() {
+            if ($.pcsConnection && $.pcsConnection.testMode) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+        taskIconColor: function(str) {
+			var colorCodes = [ '#6e8598', '#754b9a', '#45ac62', '#ed813d', '#3f92d0', '#E85E93',
+				'#81BB5F', '#DFE146', '#FABC39', '#EB5B60', '#1FB4AD', '#00B6D1'];
+
+            if (!str) {
+                return 'grey';
+            }
+            var hash = 0,
+                i, chr, len;
+
+            for (i = 0, len = str.length; i < len; i++) {
+                chr = str.charCodeAt(i);
+                hash = ((hash << 5) - hash) + chr;
+                hash |= 0; // Convert to 32bit integer
+            }
+
+            // var code = hash;
+            // var B = code & 0xFF;
+            //
+            // code >>= 8;
+            // var G = code & 0xFF;
+            //
+            // code >>= 8;
+            // var R = code & 0xFF;
+            //
+            // return 'rgb(' + R + ',' + G + ',' + B + ')';
+
+            var index = hash % (colorCodes.length) ;
+
+            return colorCodes[Math.abs(index)];
+        },
+        taskInitials: function(taskName) {
+            if (!taskName) {
+                return 'NA';
+            }
+
+            taskName = taskName.replace(' ', '');
+            var firstCharUpper = taskName.charAt(0).toUpperCase();
+            var secondCharUpper = '';
+            for (var i = 1; i < taskName.length; i++) {
+                if (taskName.charAt(i) === taskName.charAt(i).toUpperCase()) {
+                    secondCharUpper = taskName.charAt(i);
+                    break;
+
+                }
+            }
+
+            return firstCharUpper + secondCharUpper;
+
+        },
+		getRandomInt : function (min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+        },
+		unApplyBindings : function($node, remove) {
+			// unbind events
+			$node.find('*').each(function() {
+				$(this).off();
+				$(this).unbind();
+			});
+
+			$node.off();
+
+			// Remove KO subscriptions and references
+			if (remove) {
+				ko.cleanNode($node[0]);
+				$node.find('*').each(function() {
+					$(this).remove();
+				});
+				ko.removeNode($node);
+			} else {
+				ko.cleanNode($node);
+				$node.find('*').each(function() {
+					$(this).remove();
+				});
+			}
+		},
+        compositeVersion: function (formMetadataURL) {
+            //'webforms/oracleinternalpcs~Mortgage_Underwriting!1*soa_1b4254aa-b094-4cc2-9ea7-29fd58919997~6f5740fb-a6d3-4f82-a022-49854f89accb~c3f48544-3ea0-4238-9d8c-a3e8cedec34c',
+            var version;
+            if (formMetadataURL){
+                try{
+                    var splitOnEsclamation = formMetadataURL.split('!');
+                    var splitOnStar = splitOnEsclamation[1].split('*');
+                    version = splitOnStar[0];
+                }
+                catch (err){
+                    loggerUtil.error('Error while getting version');
+                }
+
+            }
+            return version;
+        },
+		applicationName: function (formMetadataURL) {
+			//'webforms/oracleinternalpcs~Mortgage_Underwriting!1*soa_1b4254aa-b094-4cc2-9ea7-29fd58919997~6f5740fb-a6d3-4f82-a022-49854f89accb~c3f48544-3ea0-4238-9d8c-a3e8cedec34c',
+			var applicationName;
+			if (formMetadataURL){
+				try{
+					var splitOnTilde = formMetadataURL.split('~');
+					var splitOnEscalamation = splitOnTilde[1].split('*');
+					applicationName = splitOnEscalamation[0];
+				}
+				catch (err){
+					loggerUtil.error('Error while getting application Name');
+				}
+
+			}
+			return applicationName;
+		}
+    };
+});
+
+/**
+ * Created by nisabhar on 11/7/17.
+ */
+
+define('pcs/util/dateUtil',['knockout', 'ojs/ojcore', 'jquery','ojs/ojdatetimepicker'], function(ko, oj, $) {
+	'use strict';
+
+
+	/**
+	 * ,method to convert time in string
+	 * @param millisecs
+	 * @returns {string}
+	 */
+	var _getTimeDurationTxt = function (millisecs) {
+
+		if (!millisecs){
+			return '';
+		}
+
+		var durationTxt = '';
+		// get total seconds between the times
+		var delta = Math.abs(millisecs) / 1000;
+
+		// calculate (and subtract) whole days
+		var days = Math.floor(delta / 86400);
+		delta -= days * 86400;
+		durationTxt = days > 0 ? durationTxt + days + 'd ' : durationTxt;
+
+		// calculate (and subtract) whole hours
+		var hours = Math.floor(delta / 3600) % 24;
+		delta -= hours * 3600;
+		durationTxt = hours > 0 ? durationTxt + hours + 'h ' : durationTxt;
+
+		// calculate (and subtract) whole minutes
+		var minutes = Math.floor(delta / 60) % 60;
+		delta -= minutes * 60;
+		durationTxt = minutes > 0 ? durationTxt + minutes + 'm' : durationTxt;
+
+		if (durationTxt === ''){
+			var seconds = Math.floor(delta);
+			durationTxt = seconds + 's';
+		}
+
+		return durationTxt;
+	};
+
+	/**
+	 * Convert the given utc date to user timezone
+	 * @param utcDate
+	 */
+	var _getDateInUserTimezone = function(utcDate){
+		if(!utcDate){
+			return null;
+		}
+
+		var date;
+		if (typeof utcDate === 'string' || typeof utcDate === 'number'){
+			//string format or longTime format
+			date = new Date(utcDate)
+		}else if(utcDate instanceof Date){
+			date = utcDate;
+		}else{
+			return utcDate;
+		}
+
+		var convertedDate = oj.IntlConverterUtils.dateToLocalIso(date);
+
+		return convertedDate;
+	};
+
+
+	/**
+	 * convert the requested date in the given pattern, do not change the timezone
+	 * @param requestedDate
+	 * @param datePattern
+	 * @returns {string}
+	 */
+	var _getFormattedDate =  function (requestedDate, datePattern) {
+		if(!requestedDate || requestedDate === ''){
+			return '';
+		}
+		var pattern = datePattern ? datePattern : 'MMM dd yyyy, hh:mm a';
+		var dateOptions = {
+			pattern: pattern
+		};
+		var dateConverter = oj.Validation.converterFactory(oj.ConverterFactory.CONVERTER_TYPE_DATETIME).createConverter(dateOptions);
+
+		return dateConverter.format(requestedDate);
+	};
+
+
+	/**
+	* method to convert
+	* @param userDate
+	* @returns {Date}
+	*/
+	var _getDateStingInUTCTimezone= function(userDate){
+
+		var date;
+		if (typeof userDate === 'string' || typeof userDate === 'number'){
+			//string format or longTime format
+			date = new Date(userDate)
+		}else if(userDate instanceof Date){
+			date = userDate;
+		}else{
+			return userDate.toString();
+		}
+
+		date =date.toISOString();
+
+		return date;
+	};
+
+
+	/**
+	 * custom handlers to convert date pattern
+	 * @type {{update: update}}
+	 */
+	ko.bindingHandlers.pcsFormatDate = {
+		update: function(element, valueAccessor, allBindings) {
+			var valueUnwrapped = ko.unwrap(valueAccessor());
+
+			if (!valueUnwrapped) {
+				return;
+			}
+
+			var formattedValue = _getFormattedDate (valueUnwrapped, allBindings().datePattern);
+
+			ko.bindingHandlers.text.update(element, function() {
+				return formattedValue;
+			});
+		}
+	};
+
+
+	return {
+
+		getTimeDurationTxt : _getTimeDurationTxt,
+
+		getDateInUserTimezone: _getDateInUserTimezone,
+
+		getFormattedDate : _getFormattedDate,
+
+		getDateStingInUTCTimezone: _getDateStingInUTCTimezone
+	};
+});
+
+/**
+ * Created by nisabhar on 2/6/18.
+ */
+
+define ('pcs/util/PropertyChangeHelper',['jquery'] , function ($) {
+	'use strict';
+
+	var _observe = function(composite, property, observable){
+		var prop = property + '-changed';
+		$(composite).on(prop, function(event)  {
+			if(event.detail.updatedFrom === 'external'){
+				observable(event.detail.value);
+			}
+		});
+	};
+
+	return {
+
+		observe : _observe
+	}
+});
+
+define('pcs/data-services/DataServices',['require','jquery','pcs/util/pcsUtil'],function(require) {
+    'use strict';
+    var $ = require('jquery'),
+        pcsUtil = require('pcs/util/pcsUtil');
+    return (function() {
+        var instance,
+
+            getBaseURL = function(version) {
+                if (version && version === 'dp') {
+                    return pcsUtil.getDpServerURL() + '/bpm/api/4.0';
+                }
+                if (version) {
+                    return pcsUtil.getServerURL() + '/bpm/api/' + version;
+                }
+                return pcsUtil.getServerURL() + '/bpm/api/4.0';
+            },
+
+            //callback to set authorization request header for every call
+            beforeRequestCallback = function(xhr) {
+				pcsUtil.beforeRequestCallback(xhr,pcsUtil);
+            },
+
+            serializeData = function(contentType, payload) {
+                var data = JSON.stringify(payload);
+                if (!contentType && contentType.startsWith('multipart')) {
+                    data = new Uint8Array(payload.length);
+                    for (var i = 0; i < payload.length; i++) {
+                        data[i] = payload.charCodeAt(i);
+                    }
+                }
+                return data;
+            };
+
+        function init() {
+            return {
+                get: function(url, options, version) {
+                    if (url.indexOf(getBaseURL(version)) === -1) {
+                        url = getBaseURL(version) + url;
+                    }
+                    //add URL query parameters for GET
+                    if (options && options.queryParams) {
+                    	var queryParams = $.param(options.queryParams, true) ;
+                        url += '?' + queryParams;
+                    }
+                    //alert(url);
+					//Dummy ADF call
+					pcsUtil.adfProxyCall();
+
+                    return $.ajax({
+                        type: 'GET',
+                        url: url,
+                        beforeSend: beforeRequestCallback,
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        contentType: (options && options.contentType) ? options.contentType : 'application/json',
+                        dataType: (options && options.dataType) ? options.dataType : 'json'
+                    });
+                },
+
+                post: function(url, options, version) {
+                    if (url.indexOf(getBaseURL(version)) === -1) {
+                        url = getBaseURL(version) + url;
+                    }
+					if (!options.contentType) {
+                        options.contentType = 'application/json';
+                    }
+                    var payload = serializeData(options.contentType, options.payload);
+
+					//Dummy ADF call
+					pcsUtil.adfProxyCall();
+
+                    return $.ajax({
+                        type: 'POST',
+                        url: url,
+                        cache: false,
+                        processData: false,
+                        data: payload,
+                        beforeSend: beforeRequestCallback,
+                        xhrFields: {
+                            withCredentials: true
+                        },
+						contentType: (options && options.contentType) ? options.contentType : 'application/json',
+                        dataType: (options && options.dataType) ? options.dataType : 'json'
+                    });
+                },
+
+                put: function(url, options, version) {
+                    if (url.indexOf(getBaseURL(version)) === -1) {
+                        url = getBaseURL(version) + url;
+                    }
+                    if (!options.contentType) {
+                        options.contentType = 'application/json';
+                    }
+
+                    var payload = serializeData(options.contentType, options.payload);
+
+					//Dummy ADF call
+					pcsUtil.adfProxyCall();
+
+                    return $.ajax({
+                        type: 'PUT',
+                        url: url,
+                        cache: false,
+                        processData: false,
+                        data: payload,
+                        beforeSend: beforeRequestCallback,
+                        xhrFields: {
+                            withCredentials: true
+                        },
+						contentType: (options && options.contentType) ? options.contentType : 'application/json',
+                        dataType: (options && options.dataType) ? options.dataType : 'json'
+                    });
+                },
+
+                delete: function(url, options, version) {
+                    if (url.indexOf(getBaseURL(version)) === -1) {
+                        url = getBaseURL(version) + url;
+                    }
+
+					//Dummy ADF call
+					pcsUtil.adfProxyCall();
+
+                    return $.ajax({
+                        type: 'DELETE',
+                        url: url + '/' + options.payload,
+                        beforeSend: beforeRequestCallback,
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        contentType: (options && options.contentType) ? options.contentType : 'application/json',
+                        cache: false,
+                        processData: false
+                    });
+                }
+            };
+        }
+
+        return {
+            // Get the Singleton instance if one exists
+            // or create one if it doesn't
+            getInstance: function(connection) {
+                if (!instance) {
+                    instance = init();
+                }
+                if (connection) {
+                    instance.connection = connection;
+                }
+                return instance;
+            },
+
+            setConnection: function(connection) {
+                if (!instance) {
+                    instance = init();
+                }
+                instance.connection = connection;
+            }
+        };
+
+    })();
+});
+
+/**
+ * Created by nisabhar on 2/12/18.
+ */
+
+define('pcs/pcs.common',[
+		'pcs/util/pcsUtil',
+		'pcs/util/dateUtil',
+		'pcs/util/loggerUtil',
+		'pcs/util/PropertyChangeHelper',
+		'pcs/data-services/DataServices'
+	],
+
+	function(oj) {
+		'use strict';
+		//loggerUtil.log('loaded utils');
+	}
+);
+
+
 //# sourceMappingURL=pcs.common.js.map
