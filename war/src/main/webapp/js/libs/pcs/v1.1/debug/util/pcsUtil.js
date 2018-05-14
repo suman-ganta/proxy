@@ -399,8 +399,8 @@ define(['module', 'knockout', 'ojs/ojcore', 'jquery','pcs/util/loggerUtil'], fun
 		beforeRequestCallback: function(xhr,util){
 			//Dummy ADF call
 			util.adfProxyCall();
-
-			xhr.setRequestHeader('Authorization', util.getAuthInfo());
+            //don't set auth header for anonymous proxy access usecase - sinclair
+			//xhr.setRequestHeader('Authorization', util.getAuthInfo());
 			if (util.isTestMode()) {
 				xhr.setRequestHeader('pcs_mode', 'dev');
 			}

@@ -33,7 +33,8 @@ define(['jquery', 'pcs/util/pcsUtil'],
                 oReq.onerror = errorCallback;
                 oReq.open('GET', url, true);
                 oReq.responseType = 'arraybuffer';
-                oReq.setRequestHeader('Authorization', pcsUtil.getAuthInfo());
+                //Sinclair - dont send auth headers for anonymous proxy access usecase of start forms
+                //oReq.setRequestHeader('Authorization', pcsUtil.getAuthInfo());
                 if (pcsUtil.isTestMode()) {
                     oReq.setRequestHeader('pcs_mode', 'dev');
                 }

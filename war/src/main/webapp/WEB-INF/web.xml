@@ -38,7 +38,7 @@
         <init-param>
             <param-name>whitelist</param-name>
             <param-value>/process-definitions,/webforms,/processes</param-value>
-        </init-param>
+        </init-param>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
         <init-param>
             <param-name>log</param-name>
             <param-value>true</param-value>
