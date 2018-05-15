@@ -3,7 +3,7 @@
  */
 
 define(['ojs/ojcore', 'knockout', 'pcs/util/pcsUtil', 'pcs/attachments/services/attachmentsDataService', 'pcs/util/dateUtil',
-        'ojs/ojknockout', 'ojs/ojdialog', 'ojs/ojbutton', '!text!pcs/attachments/view/attachmentsContainer.html', 'ojL10n!pcs/resources/nls/pcsSnippetsResource'
+        'ojs/ojknockout', 'ojs/ojdialog', 'ojs/ojbutton', 'ojL10n!pcs/resources/nls/pcsSnippetsResource'
     ],
     function(oj, ko, pcsUtil, services,dateUtil) {
 

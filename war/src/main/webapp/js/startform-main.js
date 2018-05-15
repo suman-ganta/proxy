@@ -5,10 +5,15 @@ requirejs.config({
 	urlArgs: "bust=1526153198931",
     waitSeconds : 30,
     config: {
-        text: {
+        'libs/require/text': {
           useXhr: function (url, protocol, hostname, port) {
             return true;
           }
+        }
+    },
+    map: {
+        '*': {
+            text: 'libs/require/text'
         }
     },
     // Path mappings for the logical module names
@@ -25,7 +30,6 @@ requirejs.config({
 			'ojL10n': 'libs/oj/v3.2.0/ojL10n',
 			'ojtranslations': 'libs/oj/v3.2.0/resources',
 			'signals': 'libs/js-signals/signals.min',
-			'text': 'libs/require/text',
 			'customElements': 'libs/webcomponents/CustomElements.min',
 			'proj4': 'libs/proj4js/dist/proj4',
 			'pcs' : 'libs/pcs/v1.1/debug'
