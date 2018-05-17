@@ -2,20 +2,17 @@
  * Created by nisabhar on 3/17/2016.
  */
 requirejs.config({
-	urlArgs: "bust=1526153198931",
+    urlArgs: "bust=1526153198931",
+    baseUrl: "https://slc11bjj.us.oracle.com:7004/p/js/",
     waitSeconds : 30,
     config: {
-        'libs/require/text': {
+        text: {
           useXhr: function (url, protocol, hostname, port) {
             return true;
           }
         }
     },
-    map: {
-        '*': {
-            text: 'libs/require/text'
-        }
-    },
+    
     // Path mappings for the logical module names
 	paths:
 		{
@@ -30,6 +27,7 @@ requirejs.config({
 			'ojL10n': 'libs/oj/v3.2.0/ojL10n',
 			'ojtranslations': 'libs/oj/v3.2.0/resources',
 			'signals': 'libs/js-signals/signals.min',
+			'text': 'libs/require/text',
 			'customElements': 'libs/webcomponents/CustomElements.min',
 			'proj4': 'libs/proj4js/dist/proj4',
 			'pcs' : 'libs/pcs/v1.1/debug'
@@ -54,7 +52,7 @@ requirejs.config({
 
             //replace:internaljs
             $.pcsConnection = {
-                serverURL: 'http://localhost:7001/p/proxy'
+                serverURL: 'https://slc11bjj.us.oracle.com:7004/p/proxy'
                 //authInfo: 'Basic d2VibG9naWM6d2VibG9naWMx'
             };
 
