@@ -2,7 +2,7 @@
   "_args": [
     [
       "ckeditor@4.7.1",
-      "/scratch/jenkins/workspace/UI_Snippets/cloud/snippets"
+      "/Users/praburajan/work/ui-snippet/cloud/snippets"
     ]
   ],
   "_from": "ckeditor@4.7.1",
@@ -27,7 +27,7 @@
   ],
   "_resolved": "http://artifactory-slc.oraclecorp.com/artifactory/api/npm/npm-virtual/ckeditor/-/ckeditor-4.7.1.tgz",
   "_spec": "4.7.1",
-  "_where": "/scratch/jenkins/workspace/UI_Snippets/cloud/snippets",
+  "_where": "/Users/praburajan/work/ui-snippet/cloud/snippets",
   "author": {
     "name": "CKSource",
     "url": "http://cksource.com/"

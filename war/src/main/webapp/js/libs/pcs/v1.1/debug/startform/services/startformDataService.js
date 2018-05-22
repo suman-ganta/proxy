@@ -33,8 +33,10 @@ define(['jquery', 'pcs/util/pcsUtil'],
                 oReq.onerror = errorCallback;
                 oReq.open('GET', url, true);
                 oReq.responseType = 'arraybuffer';
-                //Sinclair - dont send auth headers for anonymous proxy access usecase of start forms
-                //oReq.setRequestHeader('Authorization', pcsUtil.getAuthInfo());
+                var authToken = pcsUtil.getAuthInfo();
+                if(authToken) {
+                    oReq.setRequestHeader('Authorization', authToken);
+                }
                 if (pcsUtil.isTestMode()) {
                     oReq.setRequestHeader('pcs_mode', 'dev');
                 }
@@ -55,6 +57,9 @@ define(['jquery', 'pcs/util/pcsUtil'],
                     type: 'GET',
                     url: url,
                     beforeSend:  beforeRequestCallback,
+                    xhrFields: {
+                        withCredentials: true
+                    },
                     contentType: 'multipart/form-data',
                     dataType: dataType,
                     cache: false
@@ -75,6 +80,9 @@ define(['jquery', 'pcs/util/pcsUtil'],
                     processData: false,
                     data: bytes,
                     beforeSend: beforeRequestCallback,
+                    xhrFields: {
+                        withCredentials: true
+                    },
                     contentType: contentType,
                 });
             };
@@ -87,6 +95,9 @@ define(['jquery', 'pcs/util/pcsUtil'],
                     dataType: 'json',
                     data: params,
                     beforeSend: beforeRequestCallback,
+                    xhrFields: {
+                        withCredentials: true
+                    },
                     contentType: contentType,
                     cache: false
                 });
@@ -108,11 +119,17 @@ define(['jquery', 'pcs/util/pcsUtil'],
                     contentType: contentType,
                     dataType: 'json',
                     beforeSend: function(xhr) {
-                        xhr.setRequestHeader('Authorization', pcsUtil.getAuthInfo());
+                        var authToken = pcsUtil.getAuthInfo();
+                        if(authToken) {
+                            xhr.setRequestHeader('Authorization', authToken);
+                        }
                         if (pcsUtil.isTestMode()) {
                             xhr.setRequestHeader('pcs_mode', 'dev');
                         }
                     },
+                    xhrFields: {
+                        withCredentials: true
+                    }
                 });
             };
 

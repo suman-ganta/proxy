@@ -54,11 +54,15 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/dynamicProcess/services/DPRoles
 				roleService = DPRolesService.getInstance();
 
 				if(self.properties.hasOwnProperty('consumerType')){
-					self.consumerType(ko.utils.unwrapObservable(self.properties.consumerType));
+					var paramConsumerType = ko.utils.unwrapObservable(self.properties.consumerType);
+					if (paramConsumerType)
+						self.consumerType(paramConsumerType);
 				}
 
 				if (self.properties.hasOwnProperty('instanceid') ) {
-					self.instanceId(ko.utils.unwrapObservable(self.properties.instanceid));
+					var paramInstanceId = ko.utils.unwrapObservable(self.properties.instanceid);
+					if (paramInstanceId)
+						self.instanceId(paramInstanceId);
 				}
 
 				if (self.properties.hasOwnProperty('processdefinitionid') ) {

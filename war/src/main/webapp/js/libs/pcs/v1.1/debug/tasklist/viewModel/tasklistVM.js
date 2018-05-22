@@ -192,9 +192,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/util/pcsUtil', 'pcs/tasklist/vi
                         complete: function() {
                             taskDetail.taskdetail(options).width('99.95%');
                             taskDetail.show();
-							$('html, body').animate({
-								scrollTop: taskDetail.offset().top
-							}, 1000);
+							$('#taskDetail', self.rootElement)[0].scrollIntoView(true);
                         }
                     });
                 }

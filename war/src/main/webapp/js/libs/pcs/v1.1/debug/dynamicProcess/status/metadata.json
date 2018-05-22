@@ -7,16 +7,19 @@
     },
 	"activities":{
       "description":"List of all activities of the selected  instance",
-      "type": "array"
+      "type": "array",
+	  "internal": true
     },
 	"instanceitem":{
 	  "description":"The instance detail of selected instance",
-	  "type": "Instance"
+	  "type": "Instance",
+	  "internal": true
 	},
 	"consumed":{
 	  "description":"If the component is used in consumed environment",
 	  "type": "boolean",
-	  "default" :"false"
+	  "default" :"false",
+	  "internal": true
 	},
 	"showTimeline":{
 	  "description":"If the component has to show milestone view",

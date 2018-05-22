@@ -6,7 +6,8 @@
 	},
 	"instanceitem":{
 	  "description":"The instance detail of selected instance",
-	  "type": "Instance"
+	  "type": "Instance",
+	  "internal": true
 	},
 	"consumertype":{
 	  "description":"The type of consumer for this component",

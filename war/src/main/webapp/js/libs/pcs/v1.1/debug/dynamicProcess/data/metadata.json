@@ -7,12 +7,14 @@
     },
     "instanceitem":{
       "description":"The instance detail of selected instance",
-      "type": "Instance"
+      "type": "Instance",
+	  "internal": true
     },
 	"consumed":{
 	  "description":"If the component is used in consumed environment",
 	  "type": "boolean",
-	  "value" :"false"
+	  "value" :"false",
+	  "internal": true
 	}
   },
   "methods" :{

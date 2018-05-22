@@ -15,7 +15,9 @@
 						<div class="oj-flex">
 							<div class="oj-flex-item" >
 								<textarea id="pcs-comments-inputComment" style="resize: both;"
-										  data-bind="ojComponent: {component: 'ojTextArea',  rootAttributes: {style:'max-width:100%'},
+										  data-bind="ojComponent: {component: 'ojTextArea',
+										  rootAttributes: {style:'max-width:100%'},
+										  validators: [{type: 'length', options: {hint: {max: 'Enter {max} or fewer characters'}, max: 2000}}],
                                      value: commentStr, placeholder:bundle.pcs.comments.placeholder}" ></textarea>
 							</div>
 						<!--/div-->

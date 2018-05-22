@@ -399,9 +399,11 @@ define(['module', 'knockout', 'ojs/ojcore', 'jquery','pcs/util/loggerUtil'], fun
 		beforeRequestCallback: function(xhr,util){
 			//Dummy ADF call
 			util.adfProxyCall();
-            //don't set auth header for anonymous proxy access usecase - sinclair
-			//xhr.setRequestHeader('Authorization', util.getAuthInfo());
-			if (util.isTestMode()) {
+            var authToken = util.getAuthInfo();
+            if(authToken) {
+                xhr.setRequestHeader('Authorization', authToken);
+            }
+			if(util.isTestMode()) {
 				xhr.setRequestHeader('pcs_mode', 'dev');
 			}
 			var locale = requirejs.s.contexts._.config.locale;

@@ -65,7 +65,9 @@ define(['jquery', 'pcs/charts/visualization/viewModel/util/visualizationUtil'],
 				url: url,
 				data: payload,
 				beforeSend: function (xhr) {
-					xhr.setRequestHeader('Authorization', authInfo);
+					if(authInfo) {
+						xhr.setRequestHeader('Authorization', authInfo);
+					}
 				},
 				xhrFields: {
 					withCredentials: true

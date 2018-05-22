@@ -53,7 +53,9 @@ define(['ojs/ojcore', 'knockout', 'pcs/taskdetail/services/taskdetailDataService
                 processName: ko.observable(),
                 title: ko.observable(),
                 shortSummary: ko.observable(),
-                outcome: ko.observable()
+                outcome: ko.observable(),
+                state: ko.observable(),
+                instanceId: ko.observable()
             };
 
             self.priorityOptions = ko.observableArray([
@@ -553,7 +555,7 @@ define(['ojs/ojcore', 'knockout', 'pcs/taskdetail/services/taskdetailDataService
             self.saveTaskDetail = function(data, event) {
 				//Start the loading indicator
 				$('#pcs-td-overlay', self.rootElement).addClass('pcs-common-load-overlay');
-				
+
                 self.payload = {
                     action: {
                         id: 'SAVE'
@@ -1022,6 +1024,9 @@ define(['ojs/ojcore', 'knockout', 'pcs/taskdetail/services/taskdetailDataService
                 self.taskObject.number(task.number);
                 self.taskObject.outcome(task.outcome);
                 self.taskObject.processName(task.processName);
+
+                self.taskObject.state(task.state);
+                self.taskObject.instanceId(task.processId);
 
                 //add dates
 				self.taskObject.assignedDate(dateUtil.getFormattedDate( dateUtil.getDateInUserTimezone(task.assignedDate)));

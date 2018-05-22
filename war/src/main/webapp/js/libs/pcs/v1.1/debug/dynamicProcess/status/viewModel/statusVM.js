@@ -3,9 +3,9 @@
  */
 
 
-define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/dynamicProcess/services/DPDetailService', 'pcs/util/dateUtil', 'ojs/ojknockout', 'promise', 'ojs/ojpopup', 'ojs/ojtimeline',
+define(['ojs/ojcore', 'knockout', 'jquery', 'underscore', 'pcs/dynamicProcess/services/DPDetailService', 'pcs/util/dateUtil', 'ojs/ojknockout', 'promise', 'ojs/ojpopup', 'ojs/ojtimeline',
 		'ojL10n!pcs/resources/nls/pcsSnippetsResource'],
-    function(oj, ko, $, InstanceDetail, dateUtil) {
+    function(oj, ko, $, _, InstanceDetail, dateUtil) {
         'use strict';
 
         return function(params, componentInfo) {
@@ -20,7 +20,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/dynamicProcess/services/DPDetai
             var eventsMinDistance = 40;
             var minDistanceFactor = 4;
 
-            self.selectedView = ko.observable('milestone');
+            self.selectedView = ko.observable('');
             self.instanceId = ko.observable();
             self.startDate = ko.observable();
             self.popupData = ko.observable();
@@ -38,28 +38,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/dynamicProcess/services/DPDetai
             self.incompleteMilestones = ko.observableArray([]);
             self.stages = ko.observableArray([]);
 
-			self.views = ko.observableArray([{
-					id: 'milestone',
-					label: 'Milestone',
-					classes: 'dp-milestone-icon',
-					isVisible: self.isMilestoneVisible(),
-					isEmpty : ko.observable(false)
-				},
-				{
-					id: 'stage',
-					label: 'Stage',
-					classes: 'dp-stages-icon',
-					isVisible: self.isStageVisible(),
-					isEmpty : ko.observable(false)
-				},
-				{
-					id: 'timeline',
-					label: 'Milestone-Timeline',
-					classes: 'dp-timeline-icon',
-					isVisible: self.isTimelineVisible(),
-					isEmpty : ko.observable(false)
-				}
-			]);
+			self.views = ko.observableArray([]);
 
 
 
@@ -68,6 +47,38 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/dynamicProcess/services/DPDetai
 
             //Set the resourcebundle
             self.bundle = require('ojL10n!pcs/resources/nls/pcsSnippetsResource');
+
+            self.populateViews = function () {
+				var viewsArray = [
+					{
+						id: 'milestone',
+						label: 'Milestone',
+						classes: 'dp-milestone-icon',
+						isVisible: self.isMilestoneVisible(),
+						isEmpty : ko.observable(false)
+					},
+					{
+						id: 'stage',
+						label: 'Stage',
+						classes: 'dp-stages-icon',
+						isVisible: self.isStageVisible(),
+						isEmpty : ko.observable(false)
+					},
+					{
+						id: 'timeline',
+						label: 'Milestone-Timeline',
+						classes: 'dp-timeline-icon',
+						isVisible: self.isTimelineVisible(),
+						isEmpty : ko.observable(false)
+					}
+				];
+				//Set the first visible view as selected view
+				var visibleViews = _.filter(viewsArray, {isVisible: true});
+				if (!_.isEmpty(visibleViews)){
+					self.views(visibleViews);
+					self.selectedView(visibleViews[0]['id']);
+				}
+			}
 
             // The props field on context is a Promise. Once that resolves,
             // we can access the properties that were defined in the composite metadata
@@ -79,6 +90,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/dynamicProcess/services/DPDetai
 
             self.initContext = function() {
                 service = InstanceDetail.getInstance();
+                var promises = [];
 
                 if (self.properties.instanceid === undefined) {
                     return;
@@ -109,7 +121,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/dynamicProcess/services/DPDetai
                         self.populateData(self.properties.instanceitem);
                     }
                 } else {
-                    self.fetchInstanceDetail();
+                    promises.push(self.fetchInstanceDetail());
                 }
 
                 if (self.properties.activities) {
@@ -123,20 +135,15 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/dynamicProcess/services/DPDetai
                         prepareStagesData(self.properties.activities);
                     }
                 } else {
-                    self.fetchExecutionList();
+                    promises.push(self.fetchExecutionList());
                 }
 
-                if(self.properties.showTimeline){
-					self.isTimelineVisible(self.properties.showTimeline);
-				}
+                //Resolve all the promises
+				resolvePromises(promises);
 
-				if(self.properties.showStages){
-					self.isStageVisible(self.properties.showStages);
-				}
-
-				if(self.properties.showMilestones){
-					self.isMilestoneVisible(self.properties.showMilestones);
-				}
+                self.isTimelineVisible(self.properties.showTimeline || false);
+				self.isStageVisible(self.properties.showStages || false);
+				self.isMilestoneVisible(self.properties.showMilestones || false);
 
                 //Days converter
                 var options = {
@@ -157,40 +164,16 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/dynamicProcess/services/DPDetai
 
             //Method to do AJAX call to get instance detail
             self.fetchInstanceDetail = function() {
-                var promise = $.Deferred();
-                service.fetchInstanceItem(true, self.instanceId()).then(function(data) {
-                    self.populateData(data);
-                    promise.resolve();
-                }, function(rejected) {
-                    self.showErrorRegion();
-                });
-                return promise;
+                return service.fetchInstanceItem(true, self.instanceId());
             };
 
 
             //Method to fetch  activities
             self.fetchExecutionList = function() {
-                //Start the loading indicator
-                $('#pcs-cdet-overlay', element).addClass('pcs-common-load-overlay');
-
-                var promise = $.Deferred();
                 var param = {
                     'processInstanceId': self.instanceId()
                 };
-                service.fetchExecutionList(true, param).then(function(data) {
-
-                    prepareData(data);
-                    prepareTimelineData(data);
-                    prepareStagesData(data);
-
-                    //stop the loading indicator
-                    $('#pcs-cdet-overlay', element).removeClass('pcs-common-load-overlay');
-
-                    promise.resolve();
-                }, function(rejected) {
-                    self.showErrorRegion();
-                });
-                return promise;
+                return service.fetchExecutionList(true, param);
             };
 
             function prepareData(data) {
@@ -443,6 +426,38 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/dynamicProcess/services/DPDetai
                 });
             }
 
+            function resolvePromises(promises){
+				if (_.isEmpty(promises)){
+					return;
+				}
+
+				Promise.all(promises)
+					.then(function(response){
+						if (response.length === 2) {
+							//First object is instance item
+							self.populateData(response[0]);
+							//Second object is execution list
+							prepareData(response[1]);
+							prepareTimelineData(response[1]);
+							prepareStagesData(response[1]);
+						} else if (response.length === 1) {
+
+							if (response[0].hasOwnProperty('getInstanceCreatedDate')){
+								//Instance item
+								self.populateData(response[0]);
+							} else {
+								//Execution list
+								prepareData(response[0]);
+								prepareTimelineData(response[0]);
+								prepareStagesData(response[0]);
+							}
+						}
+					})
+					.catch(function(error){
+						self.showErrorRegion();
+					});
+			}
+
             self.showMilestoneInfo = function(data, event) {
                 self.popupData(data);
                 var popup = $('#pcs-milestone-popup');
@@ -646,6 +661,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/dynamicProcess/services/DPDetai
             self.bindingsApplied = function() {
                 //temp for Knockoutcomponet
                 self.initContext();
+                self.populateViews();
             };
 
             //Dispose the computed,sbsrciption,event http://knockoutjs.com/documentation/component-binding.html

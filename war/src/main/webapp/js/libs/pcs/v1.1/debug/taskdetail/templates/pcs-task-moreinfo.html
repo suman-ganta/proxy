@@ -112,6 +112,26 @@
                                             value:taskObject.number, readOnly: true, rootAttributes: {style:'max-width:100%'} }">
                 </div>
             </div>
+			<div class="oj-flex" id="pcs-td-moreInfo-state-c">
+				<div class="oj-flex-item">
+					<label for="pcs-td-moreInfo-state" data-bind="text:bundle.pcs.taskdetail.state"></label>
+				</div>
+				<div class="oj-flex-item">
+					<input id="pcs-td-moreInfo-state"
+						   data-bind="ojComponent: {component: 'ojInputText',
+                                            value:taskObject.state, readOnly: true, rootAttributes: {style:'max-width:100%'} }"/>
+				</div>
+			</div>
+			<div class="oj-flex" id="pcs-td-moreInfo-ii-c">
+				<div class="oj-flex-item">
+					<label for="pcs-td-moreInfo-ii" data-bind="text:bundle.pcs.taskdetail.instanceId"></label>
+				</div>
+				<div class="oj-flex-item">
+					<input id="pcs-td-moreInfo-ii"
+						   data-bind="ojComponent: {component: 'ojInputText',
+                                            value:taskObject.instanceId, readOnly: true, rootAttributes: {style:'max-width:100%'} }"/>
+				</div>
+			</div>
         </div>
     </div>
 </script>

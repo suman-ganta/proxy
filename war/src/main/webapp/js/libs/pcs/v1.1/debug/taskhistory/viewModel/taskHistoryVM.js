@@ -72,7 +72,10 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'pcs/util/pcsUtil', 'pcs/taskhistory
             function downloadFile(url, success) {
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', url, true);
-                xhr.setRequestHeader('Authorization', pcsUtil.getAuthInfo());
+                var authToken = pcsUtil.getAuthInfo();
+                if(authToken) {
+                    xhr.setRequestHeader('Authorization', authToken);
+                }
                 xhr.setRequestHeader('pcs_mode', 'dev');
                 xhr.responseType = 'blob';
                 xhr.onreadystatechange = function() {

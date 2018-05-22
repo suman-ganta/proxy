@@ -34,7 +34,10 @@ define(['jquery', 'pcs/util/pcsUtil'],
                 oReq.open('GET', url, true);
                 oReq.withCredentials = true;
                 oReq.responseType = 'arraybuffer';
-                oReq.setRequestHeader('Authorization', pcsUtil.getAuthInfo());
+                var authToken = pcsUtil.getAuthInfo();
+                if(authToken) {
+                    oReq.setRequestHeader('Authorization', authToken);
+                }
                 if (pcsUtil.isTestMode()) {
                     oReq.setRequestHeader('pcs_mode', 'dev');
                 }

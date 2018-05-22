@@ -125,14 +125,13 @@ define(['ojs/ojcore', 'knockout','pcs/util/pcsUtil', 'pcs/pcsform/PCSFormService
 				var webFormContainer = properties.webFormContainer;
 				var prefix = properties.formRendererId;
 
-                console.log('Old:-' +formMetadataUrl);
-
-                //Sinclair Temp workarond
-                var splitOn = '/bpm/api/4.0/webforms/';
-                var splitArray = formMetadataUrl.split(splitOn);
-
-                formMetadataUrl = pcsUtil.getServerURL() + splitOn + splitArray[1];
-                console.log('New:-' +formMetadataUrl);
+				//Sinclair temp workaround to replace the form metadata url since it returns actual 
+				//PCS server host name in URL
+				console.log('Old:-' +formMetadataUrl);
+				var splitOn = "/bpm/api/4.0/webforms/";
+				var splitArray = formMetadataUrl.split(splitOn);
+				formMetadataUrl = pcsUtil.getServerURL() + splitOn + splitArray[1];
+				console.log('New:-' +formMetadataUrl);
 
 				if (formMetadataUrl && webFormContainer && prefix) {
 					service.getFormMetaData(formMetadataUrl)

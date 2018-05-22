@@ -1,4 +1,4 @@
-define("forms.renderer", ["underscore","knockout","jquery","ojL10n!rendererMsg/nls/renderer","ojs/ojcore","ojs/ojknockout","ojs/ojcollapsible","ojs/ojprogressbar","ojs/ojmenu","ojs/ojtabs","ojs/ojaccordion","ojs/ojcheckboxset","ojs/ojradioset","ojs/ojselectcombobox","ojs/ojinputnumber","ojs/ojdatetimepicker","ojs/ojknockout-validation","ojidentity"], function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_118__, __WEBPACK_EXTERNAL_MODULE_156__, __WEBPACK_EXTERNAL_MODULE_277__, __WEBPACK_EXTERNAL_MODULE_338__, __WEBPACK_EXTERNAL_MODULE_379__, __WEBPACK_EXTERNAL_MODULE_380__, __WEBPACK_EXTERNAL_MODULE_451__, __WEBPACK_EXTERNAL_MODULE_452__, __WEBPACK_EXTERNAL_MODULE_453__, __WEBPACK_EXTERNAL_MODULE_454__, __WEBPACK_EXTERNAL_MODULE_455__, __WEBPACK_EXTERNAL_MODULE_456__, __WEBPACK_EXTERNAL_MODULE_457__) { return /******/ (function(modules) { // webpackBootstrap
+define("forms.renderer", ["underscore","knockout","jquery","ojL10n!rendererMsg/nls/renderer","ojs/ojcore","ojs/ojknockout","ojs/ojcollapsible","ojs/ojprogressbar","ojs/ojmenu","ojs/ojtabs","ojs/ojaccordion","ojs/ojcheckboxset","ojs/ojradioset","ojs/ojselectcombobox","ojs/ojinputnumber","ojs/ojdatetimepicker","ojs/ojknockout-validation","ojidentity"], function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_7__, __WEBPACK_EXTERNAL_MODULE_120__, __WEBPACK_EXTERNAL_MODULE_158__, __WEBPACK_EXTERNAL_MODULE_277__, __WEBPACK_EXTERNAL_MODULE_338__, __WEBPACK_EXTERNAL_MODULE_379__, __WEBPACK_EXTERNAL_MODULE_380__, __WEBPACK_EXTERNAL_MODULE_451__, __WEBPACK_EXTERNAL_MODULE_452__, __WEBPACK_EXTERNAL_MODULE_453__, __WEBPACK_EXTERNAL_MODULE_454__, __WEBPACK_EXTERNAL_MODULE_455__, __WEBPACK_EXTERNAL_MODULE_456__, __WEBPACK_EXTERNAL_MODULE_457__) { return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -60,7 +60,7 @@ define("forms.renderer", ["underscore","knockout","jquery","ojL10n!rendererMsg/n
 /******/ 	__webpack_require__.p = "resources/js/node_modules/forms.renderer/dist/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 164);
+/******/ 	return __webpack_require__(__webpack_require__.s = 166);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -441,12 +441,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    UUID = __webpack_require__(17),
 		    EventActionsMap = __webpack_require__(86),
 		    ControlPropertiesMap = __webpack_require__(87),
-		    StyleControlMapper = __webpack_require__(144),
-		    TranslatablePropertiesMap = __webpack_require__(145),
+		    StyleControlMapper = __webpack_require__(146),
+		    TranslatablePropertiesMap = __webpack_require__(147),
 		    _ = __webpack_require__(0),
-		    EventReference = __webpack_require__(146),
-		    ColumnSpanType = __webpack_require__(147),
-		    ControlEventsMap = __webpack_require__(149),
+		    EventReference = __webpack_require__(148),
+		    ColumnSpanType = __webpack_require__(149),
+		    ControlEventsMap = __webpack_require__(151),
 		    Value = __webpack_require__(15),
 		    ValidationHelper = __webpack_require__(76),
 		    koToJSUtil = __webpack_require__(21),
@@ -750,7 +750,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = (function (require) {
 		'use strict';
 
-		var Enum = __webpack_require__(112),
+		var Enum = __webpack_require__(114),
 		    ControlTypeId = __webpack_require__(4);
 
 		return Enum.subClass({
@@ -959,7 +959,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				});
 				this.propertyParam = ko.observableArray(params);
 
-				var ControlResolver = __webpack_require__(119);
+				var ControlResolver = __webpack_require__(121);
 
 				this.type = ko.observable(ValueTypes[defaults.type]);
 				this.controlResolver = new ControlResolver(defaults.controlResolver, viewModel, scope);
@@ -1569,11 +1569,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    NameGenerator = __webpack_require__(57),
 		    _ = __webpack_require__(0),
 		    $ = __webpack_require__(2),
-		    ObjectTypeRef = __webpack_require__(115),
-		    DoNotResolveRefStrategy = __webpack_require__(116),
+		    ObjectTypeRef = __webpack_require__(117),
+		    DoNotResolveRefStrategy = __webpack_require__(118),
 		    ResolveRefStrategy = __webpack_require__(215),
 		    IdentityType = __webpack_require__(216),
-		    ObjectAttribute = __webpack_require__(114);
+		    ObjectAttribute = __webpack_require__(116);
 		//endregion
 
 		var addObjectType = function addObjectType(objectType) {
@@ -1903,7 +1903,7 @@ module.exports = __webpack_require__(30) ? function (object, key, value) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(22);
-var IE8_DOM_DEFINE = __webpack_require__(96);
+var IE8_DOM_DEFINE = __webpack_require__(98);
 var toPrimitive = __webpack_require__(68);
 var dP = Object.defineProperty;
 
@@ -2658,8 +2658,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		var UUID = __webpack_require__(17),
 		    _ = __webpack_require__(0),
-		    EventActionBlock = __webpack_require__(152),
-		    EventIfBlock = __webpack_require__(153),
+		    EventActionBlock = __webpack_require__(154),
+		    EventIfBlock = __webpack_require__(155),
 		    EventConnectorBlock = __webpack_require__(346),
 		    EventFilterBlock = __webpack_require__(347),
 		    EventErrorBlock = __webpack_require__(348),
@@ -3382,7 +3382,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    SetDataAction = __webpack_require__(245),
 		    PreventSubmitAction = __webpack_require__(246),
 		    TriggerOutcomeAction = __webpack_require__(247),
-		    HideColumnAction = __webpack_require__(121),
+		    HideColumnAction = __webpack_require__(123),
 		    ShowColumnAction = __webpack_require__(248),
 		    ChangePresentationAction = __webpack_require__(249).default,
 		    RemoveRowAction = __webpack_require__(250);
@@ -3821,7 +3821,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    OptionsFeed = __webpack_require__(89),
 		    OptionsType = __webpack_require__(41),
 		    EventsId = __webpack_require__(14),
-		    Filter = __webpack_require__(151),
+		    Filter = __webpack_require__(153),
 		    ko = __webpack_require__(1);
 
 		//endregion
@@ -3857,7 +3857,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 					var valuesArray = [];
 					var nonRepeatedOptionsArray = [];
 					allOptionsArray.forEach(function (element) {
-						if (!valuesArray.includes(element.value)) {
+						if (!(valuesArray.indexOf(element.value) > -1)) {
 							valuesArray.push(element.value);
 							nonRepeatedOptionsArray.push(element);
 						}
@@ -3989,7 +3989,7 @@ module.exports = function (it, S) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(99);
+var $keys = __webpack_require__(101);
 var enumBugKeys = __webpack_require__(72);
 
 module.exports = Object.keys || function keys(O) {
@@ -4610,7 +4610,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		var ko = __webpack_require__(1),
 		    $ = __webpack_require__(2),
-		    DynamicOptionType = __webpack_require__(131);
+		    DynamicOptionType = __webpack_require__(133);
 
 		//end region
 
@@ -4655,8 +4655,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		var ControlDecorator = __webpack_require__(10),
 		    ValidatorBuilder = __webpack_require__(290),
-		    ValidatorTypeId = __webpack_require__(136),
-		    ValidatorFactory = __webpack_require__(135),
+		    ValidatorTypeId = __webpack_require__(138),
+		    ValidatorFactory = __webpack_require__(137),
 		    ko = __webpack_require__(1),
 		    _ = __webpack_require__(0);
 
@@ -4922,7 +4922,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    ButtonControl = __webpack_require__(337),
 		    InputTextControl = __webpack_require__(34),
 		    TextAreaControl = __webpack_require__(339),
-		    SelectControl = __webpack_require__(150),
+		    SelectControl = __webpack_require__(152),
 		    ChecklistControl = __webpack_require__(351),
 		    CheckboxControl = __webpack_require__(352),
 		    RadioButtonControl = __webpack_require__(353),
@@ -4946,7 +4946,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    StringRepeatableSectionControl = __webpack_require__(374),
 		    TabControl = __webpack_require__(377),
 		    TabContainerControl = __webpack_require__(378),
-		    RepeatableSectionControl = __webpack_require__(157),
+		    RepeatableSectionControl = __webpack_require__(159),
 		    TableControl = __webpack_require__(381),
 		    FormsLogger = __webpack_require__(20),
 		    TableColumnControl = __webpack_require__(382),
@@ -5253,7 +5253,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(166), __webpack_require__(6), __webpack_require__(169)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_regenerator, _promise, _asyncToGenerator2) {
+/* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(93), __webpack_require__(6), __webpack_require__(94)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_regenerator, _promise, _asyncToGenerator2) {
 	'use strict';
 
 	var _regenerator2 = _interopRequireDefault(_regenerator);
@@ -5278,14 +5278,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    ko = __webpack_require__(1),
 		    _ = __webpack_require__(0),
 		    $ = __webpack_require__(2),
-		    Form = __webpack_require__(143),
+		    Form = __webpack_require__(145),
 		    EventsId = __webpack_require__(14),
 		    DefaultTranslationsHandler = __webpack_require__(82),
 		    RendererLoadPreProcessor = __webpack_require__(334),
 		    RendererForm = __webpack_require__(335),
 		    DependenciesExtension = __webpack_require__(390),
 		    FormsLogger = __webpack_require__(20),
-		    FormValidator = __webpack_require__(137),
+		    FormValidator = __webpack_require__(139),
 		    BusinessControlFactory = __webpack_require__(391),
 		    RendererId = __webpack_require__(78);
 		__webpack_require__(399);
@@ -5439,6 +5439,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 					// Set the bundles for the form
 					rendererModel.form.allBundles = allBundles;
 				}
+				self.form(null);
 				self.form(new RendererForm(rendererModel.form, self.rendererContext));
 
 				if (!self.staticForm) {
@@ -5616,8 +5617,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 /***/ }),
 /* 93 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(168);
 
 
 /***/ }),
@@ -5626,10 +5628,60 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 "use strict";
 
+
+exports.__esModule = true;
+
+var _promise = __webpack_require__(6);
+
+var _promise2 = _interopRequireDefault(_promise);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (fn) {
+  return function () {
+    var gen = fn.apply(this, arguments);
+    return new _promise2.default(function (resolve, reject) {
+      function step(key, arg) {
+        try {
+          var info = gen[key](arg);
+          var value = info.value;
+        } catch (error) {
+          reject(error);
+          return;
+        }
+
+        if (info.done) {
+          resolve(value);
+        } else {
+          return _promise2.default.resolve(value).then(function (value) {
+            step("next", value);
+          }, function (err) {
+            step("throw", err);
+          });
+        }
+      }
+
+      return step("next");
+    });
+  };
+};
+
+/***/ }),
+/* 95 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var $at = __webpack_require__(171)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(95)(String, 'String', function (iterated) {
+__webpack_require__(97)(String, 'String', function (iterated) {
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -5645,20 +5697,20 @@ __webpack_require__(95)(String, 'String', function (iterated) {
 
 
 /***/ }),
-/* 95 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var LIBRARY = __webpack_require__(51);
 var $export = __webpack_require__(36);
-var redefine = __webpack_require__(97);
+var redefine = __webpack_require__(99);
 var hide = __webpack_require__(27);
 var has = __webpack_require__(31);
 var Iterators = __webpack_require__(45);
 var $iterCreate = __webpack_require__(172);
 var setToStringTag = __webpack_require__(56);
-var getPrototypeOf = __webpack_require__(102);
+var getPrototypeOf = __webpack_require__(104);
 var ITERATOR = __webpack_require__(12)('iterator');
 var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 var FF_ITERATOR = '@@iterator';
@@ -5722,7 +5774,7 @@ module.exports = function (Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCE
 
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = !__webpack_require__(30) && !__webpack_require__(44)(function () {
@@ -5731,14 +5783,14 @@ module.exports = !__webpack_require__(30) && !__webpack_require__(44)(function (
 
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(27);
 
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
@@ -5758,7 +5810,7 @@ var createDict = function () {
   var gt = '>';
   var iframeDocument;
   iframe.style.display = 'none';
-  __webpack_require__(101).appendChild(iframe);
+  __webpack_require__(103).appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
   // createDict = iframe.contentWindow.Object;
   // html.removeChild(iframe);
@@ -5785,7 +5837,7 @@ module.exports = Object.create || function create(O, Properties) {
 
 
 /***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(31);
@@ -5808,7 +5860,7 @@ module.exports = function (object, names) {
 
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
@@ -5820,7 +5872,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var document = __webpack_require__(11).document;
@@ -5828,12 +5880,12 @@ module.exports = document && document.documentElement;
 
 
 /***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has = __webpack_require__(31);
-var toObject = __webpack_require__(103);
+var toObject = __webpack_require__(105);
 var IE_PROTO = __webpack_require__(70)('IE_PROTO');
 var ObjectProto = Object.prototype;
 
@@ -5847,7 +5899,7 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 
 /***/ }),
-/* 103 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
@@ -5858,7 +5910,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 104 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(177);
@@ -5883,7 +5935,7 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
@@ -5912,7 +5964,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
@@ -5927,12 +5979,12 @@ module.exports = function (O, D) {
 
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ctx = __webpack_require__(52);
 var invoke = __webpack_require__(186);
-var html = __webpack_require__(101);
+var html = __webpack_require__(103);
 var cel = __webpack_require__(67);
 var global = __webpack_require__(11);
 var process = global.process;
@@ -6017,7 +6069,7 @@ module.exports = {
 
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, exports) {
 
 module.exports = function (exec) {
@@ -6030,7 +6082,7 @@ module.exports = function (exec) {
 
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(22);
@@ -6048,7 +6100,7 @@ module.exports = function (C, x) {
 
 
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -6085,7 +6137,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -6115,7 +6167,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 112 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -6146,7 +6198,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 113 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -6163,7 +6215,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    _ = __webpack_require__(0),
 		    TypeDescription = __webpack_require__(13),
 		    NameGenerator = __webpack_require__(57),
-		    ObjectAttribute = __webpack_require__(114),
+		    ObjectAttribute = __webpack_require__(116),
 		    StringUtils = __webpack_require__(32);
 		//endregion
 
@@ -6222,7 +6274,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 114 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -6253,7 +6305,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 115 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -6285,7 +6337,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 116 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -6297,7 +6349,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var ParseStrategy = __webpack_require__(117);
+		var ParseStrategy = __webpack_require__(119);
 		//endregion
 
 		return ParseStrategy.subClass({}, {
@@ -6321,7 +6373,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 117 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -6357,13 +6409,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 118 */
+/* 120 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_118__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_120__;
 
 /***/ }),
-/* 119 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -6377,7 +6429,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		var Class = __webpack_require__(3),
 		    ko = __webpack_require__(1),
-		    ControlReferenceMap = __webpack_require__(120),
+		    ControlReferenceMap = __webpack_require__(122),
 		    _ = __webpack_require__(0);
 
 		//endregion
@@ -6518,7 +6570,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 120 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -6660,7 +6712,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 121 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -6723,7 +6775,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 122 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_promise) {
@@ -6825,7 +6877,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 123 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_promise) {
@@ -6942,7 +6994,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 124 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_promise) {
@@ -7040,18 +7092,18 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 125 */
+/* 127 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 126 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-var $keys = __webpack_require__(99);
+var $keys = __webpack_require__(101);
 var hiddenKeys = __webpack_require__(72).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
@@ -7060,7 +7112,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
 
 
 /***/ }),
-/* 127 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7097,7 +7149,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 128 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7110,7 +7162,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		//region dependencies
 
 		var OptionsProperties = __webpack_require__(83),
-		    ResponseMapping = __webpack_require__(129),
+		    ResponseMapping = __webpack_require__(131),
 		    ko = __webpack_require__(1),
 		    _ = __webpack_require__(0);
 
@@ -7145,7 +7197,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 129 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7195,7 +7247,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 130 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7208,7 +7260,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		//region dependencies
 
 		var ko = __webpack_require__(1),
-		    DynamicOptionType = __webpack_require__(131);
+		    DynamicOptionType = __webpack_require__(133);
 
 		//end region
 
@@ -7235,7 +7287,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 131 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7273,11 +7325,23 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 132 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(93), __webpack_require__(94), __webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_regenerator, _asyncToGenerator2, _promise) {
 	'use strict';
+
+	var _regenerator2 = _interopRequireDefault(_regenerator);
+
+	var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+
+	var _promise2 = _interopRequireDefault(_promise);
+
+	function _interopRequireDefault(obj) {
+		return obj && obj.__esModule ? obj : {
+			default: obj
+		};
+	}
 
 	!(__WEBPACK_AMD_DEFINE_RESULT__ = (function (require) {
 
@@ -7285,37 +7349,65 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var ConnectorResolver = __webpack_require__(133),
+		var ConnectorResolver = __webpack_require__(135),
 		    ko = __webpack_require__(1);
 
 		//endregion
 
+		function executeOnTrue(observable) {
+			return new _promise2.default(function (resolve) {
+				var value = ko.unwrap(observable);
+				if (value) {
+					resolve(value);
+				} else {
+					var sub = observable.subscribe(function (newValue) {
+						sub.dispose();
+						resolve(newValue);
+					});
+				}
+			});
+		}
+
 		return ConnectorResolver.subClass({}, {
 			init: function init(typeId, context, properties, controlId, filter) {
+				var _this = this;
+
 				this._super(typeId, context, properties, controlId, filter);
 
-				var self = this;
-				var loadedSubs;
+				executeOnTrue(context.viewModel.form).then(function () {
+					var _ref = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee(form) {
+						var skipDuringLoad, isStaticForm;
+						return _regenerator2.default.wrap(function _callee$(_context) {
+							while (1) {
+								switch (_context.prev = _context.next) {
+									case 0:
+										skipDuringLoad = ko.unwrap(ko.unwrap(_this.properties).skipDuringLoad);
+										isStaticForm = context.viewModel.staticForm;
 
-				function executeConnectorForm(form) {
-					self.loading(true);
-					if (form.loaded()) {
-						self.loadAndSetConnector(form);
-					} else if (!loadedSubs) {
-						loadedSubs = form.loaded.subscribe(function () {
-							loadedSubs.dispose();
-							self.loadAndSetConnector(form);
-						});
-					}
-				}
-				if (!ko.unwrap(ko.unwrap(this.properties).skipDuringLoad)) {
-					context.viewModel.form.subscribe(executeConnectorForm);
-					if (context.viewModel.form()) {
-						setTimeout(function () {
-							executeConnectorForm(context.viewModel.form());
-						});
-					}
-				}
+										if (!(!skipDuringLoad && !isStaticForm)) {
+											_context.next = 7;
+											break;
+										}
+
+										_this.loading(true);
+										_context.next = 6;
+										return executeOnTrue(form.loaded);
+
+									case 6:
+										_this.loadAndSetConnector(form);
+
+									case 7:
+									case 'end':
+										return _context.stop();
+								}
+							}
+						}, _callee, _this);
+					}));
+
+					return function (_x) {
+						return _ref.apply(this, arguments);
+					};
+				}());
 			}
 		});
 	}).call(exports, __webpack_require__, exports, module),
@@ -7324,7 +7416,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 133 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_promise) {
@@ -7352,7 +7444,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    FormsLogger = __webpack_require__(20),
 		    msg = __webpack_require__(5),
 		    $ = __webpack_require__(2),
-		    DynamicAutoFocus = __webpack_require__(130);
+		    DynamicAutoFocus = __webpack_require__(132);
 
 		//endregion
 
@@ -7466,7 +7558,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 134 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7563,7 +7655,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 135 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7619,7 +7711,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 136 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7642,7 +7734,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 137 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7705,7 +7797,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 138 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7737,7 +7829,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7838,7 +7930,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7915,7 +8007,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -7974,7 +8066,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -8024,7 +8116,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_promise) {
@@ -8119,7 +8211,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -8184,7 +8276,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 145 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -8235,7 +8327,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 146 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -8282,7 +8374,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 147 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -8294,7 +8386,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var MediaQueryType = __webpack_require__(148),
+		var MediaQueryType = __webpack_require__(150),
 		    $ = __webpack_require__(2);
 
 		//endregion
@@ -8340,7 +8432,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 148 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -8423,7 +8515,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 149 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -8487,7 +8579,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 150 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -8605,7 +8697,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 151 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_promise) {
@@ -8703,7 +8795,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 152 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_promise) {
@@ -8729,7 +8821,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    ko = __webpack_require__(1),
 		    _ = __webpack_require__(0),
 		    BlockTypes = __webpack_require__(25),
-		    ControlResolver = __webpack_require__(119),
+		    ControlResolver = __webpack_require__(121),
 		    Value = __webpack_require__(15),
 		    FormsLogger = __webpack_require__(20),
 		    ActionFactory = __webpack_require__(340);
@@ -8815,7 +8907,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_promise) {
@@ -8840,7 +8932,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		var ko = __webpack_require__(1);
 		var _ = __webpack_require__(0);
 		var BlockTypes = __webpack_require__(25);
-		var EventCondition = __webpack_require__(154);
+		var EventCondition = __webpack_require__(156);
 
 		//endregion
 
@@ -8975,7 +9067,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 154 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(62)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_typeof2) {
@@ -9064,7 +9156,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -9120,13 +9212,13 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE_156__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_158__;
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -9141,7 +9233,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		var ControlTypeId = __webpack_require__(4),
 		    ko = __webpack_require__(1),
 		    _ = __webpack_require__(0),
-		    RepeatableControl = __webpack_require__(158);
+		    RepeatableControl = __webpack_require__(160);
 
 		//endregion
 
@@ -9187,7 +9279,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(6)], __WEBPACK_AMD_DEFINE_RESULT__ = (function (_promise) {
@@ -9214,7 +9306,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    ControlContainer = __webpack_require__(26),
 		    RepeatableRowControl = __webpack_require__(375),
 		    EventsId = __webpack_require__(14),
-		    Filter = __webpack_require__(151),
+		    Filter = __webpack_require__(153),
 		    UUID = __webpack_require__(17),
 		    OptionsFeed = __webpack_require__(89),
 		    OptionsType = __webpack_require__(41),
@@ -9336,7 +9428,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				self.properties.readonly = InheritableProperty.createInheritableProperty(self, ko.pureComputed({
 					//When the form is readOnly, the whole table MUST be read only
 					read: function read() {
-						return ko.unwrap(self.readOnly) || ko.unwrap(self.properties._readonly);
+						return ko.unwrap(self.readOnly) || ko.unwrap(self.properties._readonly) || !!(self.disabled && ko.unwrap(self.disabled));
 					},
 					write: function write(newValue) {
 						return self.properties._readonly(newValue);
@@ -9421,7 +9513,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -9450,7 +9542,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 160 */
+/* 162 */
 /***/ (function(module, exports) {
 
 /*
@@ -9532,7 +9624,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -9904,19 +9996,19 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 162 */
+/* 164 */
 /***/ (function(module, exports) {
 
 module.exports = "<img alt=\"\" class=\"icon\" data-bind=\"attr:{src: icon.getDataValue(), alt: alt}, css: styleClass\"/>\n<img alt=\"\" class=\"icon-hover\" data-bind=\"attr:{src: icon.getDataHover(), alt: alt}, css: styleClass + '-hover'\"/>\n<img alt=\"\" class=\"icon-active\" data-bind=\"attr:{src: icon.getDataActive(), alt: alt}, css: styleClass + '-active'\"/>";
 
 /***/ }),
-/* 163 */
+/* 165 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"pcs-forms-row form-container\" id=\"form-renderer-container\" data-bind=\"subscribe:{afterRender: registerCustomEvents, beforeRemove: detachCustomListeners}, clean: rendererContext.getScope()\">\n    <div class=\"oj-sm-12 oj-md-12 pcs-forms-col\">\n        <form id=\"rForm\" class=\"form-horizontal\" role=\"form\">\n            <div class=\"canvas-container\">\n                <div class=\"canvas\" data-bind=\"with: form()\">\n                    <div id=\"creatorLoading\" class=\"spinnerContainer\" style=\"display: none\">\n                        <div id=\"spinner\" class=\"spinner\">\n                            <div id=\"bounce1\" class=\"spinner__bounce spinner-object spinner-object-1\"></div>\n                            <div id=\"bounce2\" class=\"spinner__bounce spinner-object spinner-object-2\"></div>\n                            <div id=\"bounce3\" class=\"spinner__bounce spinner-object spinner-object-3\"></div>\n                        </div>\n                    </div>\n                    <div class=\"canvas__header\"></div>\n                    <div class=\"canvas__content oj-panel js-renderer-container\"\n                         data-bind=\"style: {'border-color' : properties.borderColor ? properties.borderColor() : 'null',\n                                                                                         'border-width': properties.borderWidth ? properties.borderWidth() : 'null',\n                                                                                         'border-style' : properties.borderStyle? properties.borderStyle() : 'null',\n                                                                                         'background-color' : properties.backgroundColor? properties.backgroundColor() : 'null'}\">\n                        <!--  if: shouldRender -->\n                        <div data-bind=\"asyncTemplate:{name: 'rendererControl', foreach: controls(), afterLazyRenderAll: afterRenderingRowControls.bind($data), pageSize: 1, hideLoading: true}\"></div>\n                        <!-- / -->\n                    </div>\n                    <div class=\"canvas__footer\"></div>\n                </div>\n            </div>\n        </form>\n    </div>\n</div>";
 
 /***/ }),
-/* 164 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -9931,14 +10023,14 @@ module.exports = "<div class=\"pcs-forms-row form-container\" id=\"form-renderer
 
 		return {
 			init: /* istanbul ignore next */function init(publicPath) {
-				window.FORMS_RENDERER_VERSION = "1.7.0-next.68";
+				window.FORMS_RENDERER_VERSION = "1.7.0-next.74";
 				// if consumed in another place (like composer), the consumer needs to specify
 				// where the imgs (and any other resource that is loaded dynamically) will be
 				// it no public path is specified, the default will be used (defined in our
 				// front-end-config.js publicPath property.
 				if (publicPath) __webpack_require__.p = publicPath;
 				//Initialize Components
-				var RendererComponent = __webpack_require__(165);
+				var RendererComponent = __webpack_require__(167);
 
 				RendererComponent();
 			},
@@ -9958,7 +10050,7 @@ module.exports = "<div class=\"pcs-forms-row form-container\" id=\"form-renderer
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 165 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
@@ -9997,12 +10089,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				//cannot use just icon due to a bug in ko 3.4 - https://github.com/knockout/knockout/issues/1935
 				ko.components.register('actionable-icon', {
 					viewModel: IconComponent,
-					template: __webpack_require__(162)
+					template: __webpack_require__(164)
 				});
 
 				ko.components.register('form-renderer', {
 					viewModel: RendererViewModel,
-					template: __webpack_require__(163)
+					template: __webpack_require__(165)
 				});
 			}
 		};
@@ -10012,14 +10104,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
 /***/ }),
-/* 166 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(167);
-
-
-/***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -10044,7 +10129,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(168);
+module.exports = __webpack_require__(169);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -10060,7 +10145,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports) {
 
 /**
@@ -10793,56 +10878,12 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 169 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.__esModule = true;
-
-var _promise = __webpack_require__(6);
-
-var _promise2 = _interopRequireDefault(_promise);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (fn) {
-  return function () {
-    var gen = fn.apply(this, arguments);
-    return new _promise2.default(function (resolve, reject) {
-      function step(key, arg) {
-        try {
-          var info = gen[key](arg);
-          var value = info.value;
-        } catch (error) {
-          reject(error);
-          return;
-        }
-
-        if (info.done) {
-          resolve(value);
-        } else {
-          return _promise2.default.resolve(value).then(function (value) {
-            step("next", value);
-          }, function (err) {
-            step("throw", err);
-          });
-        }
-      }
-
-      return step("next");
-    });
-  };
-};
-
-/***/ }),
 /* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(93);
-__webpack_require__(94);
-__webpack_require__(104);
+__webpack_require__(95);
+__webpack_require__(96);
+__webpack_require__(106);
 __webpack_require__(180);
 __webpack_require__(191);
 __webpack_require__(192);
@@ -10878,7 +10919,7 @@ module.exports = function (TO_STRING) {
 
 "use strict";
 
-var create = __webpack_require__(98);
+var create = __webpack_require__(100);
 var descriptor = __webpack_require__(54);
 var setToStringTag = __webpack_require__(56);
 var IteratorPrototype = {};
@@ -10930,7 +10971,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = __webpack_require__(37);
-var toLength = __webpack_require__(100);
+var toLength = __webpack_require__(102);
 var toAbsoluteIndex = __webpack_require__(176);
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
@@ -10980,7 +11021,7 @@ var toIObject = __webpack_require__(37);
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(95)(Array, 'Array', function (iterated, kind) {
+module.exports = __webpack_require__(97)(Array, 'Array', function (iterated, kind) {
   this._t = toIObject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -11031,18 +11072,18 @@ module.exports = function (done, value) {
 var LIBRARY = __webpack_require__(51);
 var global = __webpack_require__(11);
 var ctx = __webpack_require__(52);
-var classof = __webpack_require__(105);
+var classof = __webpack_require__(107);
 var $export = __webpack_require__(36);
 var isObject = __webpack_require__(29);
 var aFunction = __webpack_require__(53);
 var anInstance = __webpack_require__(181);
 var forOf = __webpack_require__(182);
-var speciesConstructor = __webpack_require__(106);
-var task = __webpack_require__(107).set;
+var speciesConstructor = __webpack_require__(108);
+var task = __webpack_require__(109).set;
 var microtask = __webpack_require__(187)();
 var newPromiseCapabilityModule = __webpack_require__(73);
-var perform = __webpack_require__(108);
-var promiseResolve = __webpack_require__(109);
+var perform = __webpack_require__(110);
+var promiseResolve = __webpack_require__(111);
 var PROMISE = 'Promise';
 var TypeError = global.TypeError;
 var process = global.process;
@@ -11321,7 +11362,7 @@ var ctx = __webpack_require__(52);
 var call = __webpack_require__(183);
 var isArrayIter = __webpack_require__(184);
 var anObject = __webpack_require__(22);
-var toLength = __webpack_require__(100);
+var toLength = __webpack_require__(102);
 var getIterFn = __webpack_require__(185);
 var BREAK = {};
 var RETURN = {};
@@ -11380,7 +11421,7 @@ module.exports = function (it) {
 /* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var classof = __webpack_require__(105);
+var classof = __webpack_require__(107);
 var ITERATOR = __webpack_require__(12)('iterator');
 var Iterators = __webpack_require__(45);
 module.exports = __webpack_require__(18).getIteratorMethod = function (it) {
@@ -11417,7 +11458,7 @@ module.exports = function (fn, args, that) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(11);
-var macrotask = __webpack_require__(107).set;
+var macrotask = __webpack_require__(109).set;
 var Observer = global.MutationObserver || global.WebKitMutationObserver;
 var process = global.process;
 var Promise = global.Promise;
@@ -11558,8 +11599,8 @@ module.exports = function (exec, skipClosing) {
 var $export = __webpack_require__(36);
 var core = __webpack_require__(18);
 var global = __webpack_require__(11);
-var speciesConstructor = __webpack_require__(106);
-var promiseResolve = __webpack_require__(109);
+var speciesConstructor = __webpack_require__(108);
+var promiseResolve = __webpack_require__(111);
 
 $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
   var C = speciesConstructor(this, core.Promise || global.Promise);
@@ -11584,7 +11625,7 @@ $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
 // https://github.com/tc39/proposal-promise-try
 var $export = __webpack_require__(36);
 var newPromiseCapability = __webpack_require__(73);
-var perform = __webpack_require__(108);
+var perform = __webpack_require__(110);
 
 $export($export.S, 'Promise', { 'try': function (callbackfn) {
   var promiseCapability = newPromiseCapability.f(this);
@@ -11682,6 +11723,7 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
 			},
 			properties: function properties() {
 				var _readOnly = this.config().readOnly; // Similar to BuilderContext, readOnly parameter should come in config
+				var _disabled = this.config().disabled;
 				return _.extend({}, this._super(), {
 					config: this.config(),
 					msg: msg,
@@ -11696,6 +11738,9 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
 					}, this),
 					readOnly: function readOnly() {
 						return _readOnly;
+					},
+					disabled: function disabled() {
+						return _disabled;
 					}
 				});
 			}
@@ -11828,8 +11873,8 @@ module.exports = __webpack_require__(18).Object.getPrototypeOf;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 Object.getPrototypeOf(O)
-var toObject = __webpack_require__(103);
-var $getPrototypeOf = __webpack_require__(102);
+var toObject = __webpack_require__(105);
+var $getPrototypeOf = __webpack_require__(104);
 
 __webpack_require__(198)('getPrototypeOf', function () {
   return function getPrototypeOf(it) {
@@ -12112,7 +12157,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var InputControlDefinition = __webpack_require__(110),
+		var InputControlDefinition = __webpack_require__(112),
 		    RegisterCustomControls = __webpack_require__(204),
 		    ControlDefinition = __webpack_require__(74),
 		    ControlTypeId = __webpack_require__(4),
@@ -12220,7 +12265,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    oj = __webpack_require__(7),
 		    ko = __webpack_require__(1);
 		//endregion
-		__webpack_require__(118);
+		__webpack_require__(120);
 
 		oj.koStringTemplateEngine.install();
 		return ControlDefinition.subClass({}, {
@@ -12263,7 +12308,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		//region dependencies
 
 		var Class = __webpack_require__(3),
-		    StringType = __webpack_require__(111),
+		    StringType = __webpack_require__(113),
 		    NumberType = __webpack_require__(207),
 		    BooleanType = __webpack_require__(208),
 		    DateType = __webpack_require__(209),
@@ -12271,8 +12316,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    DateTimeType = __webpack_require__(211),
 		    ArrayType = __webpack_require__(212),
 		    EnumType = __webpack_require__(213),
-		    ObjectType = __webpack_require__(113),
-		    ObjectTypeRef = __webpack_require__(115),
+		    ObjectType = __webpack_require__(115),
+		    ObjectTypeRef = __webpack_require__(117),
 		    UnknownType = __webpack_require__(214);
 		//endregion
 
@@ -12667,8 +12712,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var ParseStrategy = __webpack_require__(117),
-		    DoNotResolveRefStrategy = __webpack_require__(116);
+		var ParseStrategy = __webpack_require__(119),
+		    DoNotResolveRefStrategy = __webpack_require__(118);
 		//endregion
 
 		var DEFAULT_DEPTH = 2;
@@ -12719,8 +12764,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		'use strict';
 
-		var StringType = __webpack_require__(111),
-		    ObjectType = __webpack_require__(113);
+		var StringType = __webpack_require__(113),
+		    ObjectType = __webpack_require__(115);
 
 		var identityObject = new ObjectType('IdentityBrowser', 'IdentityBrowser', []);
 		var identityProperties = {
@@ -14480,7 +14525,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var HideColumnEventAction = __webpack_require__(121);
+		var HideColumnEventAction = __webpack_require__(123);
 
 		//endregion
 
@@ -14642,11 +14687,14 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 			if (!ko.isObservable(readOnly)) {
 				readOnly = ko.observable(readOnly);
 			}
-			setTimeout(function () {
+			var setReadOnlyFx = function setReadOnlyFx() {
 				if (editor.editable()) {
 					editor.setReadOnly(readOnly());
+				} else {
+					setTimeout(setReadOnlyFx);
 				}
-			});
+			};
+			setTimeout(setReadOnlyFx);
 
 			editor.subscriptions.push(readOnly.subscribe(function (newValue) {
 				editor.setReadOnly(newValue);
@@ -14706,7 +14754,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var InputControlDefinition = __webpack_require__(110),
+		var InputControlDefinition = __webpack_require__(112),
 		    ko = __webpack_require__(1),
 		    TypeCatalog = __webpack_require__(24);
 		//endregion
@@ -14787,11 +14835,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		var Class = __webpack_require__(3),
 		    ko = __webpack_require__(1),
-		    DefaultFormHandler = __webpack_require__(122),
-		    DefaultCssHandler = __webpack_require__(123),
-		    DefaultTypeHandler = __webpack_require__(124),
+		    DefaultFormHandler = __webpack_require__(124),
+		    DefaultCssHandler = __webpack_require__(125),
+		    DefaultTypeHandler = __webpack_require__(126),
 		    DefaultRestHandler = __webpack_require__(256),
-		    DefaultOutcomeHandler = __webpack_require__(127),
+		    DefaultOutcomeHandler = __webpack_require__(129),
 		    DependencyType = __webpack_require__(269),
 		    TypeCatalog = __webpack_require__(24),
 		    DefaultConnectorHandler = __webpack_require__(270),
@@ -14807,6 +14855,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				this.selectedMedia = config.selectedMedia;
 				this.convertJSON = config.convertJSON;
 				this.readOnly = ko.observable(unwrappedReadOnly);
+				this.disabled = ko.observable(ko.utils.unwrapObservable(config.disabled));
 				this.domIdPrefix = config.domIdPrefix || '';
 			},
 
@@ -15080,8 +15129,8 @@ module.exports = { "default": __webpack_require__(258), __esModule: true };
 /* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(94);
-__webpack_require__(104);
+__webpack_require__(96);
+__webpack_require__(106);
 module.exports = __webpack_require__(79).f('iterator');
 
 
@@ -15096,7 +15145,7 @@ module.exports = { "default": __webpack_require__(260), __esModule: true };
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(261);
-__webpack_require__(93);
+__webpack_require__(95);
 __webpack_require__(267);
 __webpack_require__(268);
 module.exports = __webpack_require__(18).Symbol;
@@ -15113,7 +15162,7 @@ var global = __webpack_require__(11);
 var has = __webpack_require__(31);
 var DESCRIPTORS = __webpack_require__(30);
 var $export = __webpack_require__(36);
-var redefine = __webpack_require__(97);
+var redefine = __webpack_require__(99);
 var META = __webpack_require__(262).KEY;
 var $fails = __webpack_require__(44);
 var shared = __webpack_require__(71);
@@ -15129,7 +15178,7 @@ var isObject = __webpack_require__(29);
 var toIObject = __webpack_require__(37);
 var toPrimitive = __webpack_require__(68);
 var createDesc = __webpack_require__(54);
-var _create = __webpack_require__(98);
+var _create = __webpack_require__(100);
 var gOPNExt = __webpack_require__(265);
 var $GOPD = __webpack_require__(266);
 var $DP = __webpack_require__(28);
@@ -15256,9 +15305,9 @@ if (!USE_NATIVE) {
 
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
-  __webpack_require__(126).f = gOPNExt.f = $getOwnPropertyNames;
+  __webpack_require__(128).f = gOPNExt.f = $getOwnPropertyNames;
   __webpack_require__(81).f = $propertyIsEnumerable;
-  __webpack_require__(125).f = $getOwnPropertySymbols;
+  __webpack_require__(127).f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !__webpack_require__(51)) {
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
@@ -15408,7 +15457,7 @@ var meta = module.exports = {
 
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(69);
-var gOPS = __webpack_require__(125);
+var gOPS = __webpack_require__(127);
 var pIE = __webpack_require__(81);
 module.exports = function (it) {
   var result = getKeys(it);
@@ -15440,7 +15489,7 @@ module.exports = Array.isArray || function isArray(arg) {
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 var toIObject = __webpack_require__(37);
-var gOPN = __webpack_require__(126).f;
+var gOPN = __webpack_require__(128).f;
 var toString = {}.toString;
 
 var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
@@ -15468,7 +15517,7 @@ var createDesc = __webpack_require__(54);
 var toIObject = __webpack_require__(37);
 var toPrimitive = __webpack_require__(68);
 var has = __webpack_require__(31);
-var IE8_DOM_DEFINE = __webpack_require__(96);
+var IE8_DOM_DEFINE = __webpack_require__(98);
 var gOPD = Object.getOwnPropertyDescriptor;
 
 exports.f = __webpack_require__(30) ? gOPD : function getOwnPropertyDescriptor(O, P) {
@@ -15508,7 +15557,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var Enum = __webpack_require__(112),
+		var Enum = __webpack_require__(114),
 		    _ = __webpack_require__(0);
 		//endregion
 
@@ -15636,8 +15685,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		var Class = __webpack_require__(3),
 		    DynamicOptionsResolver = __webpack_require__(272),
 		    ConnectorOptionsResolver = __webpack_require__(278),
-		    ConnectorResolver = __webpack_require__(133),
-		    ListConnectorResolver = __webpack_require__(132),
+		    ConnectorResolver = __webpack_require__(135),
+		    ListConnectorResolver = __webpack_require__(134),
 		    RestOptionsResolver = __webpack_require__(279),
 		    StaticOptionsResolver = __webpack_require__(281);
 
@@ -15688,7 +15737,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		var OptionsResolver = __webpack_require__(63),
 		    OjSelectItem = __webpack_require__(42),
-		    DynamicAutoFocus = __webpack_require__(130),
+		    DynamicAutoFocus = __webpack_require__(132),
 		    DotExpressionResolver = __webpack_require__(23),
 		    DynamicDefaultValue = __webpack_require__(84),
 		    $ = __webpack_require__(2),
@@ -15759,7 +15808,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    StaticProperties = __webpack_require__(274),
 		    RestProperties = __webpack_require__(275),
 		    ConnectorProperties = __webpack_require__(276),
-		    DynamicProperties = __webpack_require__(128);
+		    DynamicProperties = __webpack_require__(130);
 
 		//endregion
 
@@ -15897,7 +15946,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var DynamicProperties = __webpack_require__(128),
+		var DynamicProperties = __webpack_require__(130),
 		    _ = __webpack_require__(0),
 		    UUID = __webpack_require__(17),
 		    ko = __webpack_require__(1);
@@ -16013,7 +16062,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_277__;
 
 		//region dependencies
 
-		var ListConnectorResolver = __webpack_require__(132),
+		var ListConnectorResolver = __webpack_require__(134),
 		    DotExpressionResolver = __webpack_require__(23),
 		    OjSelectItem = __webpack_require__(42),
 		    _ = __webpack_require__(0),
@@ -16197,7 +16246,10 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				    values = properties.optionsValues.split('\n'),
 				    options = [];
 				for (var i = 0; i < names.length; i++) {
-					options.push(OjSelectItem.create(values[i], names[i]));
+					//Don't add empty values. They don't work correctly in oj, and they falsly report the 'Options' property as not empty
+					if (!_.isEmpty(values[i])) {
+						options.push(OjSelectItem.create(values[i], names[i]));
+					}
 				}
 				return options;
 			},
@@ -16471,7 +16523,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 			_getObservable: function _getObservable(control, creator, defaultValue) {
 				var bindingValue = this.getBindingControlFor(control);
 
-				if ((typeof bindingValue === 'undefined' ? 'undefined' : (0, _typeof3.default)(bindingValue)) === 'object') {
+				if ((0, _typeof3.default)(ko.unwrap(bindingValue)) === 'object') {
+					bindingValue = ko.unwrap(bindingValue);
 					var binding = this.getFullBindingContextFor(control);
 					if (this._hasEmptyBinding(binding)) {
 						//Creator can be either observable or observableArray
@@ -16653,7 +16706,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		//region dependencies
 
 		var DecoratorsCatalog = __webpack_require__(289),
-		    JetValidationDecorator = __webpack_require__(134),
+		    JetValidationDecorator = __webpack_require__(136),
 		    RepeatableValidationDecorator = __webpack_require__(302),
 		    FormReferenceValidationDecorator = __webpack_require__(303),
 		    LazyRenderingDecorator = __webpack_require__(304),
@@ -16670,7 +16723,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    RepeatableRowValueDecorator = __webpack_require__(314),
 		    FormReferenceValueDecorator = __webpack_require__(316),
 		    ValueDecorator = __webpack_require__(19),
-		    SelectValueDecorator = __webpack_require__(141),
+		    SelectValueDecorator = __webpack_require__(143),
 		    RadioButtonValueDecorator = __webpack_require__(317),
 		    LinkValueDecorator = __webpack_require__(318),
 		    DateValueDecorator = __webpack_require__(319),
@@ -16680,7 +16733,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    BuildFormReferenceDecorator = __webpack_require__(323),
 		    ReferenceLazyRenderingDecorator = __webpack_require__(324),
 		    ReferencePresentationDecorator = __webpack_require__(325).default,
-		    TranslationsDecorator = __webpack_require__(142),
+		    TranslationsDecorator = __webpack_require__(144),
 		    TranslationsLoVDecorator = __webpack_require__(326),
 		    ComputedValueDecorator = __webpack_require__(327),
 		    GetOJComponentDecorator = __webpack_require__(328),
@@ -16932,9 +16985,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    koToJSUtil = __webpack_require__(21),
 		    _ = __webpack_require__(0),
 		    StringUtils = __webpack_require__(32),
-		    ValidatorFactory = __webpack_require__(135),
+		    ValidatorFactory = __webpack_require__(137),
 		    TypeValidatorFactory = __webpack_require__(296),
-		    ValidatorTypeId = __webpack_require__(136);
+		    ValidatorTypeId = __webpack_require__(138);
 
 		//endregion
 
@@ -17393,7 +17446,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		var ValidationDecorator = __webpack_require__(85),
 		    _ = __webpack_require__(0),
 		    oj = __webpack_require__(7),
-		    FormValidator = __webpack_require__(137),
+		    FormValidator = __webpack_require__(139),
 		    msg = __webpack_require__(5),
 		    TreeUtil = __webpack_require__(40);
 
@@ -17464,7 +17517,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		//region dependencies
 
 		var ValidationDecorator = __webpack_require__(85),
-		    SilentLoader = __webpack_require__(138),
+		    SilentLoader = __webpack_require__(140),
 		    _ = __webpack_require__(0),
 		    $ = __webpack_require__(2);
 
@@ -17737,7 +17790,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var JetValidationDecorator = __webpack_require__(134);
+		var JetValidationDecorator = __webpack_require__(136);
 
 		//endregion
 
@@ -17972,9 +18025,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		//region dependencies
 
 		var ControlDecorator = __webpack_require__(10),
-		    Payload = __webpack_require__(139),
+		    Payload = __webpack_require__(141),
 		    ko = __webpack_require__(1),
-		    PayloadUtil = __webpack_require__(140),
+		    PayloadUtil = __webpack_require__(142),
 		    _ = __webpack_require__(0);
 
 		//endregion
@@ -18640,7 +18693,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		//region dependencies
 
 		var ControlDecorator = __webpack_require__(10),
-		    SilentLoader = __webpack_require__(138),
+		    SilentLoader = __webpack_require__(140),
 		    ko = __webpack_require__(1),
 		    _ = __webpack_require__(0);
 
@@ -18738,7 +18791,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var TranslationsDecorator = __webpack_require__(142);
+		var TranslationsDecorator = __webpack_require__(144);
 
 		//endregion
 
@@ -18884,7 +18937,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var SelectValueDecorator = __webpack_require__(141),
+		var SelectValueDecorator = __webpack_require__(143),
 		    _ = __webpack_require__(0);
 
 		//endregion
@@ -18977,7 +19030,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		var Class = __webpack_require__(3),
 		    ko = __webpack_require__(1),
-		    ResponseMapping = __webpack_require__(129);
+		    ResponseMapping = __webpack_require__(131);
 
 		//endregion
 
@@ -19016,11 +19069,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    UUID = __webpack_require__(17),
 		    _ = __webpack_require__(0),
 		    ko = __webpack_require__(1),
-		    DefaultFormHandler = __webpack_require__(122),
-		    DefaultCssHandler = __webpack_require__(123),
-		    DefaultOutcomeHandler = __webpack_require__(127),
+		    DefaultFormHandler = __webpack_require__(124),
+		    DefaultCssHandler = __webpack_require__(125),
+		    DefaultOutcomeHandler = __webpack_require__(129),
 		    DefaultTranslationsHandler = __webpack_require__(82),
-		    DefaultTypeHandler = __webpack_require__(124);
+		    DefaultTypeHandler = __webpack_require__(126);
 
 		//endregion
 
@@ -19079,9 +19132,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    LoadingSpinner = __webpack_require__(91),
 		    EventsTranslator = __webpack_require__(386),
 		    ko = __webpack_require__(1),
-		    Payload = __webpack_require__(139),
+		    Payload = __webpack_require__(141),
 		    FormExtensions = __webpack_require__(387),
-		    PayloadUtil = __webpack_require__(140);
+		    PayloadUtil = __webpack_require__(142);
 
 		//endregion
 
@@ -19214,17 +19267,17 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		//region dependencies
 
 		var ko = __webpack_require__(1),
-		    Form = __webpack_require__(143),
+		    Form = __webpack_require__(145),
 		    ControlTypeId = __webpack_require__(4),
 		    _ = __webpack_require__(0),
 		    EventActionsMap = __webpack_require__(86),
 		    ControlPropertiesMap = __webpack_require__(87),
 		    ControlFactory = __webpack_require__(88),
 		    BlockFactory = __webpack_require__(43),
-		    EventReference = __webpack_require__(146),
+		    EventReference = __webpack_require__(148),
 		    TreeUtil = __webpack_require__(40),
 		    $ = __webpack_require__(2),
-		    ControlEventsMap = __webpack_require__(149),
+		    ControlEventsMap = __webpack_require__(151),
 		    UUID = __webpack_require__(17);
 
 		//endregion
@@ -20163,7 +20216,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var EventActionBlock = __webpack_require__(152),
+		var EventActionBlock = __webpack_require__(154),
 		    ko = __webpack_require__(1),
 		    BlockTypes = __webpack_require__(25),
 		    _ = __webpack_require__(0);
@@ -20218,7 +20271,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		var EventBlock = __webpack_require__(50),
 		    _ = __webpack_require__(0),
 		    BlockTypes = __webpack_require__(25),
-		    EventCondition = __webpack_require__(154);
+		    EventCondition = __webpack_require__(156);
 
 		//endregion
 
@@ -20278,7 +20331,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var EventIfBlock = __webpack_require__(153);
+		var EventIfBlock = __webpack_require__(155);
 		var BlockTypes = __webpack_require__(25);
 
 		//endregion
@@ -20807,7 +20860,8 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				this.properties.labelVal(value);
 			},
 			resolvePreviewId: function resolvePreviewId(controlId) {
-				var control = this.context.viewModel.form().findControlAndParent(controlId);
+				var form = this.context.viewModel.form();
+				var control = form ? form.findControlAndParent(controlId) : null;
 				var previewId = ''; // if user did not select anything i.e. control == null
 				if (control) {
 					switch (control.node.type) {
@@ -21071,7 +21125,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		var Control = __webpack_require__(9),
 		    ControlTypeId = __webpack_require__(4),
-		    HeadingType = __webpack_require__(155),
+		    HeadingType = __webpack_require__(157),
 		    ko = __webpack_require__(1),
 		    _ = __webpack_require__(0);
 
@@ -21457,10 +21511,11 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 				};
 
 				var help = this.properties.help;
+				var disabled = this.properties.disabled() || this.disabled();
 				//used in ojComponent. see identityControl.tmpl.html & rendererIdentityControl.tmpl.html
 				this.ojIdentityObj = {
 					component: 'ojIdentity',
-					disabled: this.readOnly() ? this.readOnly : this.properties.disabled,
+					disabled: this.readOnly() ? this.readOnly : disabled,
 					title: this.properties.hint,
 					help: ko.pureComputed(function () {
 						var helpMsg = ko.unwrap(help);
@@ -21698,7 +21753,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		var Class = __webpack_require__(3),
 		    $ = __webpack_require__(2),
 		    RendererId = __webpack_require__(78),
-		    ColumnSpanType = __webpack_require__(147);
+		    ColumnSpanType = __webpack_require__(149);
 
 		//endregion
 
@@ -21926,12 +21981,12 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		var ControlTypeId = __webpack_require__(4),
 		    ko = __webpack_require__(1),
 		    $ = __webpack_require__(2),
-		    HeadingType = __webpack_require__(155),
+		    HeadingType = __webpack_require__(157),
 		    koToJSUtil = __webpack_require__(21),
 		    _ = __webpack_require__(0),
 		    ControlContainer = __webpack_require__(26),
 		    Control = __webpack_require__(9);
-		__webpack_require__(156);
+		__webpack_require__(158);
 
 		//endregion
 
@@ -22026,7 +22081,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var RepeatableSectionControl = __webpack_require__(157);
+		var RepeatableSectionControl = __webpack_require__(159);
 
 		//endregion
 
@@ -22069,9 +22124,9 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    ControlContainer = __webpack_require__(26),
 		    ControlTypeIds = __webpack_require__(4),
 		    EventActionsMap = __webpack_require__(86),
-		    TranslatablePropertiesMap = __webpack_require__(145),
+		    TranslatablePropertiesMap = __webpack_require__(147),
 		    ControlPropertiesMap = __webpack_require__(87),
-		    StyleControlMapper = __webpack_require__(144),
+		    StyleControlMapper = __webpack_require__(146),
 		    ko = __webpack_require__(1);
 
 		//endregion
@@ -22324,7 +22379,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		    ControlContainer = __webpack_require__(26),
 		    Control = __webpack_require__(9);
 		__webpack_require__(379);
-		__webpack_require__(156);
+		__webpack_require__(158);
 		__webpack_require__(380);
 
 		//endregion
@@ -22426,7 +22481,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		//region dependencies
 
 		var ControlTypeId = __webpack_require__(4),
-		    RepeatableControl = __webpack_require__(158),
+		    RepeatableControl = __webpack_require__(160),
 		    ko = __webpack_require__(1),
 		    msg = __webpack_require__(5),
 		    _ = __webpack_require__(0);
@@ -22763,7 +22818,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var SelectControl = __webpack_require__(150),
+		var SelectControl = __webpack_require__(152),
 		    TypeCatalog = __webpack_require__(24),
 		    ControlTypeId = __webpack_require__(4);
 
@@ -23151,7 +23206,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		var EventsId = __webpack_require__(14),
 		    _ = __webpack_require__(0),
 		    FormsLogger = __webpack_require__(20),
-		    ControlReferenceMap = __webpack_require__(120),
+		    ControlReferenceMap = __webpack_require__(122),
 		    ko = __webpack_require__(1),
 		    Class = __webpack_require__(3);
 
@@ -23464,7 +23519,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var FormatControlMap = __webpack_require__(159),
+		var FormatControlMap = __webpack_require__(161),
 		    BusinessControl = __webpack_require__(35);
 
 		//endregion
@@ -23527,7 +23582,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var FormatControlMap = __webpack_require__(159),
+		var FormatControlMap = __webpack_require__(161),
 		    BusinessControl = __webpack_require__(35);
 
 		//endregion
@@ -23811,7 +23866,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) exports.locals = content.locals;
 exports.use = exports.ref = function() {
 	if(!(refs++)) {
-		dispose = __webpack_require__(161)(content, {"hmr":true});
+		dispose = __webpack_require__(163)(content, {"hmr":true});
 	}
 	return exports;
 };
@@ -23845,7 +23900,7 @@ if(false) {
 /* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(160)(false);
+exports = module.exports = __webpack_require__(162)(false);
 // imports
 
 
@@ -23967,7 +24022,7 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) exports.locals = content.locals;
 exports.use = exports.ref = function() {
 	if(!(refs++)) {
-		dispose = __webpack_require__(161)(content, {"hmr":true});
+		dispose = __webpack_require__(163)(content, {"hmr":true});
 	}
 	return exports;
 };
@@ -24001,7 +24056,7 @@ if(false) {
 /* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(160)(false);
+exports = module.exports = __webpack_require__(162)(false);
 // imports
 
 
@@ -24026,7 +24081,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 		var ko = __webpack_require__(1),
 		    oj = __webpack_require__(7),
 		    templates = {
-			iconTemplate: __webpack_require__(162),
+			iconTemplate: __webpack_require__(164),
 			rendererControl: __webpack_require__(408),
 			rendererMoneyControl: __webpack_require__(409),
 			rendererButtonControl: __webpack_require__(410),
@@ -24058,7 +24113,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 			rendererFormReferenceControl: __webpack_require__(436),
 			rendererVideoControl: __webpack_require__(437),
 			rendererIdentityControl: __webpack_require__(438),
-			rendererTemplate: __webpack_require__(163),
+			rendererTemplate: __webpack_require__(165),
 			rendererPanelControl: __webpack_require__(439),
 			rendererSectionControl: __webpack_require__(440),
 			rendererTableControl: __webpack_require__(441),
@@ -24073,7 +24128,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 			rendererTabContainerControl: __webpack_require__(450)
 		};
 
-		__webpack_require__(118);
+		__webpack_require__(120);
 		__webpack_require__(451);
 		__webpack_require__(452);
 		__webpack_require__(453);
@@ -24109,43 +24164,43 @@ module.exports = "<div class=\"pcs-forms-row row-control\" data-bind=\"asyncTemp
 /* 409 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<div data-bind=\"template:{afterRender: $parent.afterRenderMoney}\">\n    <label data-bind=\"attr: {for : $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n    <input data-bind=\"css: {'hide-up-down-arrow': !showUpDownArrow()}, attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autofocus: autoFocus() ? 'autofocus' : null, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle},\n                        ojComponent: {\n                                        component: 'ojInputNumber',\n                                        title: hint,\n                                        validators: $parent.validators,\n                                        readOnly: $parent.readOnly() || readonly(),\n                                        value: $parent.value,\n                                        rawValue: $parent.rawValue,\n                                        max: maxValue,\n                                        min: minValue,\n                                        step: step,\n                                        required: required,\n                                        disabled: $parent.readOnly() ? !$parent.readOnly() : disabled(),\n                                        help: $parent.helpDefinition(help),\n                                        converter: converterOptions()\n                                      }, handleEvents: $parent\"/>\n</div>\n<!-- /ko -->";
+module.exports = "<!-- ko with: properties -->\n<div data-bind=\"template:{afterRender: $parent.afterRenderMoney}\">\n    <label data-bind=\"attr: {for : $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n    <input data-bind=\"css: {'hide-up-down-arrow': !showUpDownArrow()}, attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autofocus: autoFocus() ? 'autofocus' : null, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle},\n                        ojComponent: {\n                                        component: 'ojInputNumber',\n                                        title: hint,\n                                        validators: $parent.validators,\n                                        readOnly: $parent.readOnly() || readonly(),\n                                        value: $parent.value,\n                                        rawValue: $parent.rawValue,\n                                        max: maxValue,\n                                        min: minValue,\n                                        step: step,\n                                        required: required,\n                                        disabled: $parent.readOnly() ? !$parent.readOnly() : disabled() || $parent.disabled(),\n                                        help: $parent.helpDefinition(help),\n                                        converter: converterOptions()\n                                      }, handleEvents: $parent\"/>\n</div>\n<!-- /ko -->";
 
 /***/ }),
 /* 410 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<div>\n    <button type=\"button\" data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autofocus: autoFocus() ? 'autofocus' : null, style: parsedStyle},\n                                    ojComponent: {component: 'ojButton', label: label, disabled: $parent.readOnly() ||disabled() ||readonly()}, handleEvents: $parent\" class=\"button-control\">\n    </button>\n</div>\n<!-- /ko -->";
+module.exports = "<!-- ko with: properties -->\n<div>\n    <button type=\"button\" data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autofocus: autoFocus() ? 'autofocus' : null, style: parsedStyle},\n                                    ojComponent: {component: 'ojButton', label: label, disabled: $parent.readOnly() ||disabled() ||readonly() || $parent.disabled()}, handleEvents: $parent\" class=\"button-control\">\n    </button>\n</div>\n<!-- /ko -->";
 
 /***/ }),
 /* 411 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<label data-bind =\"attr: {for: $parent.domIdPrefix + $parent.id, id: $parent.id + '_mainLabel'}, text: label(), style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n<div data-bind = \"attr: {id: $parent.domIdPrefix + $parent.id, style: parsedStyle}, ojComponent: {\n    component: 'ojCheckboxset',\n    validators: $parent.validators,\n\tinvalidComponentTracker: $parent.tracker,\n\tdisabled: $parent.readOnly() || disabled() ||readonly(),\n\tvalue: $parent.value,\n\trawValue: $parent.rawValue,\n\thelp: $parent.helpDefinition(help),\n    required: required}, handleEvents: $parent,\n    refresh: computedOptions\">\n\t<!-- ko foreach: computedOptions -->\n\t    <span class =\"oj-choice-row\" data-bind=\"attr: {id: $parents[1].id + '_row' + $index()}, css: {'oj-choice-row-inline': $parent.inline() === true}\">\n\t      <input data-bind=\"value: value, attr:{id: $parents[1].id + '_choice' +  $index(), autofocus: ($parent.autoFocus() && $parent.autoFocus()[0] === value) ? 'autofocus' : null}\"  type =\"checkbox\">\n\t      <label data-bind=\"for: $parents[1].id + '_choice' + $index(), text: label, style: {'fontSize': $parent.formattedStyle().fontSize}\"></label>\n\t    </span>\n\t<!-- /ko -->\n</div>\n<!-- /ko -->\n";
+module.exports = "<!-- ko with: properties -->\n<label data-bind =\"attr: {for: $parent.domIdPrefix + $parent.id, id: $parent.id + '_mainLabel'}, text: label(), style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n<div data-bind = \"attr: {id: $parent.domIdPrefix + $parent.id, style: parsedStyle}, ojComponent: {\n    component: 'ojCheckboxset',\n    validators: $parent.validators,\n\tinvalidComponentTracker: $parent.tracker,\n\tdisabled: $parent.readOnly() || disabled() ||readonly() || $parent.disabled(),\n\tvalue: $parent.value,\n\trawValue: $parent.rawValue,\n\thelp: $parent.helpDefinition(help),\n    required: required}, handleEvents: $parent,\n    refresh: computedOptions\">\n\t<!-- ko foreach: computedOptions -->\n\t    <span class =\"oj-choice-row\" data-bind=\"attr: {id: $parents[1].id + '_row' + $index()}, css: {'oj-choice-row-inline': $parent.inline() === true}\">\n\t      <input data-bind=\"value: value, attr:{id: $parents[1].id + '_choice' +  $index(), autofocus: ($parent.autoFocus() && $parent.autoFocus()[0] === value) ? 'autofocus' : null}\"  type =\"checkbox\">\n\t      <label data-bind=\"for: $parents[1].id + '_choice' + $index(), text: label, style: {'fontSize': $parent.formattedStyle().fontSize}\"></label>\n\t    </span>\n\t<!-- /ko -->\n</div>\n<!-- /ko -->\n";
 
 /***/ }),
 /* 412 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<div data-bind = \"attr: {id: $parent.domIdPrefix + $parent.id, style: parsedStyle}, ojComponent: {\n    component: 'ojCheckboxset',\n    validators: $parent.validators,\n\tinvalidComponentTracker: $parent.tracker,\n\tdisabled: $parent.readOnly() || disabled() ||readonly(),\n\tvalue: $parent.checkboxValue,\n\trawValue: $parent.rawValue,\n\thelp: $parent.helpDefinition(help),\n    required: required}, handleEvents: $parent\">\n\t<span class =\"oj-choice-item\" data-bind=\"attr: {id: $parent.id + '_check'}\">\n\t\t<input data-bind=\"value: 'true', attr:{id: $parent.id + '_checked'}\"  type =\"checkbox\">\n\t\t<label data-bind =\"attr: {for: $parent.domIdPrefix + $parent.id, id: $parent.id + '_mainLabel'}, text: label(), style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n\t</span>\n</div>\n<!-- /ko -->";
+module.exports = "<!-- ko with: properties -->\n<div data-bind = \"attr: {id: $parent.domIdPrefix + $parent.id, style: parsedStyle}, ojComponent: {\n    component: 'ojCheckboxset',\n    validators: $parent.validators,\n\tinvalidComponentTracker: $parent.tracker,\n\tdisabled: $parent.readOnly() || disabled() ||readonly() || $parent.disabled(),\n\tvalue: $parent.checkboxValue,\n\trawValue: $parent.rawValue,\n\thelp: $parent.helpDefinition(help),\n    required: required}, handleEvents: $parent\">\n\t<span class =\"oj-choice-item\" data-bind=\"attr: {id: $parent.id + '_check'}\">\n\t\t<input data-bind=\"value: 'true', attr:{id: $parent.id + '_checked'}\"  type =\"checkbox\">\n\t\t<label data-bind =\"attr: {for: $parent.domIdPrefix + $parent.id, id: $parent.id + '_mainLabel'}, text: label(), style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n\t</span>\n</div>\n<!-- /ko -->";
 
 /***/ }),
 /* 413 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<div data-bind=\"template:{afterRender: $parent.afterRenderDate}\">\n    <label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n    <input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n                        ojComponent: {component: 'ojInputDate',\n                            validators: $parent.validators,\n                            disabled: disabled,\n                            placeholder: placeHolder,\n                            readOnly: $parent.readOnly() || readonly(),\n                            required: required,\n                            help: $parent.helpDefinition(help),\n                            value: $parent.value,\n                            rawValue: $parent.rawValue,\n                            max: maxValue,\n                            min: minValue,\n                            invalidComponentTracker: $parent.tracker,\n                            converter: dateConverter,\n                            keyboardEdit: preventFreeInput()? 'disabled':'enabled',\n\n                            datePicker: {\n                              changeMonth: 'none',\n                              changeYear: 'none',\n                              showOn: preventFreeInput()? 'focus':'image'\n                            }\n                        }, handleEvents: $parent\"/>\n    </div>\n\n<!-- /ko -->";
+module.exports = "<!-- ko with: properties -->\n<div data-bind=\"template:{afterRender: $parent.afterRenderDate}\">\n    <label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n    <input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n                        ojComponent: {component: 'ojInputDate',\n                            validators: $parent.validators,\n                            disabled: disabled() || $parent.disabled(),\n                            placeholder: placeHolder,\n                            readOnly: $parent.readOnly() || readonly(),\n                            required: required,\n                            help: $parent.helpDefinition(help),\n                            value: $parent.value,\n                            rawValue: $parent.rawValue,\n                            max: maxValue,\n                            min: minValue,\n                            invalidComponentTracker: $parent.tracker,\n                            converter: dateConverter,\n                            keyboardEdit: preventFreeInput()? 'disabled':'enabled',\n\n                            datePicker: {\n                              changeMonth: 'none',\n                              changeYear: 'none',\n                              showOn: preventFreeInput()? 'focus':'image'\n                            }\n                        }, handleEvents: $parent\"/>\n    </div>\n\n<!-- /ko -->";
 
 /***/ }),
 /* 414 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<div data-bind=\"template:{afterRender: $parent.afterRenderTime}\">\n    <label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n    <input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n                        ojComponent: {component: 'ojInputDateTime',\n                            validators: $parent.validators,\n                            disabled: disabled,\n                            placeholder: placeHolder,\n                            readOnly: $parent.readOnly() || readonly(),\n                            required: required,\n                            value: $parent.value,\n                            rawValue: $parent.rawValue,\n                            invalidComponentTracker: $parent.tracker,\n                            max: maxValue,\n                            min: minValue,\n                            help: $parent.helpDefinition(help),\n                            converter: dateConverter,\n                            keyboardEdit: preventFreeInput()? 'disabled':'enabled',\n                            datePicker: {\n                              changeMonth: 'none',\n                              changeYear: 'none',\n                              showOn: preventFreeInput()? 'focus':'image'\n                            },\n                            timePicker: {\n                                timeIncrement: step()[0],\n                                showOn: preventFreeInput()? 'focus':'image'\n                            }\n                        }, handleEvents: $parent\"/>\n</div>\n<!-- /ko -->";
+module.exports = "<!-- ko with: properties -->\n<div data-bind=\"template:{afterRender: $parent.afterRenderTime}\">\n    <label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n    <input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n                        ojComponent: {component: 'ojInputDateTime',\n                            validators: $parent.validators,\n                            disabled: disabled() || $parent.disabled(),\n                            placeholder: placeHolder,\n                            readOnly: $parent.readOnly() || readonly(),\n                            required: required,\n                            value: $parent.value,\n                            rawValue: $parent.rawValue,\n                            invalidComponentTracker: $parent.tracker,\n                            max: maxValue,\n                            min: minValue,\n                            help: $parent.helpDefinition(help),\n                            converter: dateConverter,\n                            keyboardEdit: preventFreeInput()? 'disabled':'enabled',\n                            datePicker: {\n                              changeMonth: 'none',\n                              changeYear: 'none',\n                              showOn: preventFreeInput()? 'focus':'image'\n                            },\n                            timePicker: {\n                                timeIncrement: step()[0],\n                                showOn: preventFreeInput()? 'focus':'image'\n                            }\n                        }, handleEvents: $parent\"/>\n</div>\n<!-- /ko -->";
 
 /***/ }),
 /* 415 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n<input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n\t\t\t\t\tojComponent: {\n\t\t\t\t\t\t\t\t\tcomponent: 'ojInputText',\n\t\t\t\t\t\t\t\t \ttitle: hint,\n\t\t\t\t\t\t\t\t \tplaceholder: placeHolder,\n\t\t\t\t\t\t\t\t \tvalidators: $parent.validators,\n\t\t\t\t\t\t\t\t \treadOnly: $parent.readOnly() || readonly(),\n\t\t\t\t\t\t\t\t \trequired: required,\n\t\t\t\t\t\t\t\t \tinvalidComponentTracker: $parent.tracker,\n\t\t\t\t\t\t\t\t \tvalue: $parent.value,\n\t\t\t\t\t\t\t\t \trawValue: $parent.rawValue,\n\t\t\t\t\t\t\t\t \tdisabled: disabled,\n\t\t\t\t\t\t\t\t \thelp: $parent.helpDefinition(help)\n\t\t\t\t\t\t\t\t }, handleEvents: $parent\"/>\n<!-- /ko -->";
+module.exports = "<!-- ko with: properties -->\n<label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n<input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n\t\t\t\t\tojComponent: {\n\t\t\t\t\t\t\t\t\tcomponent: 'ojInputText',\n\t\t\t\t\t\t\t\t \ttitle: hint,\n\t\t\t\t\t\t\t\t \tplaceholder: placeHolder,\n\t\t\t\t\t\t\t\t \tvalidators: $parent.validators,\n\t\t\t\t\t\t\t\t \treadOnly: $parent.readOnly() || readonly(),\n\t\t\t\t\t\t\t\t \trequired: required,\n\t\t\t\t\t\t\t\t \tinvalidComponentTracker: $parent.tracker,\n\t\t\t\t\t\t\t\t \tvalue: $parent.value,\n\t\t\t\t\t\t\t\t \trawValue: $parent.rawValue,\n\t\t\t\t\t\t\t\t \tdisabled: disabled() || $parent.disabled(),\n\t\t\t\t\t\t\t\t \thelp: $parent.helpDefinition(help)\n\t\t\t\t\t\t\t\t }, handleEvents: $parent\"/>\n<!-- /ko -->";
 
 /***/ }),
 /* 416 */
@@ -24205,13 +24260,13 @@ module.exports = "<h6 data-bind=\"attr: {id: $parents[1].domIdPrefix + $parents[
 /* 425 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<div data-bind=\"template:{afterRender: $parent.afterRenderNumber}\">\n    <label data-bind=\"attr: {for:$parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n    <input data-bind=\"css: {'hide-up-down-arrow': !showUpDownArrow()}, attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n                        ojComponent: {\n                                        component: 'ojInputNumber',\n                                        title: hint,\n                                        validators: $parent.validators,\n                                        readOnly: $parent.readOnly() || readonly(),\n                                        required: required,\n                                        max: maxValue,\n                                        min: minValue,\n                                        step: step,\n                                        invalidComponentTracker: $parent.tracker,\n                                        value: $parent.value,\n                                        rawValue: $parent.rawValue,\n                                        disabled: $parent.readOnly() ? !$parent.readOnly() : disabled(),\n                                        help: $parent.helpDefinition(help)\n                                     }, handleEvents: $parent\"/>\n</div>\n<!-- /ko -->";
+module.exports = "<!-- ko with: properties -->\n<div data-bind=\"template:{afterRender: $parent.afterRenderNumber}\">\n    <label data-bind=\"attr: {for:$parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n    <input data-bind=\"css: {'hide-up-down-arrow': !showUpDownArrow()}, attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n                        ojComponent: {\n                                        component: 'ojInputNumber',\n                                        title: hint,\n                                        validators: $parent.validators,\n                                        readOnly: $parent.readOnly() || readonly(),\n                                        required: required,\n                                        max: maxValue,\n                                        min: minValue,\n                                        step: step,\n                                        invalidComponentTracker: $parent.tracker,\n                                        value: $parent.value,\n                                        rawValue: $parent.rawValue,\n                                        disabled: $parent.readOnly() ? !$parent.readOnly() : disabled() || $parent.disabled(),\n                                        help: $parent.helpDefinition(help)\n                                     }, handleEvents: $parent\"/>\n</div>\n<!-- /ko -->";
 
 /***/ }),
 /* 426 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<label data-bind =\"attr: {for: $parent.domIdPrefix + $parent.id, id: $parent.id + '_mainLabel'}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n<!-- ko if: !optionsFeed().optionsResolver().loading() -->\n<div data-bind = \"attr: {id: $parent.domIdPrefix + $parent.id, style: parsedStyle}, ojComponent: {\n    component: 'ojRadioset',\n    validators: $parent.validators,\n\tdisabled: $parent.readOnly() ||disabled() ||readonly(),\n\trequired: required,\n\thelp: $parent.helpDefinition(help),\n\tmessagesCustom: optionsFeed().optionsResolver().customValidationMessages(),\n\tvalue: $parent.value}, handleEvents: $parent,\n    refresh: computedOptions\">\n    <!-- ko foreach: computedOptions -->\n\t    <span class =\"oj-choice-row\" data-bind=\"css: {'oj-choice-row-inline': $parent.inline() === true}\">\n\t      <input data-bind=\"value: value, attr:{id: $parents[1].id + $index(), name: $parents[1].id, autofocus: ($parent.autoFocus() && $parent.autoFocus()[0] === value) ? 'autofocus' : null}\" type =\"radio\">\n\t      <label data-bind=\"for: $parents[1].id + $index(), text: label, style: {'fontSize': $parent.formattedStyle().fontSize}\"></label>\n\t    </span>\n    <!-- /ko -->\n</div>\n<!-- /ko -->\n\n<!-- ko if: optionsFeed().optionsResolver().loading -->\n<div class=\"loadingControl\" data-bind=\"ojComponent:{\n\t  component: 'ojProgressbar',\n\t  value: -1}\">\n</div >\n<!-- /ko -->\n\n<!-- /ko -->\n";
+module.exports = "<!-- ko with: properties -->\n<label data-bind =\"attr: {for: $parent.domIdPrefix + $parent.id, id: $parent.id + '_mainLabel'}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n<!-- ko if: !optionsFeed().optionsResolver().loading() -->\n<div data-bind = \"attr: {id: $parent.domIdPrefix + $parent.id, style: parsedStyle}, ojComponent: {\n    component: 'ojRadioset',\n    validators: $parent.validators,\n\tdisabled: $parent.readOnly() ||disabled() ||readonly() || $parent.disabled(),\n\trequired: required,\n\thelp: $parent.helpDefinition(help),\n\tmessagesCustom: optionsFeed().optionsResolver().customValidationMessages(),\n\tvalue: $parent.value}, handleEvents: $parent,\n    refresh: computedOptions\">\n    <!-- ko foreach: computedOptions -->\n\t    <span class =\"oj-choice-row\" data-bind=\"css: {'oj-choice-row-inline': $parent.inline() === true}\">\n\t      <input data-bind=\"value: value, attr:{id: $parents[1].id + $index(), name: $parents[1].id, autofocus: ($parent.autoFocus() && $parent.autoFocus()[0] === value) ? 'autofocus' : null}\" type =\"radio\">\n\t      <label data-bind=\"for: $parents[1].id + $index(), text: label, style: {'fontSize': $parent.formattedStyle().fontSize}\"></label>\n\t    </span>\n    <!-- /ko -->\n</div>\n<!-- /ko -->\n\n<!-- ko if: optionsFeed().optionsResolver().loading -->\n<div class=\"loadingControl\" data-bind=\"ojComponent:{\n\t  component: 'ojProgressbar',\n\t  value: -1}\">\n</div >\n<!-- /ko -->\n\n<!-- /ko -->\n";
 
 /***/ }),
 /* 427 */
@@ -24223,43 +24278,43 @@ module.exports = "<!-- ko with: properties -->\n<div data-bind=\"template:{after
 /* 428 */
 /***/ (function(module, exports) {
 
-module.exports = "<select data-bind=\"attr: {autofocus: autoFocus() ? 'autofocus' : null, id: $parent.domIdPrefix + $parent.id, name: $parent.name}, ojComponent: {component: 'ojSelect',\n                                    disabled: $parent.readOnly() ||disabled() ||readonly(),\n                                    title: hint,\n                                    help: $parent.helpDefinition(help),\n                                    placeholder: placeHolder,\n                                    required: required,\n                                    value: $parent._ojValue,\n                                    rawValue: $parent.rawValue,\n                                    invalidComponentTracker: $parent.tracker,\n                                    messagesCustom: optionsFeed().optionsResolver().customValidationMessages(),\n                                    validators: $parent.validators}, handleEvents: $parent\">\n    <!-- ko foreach: computedOptions() -->\n        <option data-bind=\"value: value, text:label\"></option>\n    <!-- /ko -->\n</select>";
+module.exports = "<select data-bind=\"attr: {autofocus: autoFocus() ? 'autofocus' : null, id: $parent.domIdPrefix + $parent.id, name: $parent.name}, ojComponent: {component: 'ojSelect',\n                                    disabled: $parent.readOnly() ||disabled() ||readonly() || $parent.disabled(),\n                                    title: hint,\n                                    help: $parent.helpDefinition(help),\n                                    placeholder: placeHolder,\n                                    required: required,\n                                    value: $parent._ojValue,\n                                    rawValue: $parent.rawValue,\n                                    invalidComponentTracker: $parent.tracker,\n                                    messagesCustom: optionsFeed().optionsResolver().customValidationMessages(),\n                                    validators: $parent.validators}, handleEvents: $parent\">\n    <!-- ko foreach: computedOptions() -->\n        <option data-bind=\"value: value, text:label\"></option>\n    <!-- /ko -->\n</select>";
 
 /***/ }),
 /* 429 */
 /***/ (function(module, exports) {
 
-module.exports = "<select data-bind=\"attr: {autofocus: autoFocus() ? 'autofocus' : null, id: $parent.domIdPrefix + $parent.id, name: $parent.name}, ojComponent: {component: 'ojSelect',\n                                    disabled: $parent.readOnly() ||disabled() ||readonly(),\n                                    title: hint,\n                                    placeholder: placeHolder,\n                                    help: $parent.helpDefinition(help),\n                                    required: required,\n                                    value: $parent._ojValue,\n                                    rawValue: $parent.rawValue,\n                                    multiple: true,\n                                    invalidComponentTracker: $parent.tracker,\n                                    messagesCustom: optionsFeed().optionsResolver().customValidationMessages(),\n                                    validators: $parent.validators}, handleEvents: $parent\">\n    <!-- ko foreach: computedOptions() -->\n        <option data-bind=\"value: value, text:label\"></option>\n    <!-- /ko -->\n</select>";
+module.exports = "<select data-bind=\"attr: {autofocus: autoFocus() ? 'autofocus' : null, id: $parent.domIdPrefix + $parent.id, name: $parent.name}, ojComponent: {component: 'ojSelect',\n                                    disabled: $parent.readOnly() ||disabled() ||readonly() || $parent.disabled(),\n                                    title: hint,\n                                    placeholder: placeHolder,\n                                    help: $parent.helpDefinition(help),\n                                    required: required,\n                                    value: $parent._ojValue,\n                                    rawValue: $parent.rawValue,\n                                    multiple: true,\n                                    invalidComponentTracker: $parent.tracker,\n                                    messagesCustom: optionsFeed().optionsResolver().customValidationMessages(),\n                                    validators: $parent.validators}, handleEvents: $parent\">\n    <!-- ko foreach: computedOptions() -->\n        <option data-bind=\"value: value, text:label\"></option>\n    <!-- /ko -->\n</select>";
 
 /***/ }),
 /* 430 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\r\n<label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\r\n<textarea data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autocomplete: autoComplete() ? 'on' : 'off', autofocus: autoFocus() ? 'autofocus' : null, rows: rows, style: parsedStyle},\r\n                    ojComponent: {\r\n                        component: 'ojTextArea',\r\n                        title: hint,\r\n                        placeholder: placeHolder,\r\n                        validators: $parent.validators,\r\n                        readOnly: $parent.readOnly() || readonly(),\r\n                        required: required,\r\n                        value: $parent.value,\r\n                        rawValue: $parent.rawValue,\r\n                        disabled: disabled,\r\n                        invalidComponentTracker: $parent.tracker,\r\n                        help: $parent.helpDefinition(help)\r\n                        }, handleEvents: $parent\"></textarea>\r\n<!-- /ko -->";
+module.exports = "<!-- ko with: properties -->\r\n<label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\r\n<textarea data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autocomplete: autoComplete() ? 'on' : 'off', autofocus: autoFocus() ? 'autofocus' : null, rows: rows, style: parsedStyle},\r\n                    ojComponent: {\r\n                        component: 'ojTextArea',\r\n                        title: hint,\r\n                        placeholder: placeHolder,\r\n                        validators: $parent.validators,\r\n                        readOnly: $parent.readOnly() || readonly(),\r\n                        required: required,\r\n                        value: $parent.value,\r\n                        rawValue: $parent.rawValue,\r\n                        disabled: disabled() || $parent.disabled(),\r\n                        invalidComponentTracker: $parent.tracker,\r\n                        help: $parent.helpDefinition(help)\r\n                        }, handleEvents: $parent\"></textarea>\r\n<!-- /ko -->";
 
 /***/ }),
 /* 431 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\r\n<label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\r\n<input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autofocus: autoFocus() ? 'autofocus' : null, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle},\r\n\t\t\t\t\tojComponent: {\r\n\t\t\t\t\t\t\t\t\tcomponent: 'ojInputText',\r\n\t\t\t\t\t\t\t\t \ttitle: hint,\r\n\t\t\t\t\t\t\t\t \tplaceholder: placeHolder,\r\n\t\t\t\t\t\t\t\t \tvalidators: $parent.validators,\r\n\t\t\t\t\t\t\t\t \treadOnly: $parent.readOnly() || readonly(),\r\n\t\t\t\t\t\t\t\t \trequired: required,\r\n\t\t\t\t\t\t\t\t \tvalue: $parent.value,\r\n\t\t\t\t\t\t\t\t \tdisabled: disabled,\r\n\t\t\t\t\t\t\t\t \thelp: $parent.helpDefinition(help),\r\n\t\t\t\t\t\t\t\t \trawValue: $parent.rawValue,\r\n\t\t\t\t\t\t\t\t \tinvalidComponentTracker: $parent.tracker\r\n\t\t\t\t\t\t\t\t }, handleEvents: $parent\"/>\r\n<!-- /ko -->";
+module.exports = "<!-- ko with: properties -->\r\n<label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\r\n<input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autofocus: autoFocus() ? 'autofocus' : null, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle},\r\n\t\t\t\t\tojComponent: {\r\n\t\t\t\t\t\t\t\t\tcomponent: 'ojInputText',\r\n\t\t\t\t\t\t\t\t \ttitle: hint,\r\n\t\t\t\t\t\t\t\t \tplaceholder: placeHolder,\r\n\t\t\t\t\t\t\t\t \tvalidators: $parent.validators,\r\n\t\t\t\t\t\t\t\t \treadOnly: $parent.readOnly() || readonly(),\r\n\t\t\t\t\t\t\t\t \trequired: required,\r\n\t\t\t\t\t\t\t\t \tvalue: $parent.value,\r\n\t\t\t\t\t\t\t\t \tdisabled: disabled() || $parent.disabled(),\r\n\t\t\t\t\t\t\t\t \thelp: $parent.helpDefinition(help),\r\n\t\t\t\t\t\t\t\t \trawValue: $parent.rawValue,\r\n\t\t\t\t\t\t\t\t \tinvalidComponentTracker: $parent.tracker\r\n\t\t\t\t\t\t\t\t }, handleEvents: $parent\"/>\r\n<!-- /ko -->";
 
 /***/ }),
 /* 432 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<div data-bind=\"template:{afterRender: $parent.afterRenderTime}\">\n    <label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n    <input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n                        ojComponent: {component: 'ojInputTime',\n                            validators: $parent.validators,\n                            disabled: disabled,\n                            placeholder: placeHolder,\n                            readOnly: $parent.readOnly() || readonly(),\n                            required: required,\n                            value: $parent.value,\n                            rawValue: $parent.rawValue,\n                            max: maxValue,\n                            min: minValue,\n                            invalidComponentTracker: $parent.tracker,\n                            help: $parent.helpDefinition(help),\n                            keyboardEdit: preventFreeInput()? 'disabled':'enabled',\n                            timePicker: {\n                                timeIncrement: step()[0],\n                                showOn: preventFreeInput()? 'focus':'image'\n                            }},\n                        }, handleEvents: $parent\"/>\n</div>\n<!-- /ko -->";
+module.exports = "<!-- ko with: properties -->\n<div data-bind=\"template:{afterRender: $parent.afterRenderTime}\">\n    <label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n    <input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n                        ojComponent: {component: 'ojInputTime',\n                            validators: $parent.validators,\n                            disabled: disabled() || $parent.disabled(),\n                            placeholder: placeHolder,\n                            readOnly: $parent.readOnly() || readonly(),\n                            required: required,\n                            value: $parent.value,\n                            rawValue: $parent.rawValue,\n                            max: maxValue,\n                            min: minValue,\n                            invalidComponentTracker: $parent.tracker,\n                            help: $parent.helpDefinition(help),\n                            keyboardEdit: preventFreeInput()? 'disabled':'enabled',\n                            timePicker: {\n                                timeIncrement: step()[0],\n                                showOn: preventFreeInput()? 'focus':'image'\n                            }},\n                        }, handleEvents: $parent\"/>\n</div>\n<!-- /ko -->";
 
 /***/ }),
 /* 433 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize} \"></label>\n<input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n\t\t\t\t\tojComponent: {\n\t\t\t\t\t\t\t\t\tcomponent: 'ojInputText',\n\t\t\t\t\t\t\t\t \ttitle: hint,\n\t\t\t\t\t\t\t\t \tplaceholder: placeHolder,\n\t\t\t\t\t\t\t\t \tvalidators: $parent.validators,\n\t\t\t\t\t\t\t\t \treadOnly: $parent.readOnly() || readonly(),\n\t\t\t\t\t\t\t\t \trequired: required,\n\t\t\t\t\t\t\t\t \tvalue: $parent.value,\n\t\t\t\t\t\t\t\t \trawValue: $parent.rawValue,\n\t\t\t\t\t\t\t\t \tinvalidComponentTracker: $parent.tracker,\n\t\t\t\t\t\t\t\t \tdisabled: disabled,\n\t\t\t\t\t\t\t\t \thelp: $parent.helpDefinition(help)\n\t\t\t\t\t\t\t\t }, handleEvents: $parent\"/>\n<!-- /ko -->";
+module.exports = "<!-- ko with: properties -->\n<label data-bind=\"attr: {for: $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize} \"></label>\n<input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n\t\t\t\t\tojComponent: {\n\t\t\t\t\t\t\t\t\tcomponent: 'ojInputText',\n\t\t\t\t\t\t\t\t \ttitle: hint,\n\t\t\t\t\t\t\t\t \tplaceholder: placeHolder,\n\t\t\t\t\t\t\t\t \tvalidators: $parent.validators,\n\t\t\t\t\t\t\t\t \treadOnly: $parent.readOnly() || readonly(),\n\t\t\t\t\t\t\t\t \trequired: required,\n\t\t\t\t\t\t\t\t \tvalue: $parent.value,\n\t\t\t\t\t\t\t\t \trawValue: $parent.rawValue,\n\t\t\t\t\t\t\t\t \tinvalidComponentTracker: $parent.tracker,\n\t\t\t\t\t\t\t\t \tdisabled: disabled() || $parent.disabled(),\n\t\t\t\t\t\t\t\t \thelp: $parent.helpDefinition(help)\n\t\t\t\t\t\t\t\t }, handleEvents: $parent\"/>\n<!-- /ko -->";
 
 /***/ }),
 /* 434 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ko with: properties -->\n<label data-bind=\"attr: {for : $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n<input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n\t\t\t\t\tojComponent: {\n\t\t\t\t\t\t\t\t\tcomponent: 'ojInputText',\n\t\t\t\t\t\t\t\t \tplaceholder: placeHolder,\n\t\t\t\t\t\t\t\t \ttitle: hint,\n\t\t\t\t\t\t\t\t \tvalidators: $parent.validators,\n\t\t\t\t\t\t\t\t \treadOnly: $parent.readOnly() ||readonly(),\n\t\t\t\t\t\t\t\t \trequired: required,\n\t\t\t\t\t\t\t\t \tvalue: $parent.value,\n\t\t\t\t\t\t\t\t \trawValue: $parent.rawValue,\n\t\t\t\t\t\t\t\t \tdisabled: disabled,\n\t\t\t\t\t\t\t\t \thelp: $parent.helpDefinition(help)\n\t\t\t\t\t\t\t\t }, handleEvents: $parent\"/>\n<!-- /ko -->\n";
+module.exports = "<!-- ko with: properties -->\n<label data-bind=\"attr: {for : $parent.domIdPrefix + $parent.id}, text: label, style: {'color': formattedStyle().labelColor, 'font-size': formattedStyle().labelSize}\"></label>\n<input data-bind=\"attr: {id: $parent.domIdPrefix + $parent.id, name: $parent.name, autocomplete: autoComplete() ? 'on' : 'off', style: parsedStyle, autofocus: autoFocus() ? 'autofocus' : null},\n\t\t\t\t\tojComponent: {\n\t\t\t\t\t\t\t\t\tcomponent: 'ojInputText',\n\t\t\t\t\t\t\t\t \tplaceholder: placeHolder,\n\t\t\t\t\t\t\t\t \ttitle: hint,\n\t\t\t\t\t\t\t\t \tvalidators: $parent.validators,\n\t\t\t\t\t\t\t\t \treadOnly: $parent.readOnly() ||readonly(),\n\t\t\t\t\t\t\t\t \trequired: required,\n\t\t\t\t\t\t\t\t \tvalue: $parent.value,\n\t\t\t\t\t\t\t\t \trawValue: $parent.rawValue,\n\t\t\t\t\t\t\t\t \tdisabled: disabled() || $parent.disabled(),\n\t\t\t\t\t\t\t\t \thelp: $parent.helpDefinition(help)\n\t\t\t\t\t\t\t\t }, handleEvents: $parent\"/>\n<!-- /ko -->\n";
 
 /***/ }),
 /* 435 */
@@ -24454,7 +24509,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var __WEBPACK_AM
 
 		//region dependencies
 
-		var MediaQueryType = __webpack_require__(148),
+		var MediaQueryType = __webpack_require__(150),
 		    ko = __webpack_require__(1);
 
 		//end region
