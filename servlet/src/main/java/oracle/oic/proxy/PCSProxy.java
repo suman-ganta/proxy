@@ -61,7 +61,7 @@ public class PCSProxy extends ProxyServlet {
     CloseableHttpClient httpClient;
     try {
       httpClient = HttpClientBuilder.create().setDefaultRequestConfig(requestConfig)
-          .setSSLSocketFactory(new SSLConnectionSocketFactory(getNoOpSSLContext(), new String[] { "TLSv1", "TLSv1.1", "TLSv1.2", "TLSv1.3" }, null, new NoopHostnameVerifier()))
+          .setSSLSocketFactory(new SSLConnectionSocketFactory(getNoOpSSLContext(), null, null, new NoopHostnameVerifier()))
           //.setDefaultCredentialsProvider(getCredentialProvider())
           .useSystemProperties()
           .build();
